@@ -1,6 +1,7 @@
 part of 'themes.dart';
 
 final appTheme = ThemeData(
+  
   useMaterial3: true,
   applyElevationOverlayColor: true,
   pageTransitionsTheme: const PageTransitionsTheme(

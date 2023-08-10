@@ -51,6 +51,7 @@ dependencies:
   flutter_local_notifications: ^15.1.0+1
 
   cupertino_icons: ^1.0.2
+  flutter_screenutil: ^5.8.4
 
 dev_dependencies:
   flutter_test:
@@ -69,6 +70,7 @@ flutter:
     - assets/locale/
     - assets/fonts/
     - assets/png/
+    - assets/svg/
 
   fonts:
     - family: AppIcons

@@ -2,7 +2,7 @@ part of 'themes.dart';
 
 /// A set of colors for the entire app.
 const colorLightScheme = ColorScheme.light(
-  primary: Color(0xff22B99A),
+  primary: Color(0xFFFFCC00),
   surface: Color(0xFFF7F9FC),
   onSurface: Color(0xFF020000),
   secondary: Color(0xFF69D7C7),
@@ -14,7 +14,7 @@ const colorLightScheme = ColorScheme.light(
 
 ///
 const colorDarkScheme = ColorScheme.dark(
-  primary: Color(0xFF0FB8D3),
+  primary: Color(0xFFFFCC00),
   surface: Color(0xFFF7F9FC),
   secondary: Color(0xFF69D7C7),
   error: Color(0xFFD93F2F),
@@ -25,24 +25,29 @@ const colorDarkScheme = ColorScheme.dark(
 class ThemeColors extends ThemeExtension<ThemeColors> {
   const ThemeColors({
     required this.cardColor,
+    required this.listileColor,
   });
 
   final Color cardColor;
+  final Color listileColor;
 
-    static const ThemeColors light = ThemeColors(
+  static const ThemeColors light = ThemeColors(
     cardColor: Colors.white,
+    listileColor: Color(0xFFF7F7F7),
   );
   static const ThemeColors dark = ThemeColors(
     cardColor: Color(0xFF1E1E1E),
+    listileColor: Color(0xFFF7F7F7),
   );
 
   @override
   ThemeExtension<ThemeColors> copyWith({
     Color? cardColor,
+    Color? listileColor,
   }) =>
       ThemeColors(
-        cardColor: cardColor ?? this.cardColor,
-      );
+          cardColor: cardColor ?? this.cardColor,
+          listileColor: listileColor ?? this.listileColor);
 
   @override
   ThemeExtension<ThemeColors> lerp(
@@ -51,6 +56,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       return this;
     }
     return ThemeColors(
+      listileColor: Color.lerp(listileColor, other.listileColor, t)!,
       cardColor: Color.lerp(cardColor, other.cardColor, t)!,
     );
   }

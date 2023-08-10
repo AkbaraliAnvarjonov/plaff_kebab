@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:plaff_kebab/src/config/router/app_routes.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/presentation/components/awesome/awesome_loader.dart';
@@ -28,7 +27,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
           if (state.isTimerFinished) {
             Navigator.pushReplacementNamed(
               context,
-              Routes.main,
+              Routes.language,
             );
           }
         },
@@ -39,12 +38,16 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
             statusBarIconBrightness: Brightness.light,
           ),
           child: Scaffold(
-            backgroundColor: context.theme.primaryColor,
+            backgroundColor: context.color.cardColor,
             body: Stack(
               children: [
                 Positioned.fill(
                   child: Center(
-                    child: SvgPicture.asset(assetName),
+                    child: Image.asset(
+                      AppImages.appLogo,
+                      height: 240,
+                      width: 270,
+                    ),
                   ),
                 ),
                 const Positioned(

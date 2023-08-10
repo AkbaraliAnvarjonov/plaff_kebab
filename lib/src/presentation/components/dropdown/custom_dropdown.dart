@@ -31,7 +31,7 @@ class CustomDropDown<T> extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 8),
               child: Text(
                 '$label',
-                style: context.textStyle.bodySubheadline,
+                style: context.textStyle.subheadline,
               ),
             ),
           DropdownButtonHideUnderline(

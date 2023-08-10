@@ -15,6 +15,7 @@ import 'package:plaff_kebab/src/presentation/pages/auth/confirm/confirm_code_pag
 import 'package:plaff_kebab/src/presentation/pages/auth/register/register_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/error/error_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/internet_connection/internet_connection_page.dart';
+import 'package:plaff_kebab/src/presentation/pages/language/language_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/main_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/profile/settings/settings_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/splash/splash_page.dart';
@@ -83,6 +84,8 @@ sealed class AppRoutes {
             child: const RegisterPage(),
           ),
         );
+      case Routes.language:
+        return MaterialPageRoute(builder: (_) => const LanguagePage());
 
       default:
         return MaterialPageRoute(builder: (_) => ErrorPage(settings: settings));

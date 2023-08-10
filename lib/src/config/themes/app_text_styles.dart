@@ -18,7 +18,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.bodyCaption2,
     required this.bodyCaption1,
     required this.bodyFootnote,
-    required this.bodySubheadline,
+    required this.subheadline,
     required this.bodyCallout,
     required this.bodyBody,
     required this.bodyHeadline,
@@ -44,7 +44,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle bodyCaption2;
   final TextStyle bodyCaption1;
   final TextStyle bodyFootnote;
-  final TextStyle bodySubheadline;
+  final TextStyle subheadline;
   final TextStyle bodyCallout;
   final TextStyle bodyBody;
   final TextStyle bodyHeadline;
@@ -154,10 +154,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       fontSize: 34,
       fontWeight: FontWeight.w400,
     ),
-    bodySubheadline: TextStyle(
+    subheadline: TextStyle(
       color: Colors.black,
       fontSize: 15,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w600,
     ),
     bodyTitle1: TextStyle(
       color: Colors.black,
@@ -276,7 +276,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       fontSize: 34,
       fontWeight: FontWeight.w400,
     ),
-    bodySubheadline: TextStyle(
+    subheadline: TextStyle(
       color: Colors.white,
       fontSize: 15,
       fontWeight: FontWeight.w400,
@@ -320,7 +320,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? bodyFootnote,
     TextStyle? bodyHeadline,
     TextStyle? bodyLargeTitle,
-    TextStyle? bodySubheadline,
+    TextStyle? subheadline,
     TextStyle? bodyTitle1,
     TextStyle? bodyTitle2,
     TextStyle? bodyTitle3,
@@ -346,7 +346,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         bodyFootnote: bodyFootnote ?? this.bodyFootnote,
         bodyHeadline: bodyHeadline ?? this.bodyHeadline,
         bodyLargeTitle: bodyLargeTitle ?? this.bodyLargeTitle,
-        bodySubheadline: bodySubheadline ?? this.bodySubheadline,
+        subheadline: subheadline ?? this.subheadline,
         bodyTitle1: bodyTitle1 ?? this.bodyTitle1,
         bodyTitle2: bodyTitle2 ?? this.bodyTitle2,
         bodyTitle3: bodyTitle3 ?? this.bodyTitle3,
@@ -385,8 +385,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       bodyFootnote: TextStyle.lerp(bodyFootnote, other.bodyFootnote, t)!,
       bodyHeadline: TextStyle.lerp(bodyHeadline, other.bodyHeadline, t)!,
       bodyLargeTitle: TextStyle.lerp(bodyLargeTitle, other.bodyLargeTitle, t)!,
-      bodySubheadline:
-          TextStyle.lerp(bodySubheadline, other.bodySubheadline, t)!,
+      subheadline: TextStyle.lerp(subheadline, other.subheadline, t)!,
       bodyTitle1: TextStyle.lerp(bodyTitle1, other.bodyTitle1, t)!,
       bodyTitle2: TextStyle.lerp(bodyTitle2, other.bodyTitle2, t)!,
       bodyTitle3: TextStyle.lerp(bodyTitle3, other.bodyTitle3, t)!,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'src/app_options.dart';
 import 'src/config/router/app_routes.dart';
@@ -58,28 +59,34 @@ class MainApp extends StatelessWidget {
             child: Builder(
               builder: (ctx) {
                 final AppOptions options = AppOptions.of(ctx);
-                return MaterialApp(
-                  /// title
-                  debugShowCheckedModeBanner: false,
-                  navigatorKey: rootNavigatorKey,
-                  scaffoldMessengerKey: scaffoldMessengerKey,
+                return ScreenUtilInit(
+                    designSize: const Size(375, 812),
+                    minTextAdapt: true,
+                    splitScreenMode: true,
+                    builder: (context, child) {
+                      return MaterialApp(
+                        /// title
+                        debugShowCheckedModeBanner: false,
+                        navigatorKey: rootNavigatorKey,
+                        scaffoldMessengerKey: scaffoldMessengerKey,
 
-                  /// theme style
-                  theme: lightTheme,
-                  darkTheme: darkTheme,
-                  themeMode: options.themeMode,
+                        /// theme style
+                        theme: lightTheme,
+                        darkTheme: darkTheme,
+                        themeMode: options.themeMode,
 
-                  /// lang
-                  locale: options.locale,
-                  localizationsDelegates:
-                      AppLocalizations.localizationsDelegates,
-                  supportedLocales: AppLocalizations.supportedLocales,
+                        /// lang
+                        locale: options.locale,
+                        localizationsDelegates:
+                            AppLocalizations.localizationsDelegates,
+                        supportedLocales: AppLocalizations.supportedLocales,
 
-                  /// pages
-                  initialRoute: Routes.initial,
-                  onGenerateRoute: AppRoutes.onGenerateRoute,
-                  onUnknownRoute: AppRoutes.onUnknownRoute,
-                );
+                        /// pages
+                        initialRoute: Routes.initial,
+                        onGenerateRoute: AppRoutes.onGenerateRoute,
+                        onUnknownRoute: AppRoutes.onUnknownRoute,
+                      );
+                    });
               },
             ),
           ),
