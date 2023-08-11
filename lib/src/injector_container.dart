@@ -125,7 +125,7 @@ void authFeature() {
 }
 
 Future<void> initHive() async {
-  const boxName = 'bloc_mobile_box';
+  const boxName = 'plaff_kebab';
   final Directory directory = await getApplicationDocumentsDirectory();
   Hive.init(directory.path);
   _box = await Hive.openBox<dynamic>(boxName);

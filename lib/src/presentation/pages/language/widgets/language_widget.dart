@@ -3,6 +3,8 @@ import 'package:plaff_kebab/src/app_options.dart';
 import 'package:plaff_kebab/src/config/router/app_routes.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
+import 'package:plaff_kebab/src/data/source/local_source.dart';
+import 'package:plaff_kebab/src/injector_container.dart';
 
 class LanguageWidget extends StatelessWidget {
   const LanguageWidget({
@@ -39,10 +41,13 @@ class LanguageWidget extends StatelessWidget {
             context,
             options.copyWith(locale: Locale(lang)),
           );
+
           Navigator.pushReplacementNamed(
             context,
             Routes.main,
           );
+          sl<LocalSource>().setLocale(lang);
+          sl<LocalSource>().setLangSelected(value: true);
         },
       ),
     );

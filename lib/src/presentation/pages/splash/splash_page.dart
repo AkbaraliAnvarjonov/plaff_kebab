@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plaff_kebab/src/config/router/app_routes.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
+import 'package:plaff_kebab/src/data/source/local_source.dart';
+import 'package:plaff_kebab/src/injector_container.dart';
 import 'package:plaff_kebab/src/presentation/components/awesome/awesome_loader.dart';
 
 import '../../bloc/splash/splash_bloc.dart';
@@ -27,7 +29,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
           if (state.isTimerFinished) {
             Navigator.pushReplacementNamed(
               context,
-              Routes.language,
+              sl<LocalSource>().lanSelected ? Routes.main : Routes.language,
             );
           }
         },
@@ -56,7 +58,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                   right: 0,
                   child: Center(
                     child: AwesomeLoader(
-                      loaderType: awesomeLoader3,
+                      loaderType: awesomeLoader1,
                       color: Colors.white,
                     ),
                   ),
