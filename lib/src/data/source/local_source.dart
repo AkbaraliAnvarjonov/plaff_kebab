@@ -79,7 +79,7 @@ final class LocalSource {
         'system' => ThemeMode.system,
         'light' => ThemeMode.light,
         'dark' => ThemeMode.dark,
-        _ => ThemeMode.system,
+        _ => ThemeMode.light,
       };
 
   Future<void> clear() async {

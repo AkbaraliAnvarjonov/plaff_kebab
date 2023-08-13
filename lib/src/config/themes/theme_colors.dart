@@ -4,7 +4,7 @@ part of 'themes.dart';
 const colorLightScheme = ColorScheme.light(
   primary: Color(0xFFFFCC00),
   surface: Color(0xFFF7F9FC),
-  onSurface: Color(0xFF020000),
+  onSurface: Color(0xFFF5F5F5),
   secondary: Color(0xFF69D7C7),
   onSecondary: Color(0xFF020000),
   error: Color(0xFFD93F2F),
@@ -26,28 +26,47 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   const ThemeColors({
     required this.cardColor,
     required this.listileColor,
+    required this.black5,
+    required this.black3,
+    required this.black,
   });
 
   final Color cardColor;
+  final Color black;
   final Color listileColor;
+  final Color black5;
+  final Color black3;
 
   static const ThemeColors light = ThemeColors(
     cardColor: Colors.white,
+    black: Colors.black,
     listileColor: Color(0xFFF7F7F7),
+    black5: Color(0xFF9AA6AC),
+    black3: Color(0xFF858585),
   );
   static const ThemeColors dark = ThemeColors(
     cardColor: Color(0xFF1E1E1E),
+    black: Colors.black,
     listileColor: Color(0xFFF7F7F7),
+    black5: Color(0xFF9AA6AC),
+    black3: Color(0xFF858585),
   );
 
   @override
   ThemeExtension<ThemeColors> copyWith({
     Color? cardColor,
     Color? listileColor,
+    Color? black5,
+    Color? black3,
+    Color? black,
   }) =>
       ThemeColors(
-          cardColor: cardColor ?? this.cardColor,
-          listileColor: listileColor ?? this.listileColor);
+        cardColor: cardColor ?? this.cardColor,
+        listileColor: listileColor ?? this.listileColor,
+        black5: black5 ?? this.black5,
+        black3: black3 ?? this.black3,
+        black: black ?? this.black,
+      );
 
   @override
   ThemeExtension<ThemeColors> lerp(
@@ -58,6 +77,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     return ThemeColors(
       listileColor: Color.lerp(listileColor, other.listileColor, t)!,
       cardColor: Color.lerp(cardColor, other.cardColor, t)!,
+      black5: Color.lerp(black5, other.black5, t)!,
+      black3: Color.lerp(black3, other.black3, t)!,
+      black: Color.lerp(black, other.black, t)!,
     );
   }
 }

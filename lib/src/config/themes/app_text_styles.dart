@@ -100,9 +100,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       fontWeight: FontWeight.w400,
     ),
     regularSubheadline: TextStyle(
-      color: Colors.black,
+      color: Color(0xFF2B2A28),
       fontSize: 15,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500,
     ),
     regularTitle1: TextStyle(
       color: Colors.black,

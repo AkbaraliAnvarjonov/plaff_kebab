@@ -41,6 +41,8 @@ class MainPage extends StatelessWidget {
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(
+              selectedItemColor: context.colorScheme.primary,
+              unselectedItemColor: context.color.black5,
               key: Constants.bottomNavigatorKey,
               onTap: (i) {
                 if (bottomMenu.index == 0 && i == 0) {
