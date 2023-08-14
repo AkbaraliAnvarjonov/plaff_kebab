@@ -30,6 +30,7 @@ sealed class Urls {
   static const String sendMessage = '/v2/send-message';
   static const String verifyEmail = '/v2/verify-email';
   static const String getCategoryWithProducts = 'v2/category-with-products';
+  static const String getBanners = 'v1/banner';
 }
 
 // Sentinel value for the system text scale factor option.

@@ -6,6 +6,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:plaff_kebab/src/presentation/bloc/banner/banner_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/category/category_bloc.dart';
 
 import 'src/app_options.dart';
@@ -56,6 +57,8 @@ class MainApp extends StatelessWidget {
           providers: [
             BlocProvider<CategoryBloc>(
                 create: (_) => sl<CategoryBloc>()..add(GetCategoryEvent())),
+            BlocProvider<BannerBloc>(
+                create: (_) => sl<BannerBloc>()..add(GetBannerEvent())),
             BlocProvider<MainBloc>(create: (_) => sl<MainBloc>()),
           ],
           child: KeyboardDismiss(

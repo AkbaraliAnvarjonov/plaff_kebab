@@ -12,11 +12,14 @@ import 'package:path_provider/path_provider.dart';
 import 'package:plaff_kebab/src/config/router/app_routes.dart';
 import 'package:plaff_kebab/src/data/source/local_source.dart';
 import 'package:plaff_kebab/src/domain/repositories/auth/auth_repository.dart';
+import 'package:plaff_kebab/src/domain/repositories/banner/banner_repository.dart';
+import 'package:plaff_kebab/src/domain/repositories/banner/banner_repository_impl.dart';
 import 'package:plaff_kebab/src/domain/repositories/category/category_repository.dart';
 import 'package:plaff_kebab/src/domain/repositories/category/category_repository_impl.dart';
 import 'package:plaff_kebab/src/domain/repositories/register/register_repository.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/auth_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/register/register_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/banner/banner_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/category/category_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/main/main_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/splash/splash_bloc.dart';
@@ -92,6 +95,9 @@ Future<void> init() async {
 
   //category
   categoryFeature();
+
+  //banenr
+  bannerFeature();
 }
 
 void mainFeature() {
@@ -133,6 +139,17 @@ void categoryFeature() {
     ..registerFactory<CategoryBloc>(() => CategoryBloc(sl()))
     ..registerLazySingleton<CategoryRepository>(
       () => CategoryRepositoryImpl(
+        dio: sl(),
+        networkInfo: sl(),
+      ),
+    );
+}
+
+void bannerFeature() {
+  sl
+    ..registerFactory<BannerBloc>(() => BannerBloc(sl()))
+    ..registerLazySingleton<BannerRepository>(
+      () => BannerRepositoryImpl(
         dio: sl(),
         networkInfo: sl(),
       ),
