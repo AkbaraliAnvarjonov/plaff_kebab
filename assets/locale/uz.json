@@ -1,6 +1,6 @@
 {
   "your_journey_starts_here": "Sizning sayohatingiz \n shu yerda boshlanadi",
-  "": "Sozlamalar",
+  "settings": "Sozlamalar",
   "first_name": "Ism",
   "last_name": "Familya",
   "birth_date": "Tug'ilgan kun",
@@ -45,5 +45,6 @@
   "empty_note_subtitle": "Ma'lumotlarni endi qo'lda to'ldirmaslik uchun yo'lovchi qo'shing",
   "delete_passport_title": "Siz ushbu ma'lumotlarni o'chirib tashlashingizga ishonchingiz komilmi?",
   "delete_passport_subtitle": "Agar kerak bo'lib qolganda uni qayta tiklay olmaysiz",
-  "select_country": "Mamlakatni tanlang"
+  "select_country": "Mamlakatni tanlang",
+  "sum": "so'm"
 }

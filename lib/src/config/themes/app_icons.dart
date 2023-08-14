@@ -7,6 +7,7 @@ sealed class AppIcons {
   static const search_icon = "assets/svg/search_icon.svg";
   static const location_icon = "assets/svg/location_icon.svg";
   static const bottom_arrow = "assets/svg/bottom_arrow.svg";
+  static const dish = "assets/svg/dish.svg";
   static const String _fontFamily = 'AppIcons';
 
   static const IconData person_with_bag =

@@ -12,9 +12,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:plaff_kebab/src/config/router/app_routes.dart';
 import 'package:plaff_kebab/src/data/source/local_source.dart';
 import 'package:plaff_kebab/src/domain/repositories/auth/auth_repository.dart';
+import 'package:plaff_kebab/src/domain/repositories/category/category_repository.dart';
+import 'package:plaff_kebab/src/domain/repositories/category/category_repository_impl.dart';
 import 'package:plaff_kebab/src/domain/repositories/register/register_repository.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/auth_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/register/register_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/category/category_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/main/main_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/splash/splash_bloc.dart';
 
@@ -38,10 +41,8 @@ Future<void> init() async {
         receiveTimeout: const Duration(seconds: 30),
         connectTimeout: const Duration(seconds: 30),
         headers: {
-          'Authorization': 'API-KEY',
-          'X-API-KEY': Constants.apiKey,
-          'Resource-Id': Constants.resourceId,
-          'Environment-Id': Constants.environmentId,
+          "accept": "application/json",
+          "Shipper": Constants.shipperId,
         },
       )
       ..interceptors.addAll(
@@ -88,6 +89,9 @@ Future<void> init() async {
   authFeature();
 
   registerFeature();
+
+  //category
+  categoryFeature();
 }
 
 void mainFeature() {
@@ -118,6 +122,17 @@ void authFeature() {
     ..registerFactory<ConfirmCodeBloc>(() => ConfirmCodeBloc(sl()))
     ..registerLazySingleton<AuthRepository>(
       () => AuthRepositoryImpl(
+        dio: sl(),
+        networkInfo: sl(),
+      ),
+    );
+}
+
+void categoryFeature() {
+  sl
+    ..registerFactory<CategoryBloc>(() => CategoryBloc(sl()))
+    ..registerLazySingleton<CategoryRepository>(
+      () => CategoryRepositoryImpl(
         dio: sl(),
         networkInfo: sl(),
       ),

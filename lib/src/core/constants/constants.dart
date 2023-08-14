@@ -4,10 +4,12 @@ sealed class Constants {
   Constants._();
 
   /// test
-  static const baseUrl = 'https://app.u-code.io';
+  static const baseUrl = 'https://test.customer.api.delever.uz/';
   static const authUrl = 'https://api.auth.u-code.io';
 
   /// id
+  static const String shipperId = 'd4b1658f-3271-4973-8591-98a82939a664';
+  static const String imageUrl = 'https://test.cdn.delever.uz/delever/';
   static const String projectId = 'a4dc1f1c-d20f-4c1a-abf5-b819076604bc';
   static const String environmentId = 'dcd76a3d-c71b-4998-9e5c-ab1e783264d0';
   static const String resourceId = 'a97e8954-5d8e-4469-a241-9a9af2ea2978';
@@ -27,6 +29,7 @@ sealed class Urls {
   static const String register = '/v2/register';
   static const String sendMessage = '/v2/send-message';
   static const String verifyEmail = '/v2/verify-email';
+  static const String getCategoryWithProducts = 'v2/category-with-products';
 }
 
 // Sentinel value for the system text scale factor option.
