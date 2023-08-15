@@ -34,6 +34,13 @@ class BannerWidget extends StatelessWidget {
                               child: CachedNetworkImage(
                                 imageUrl: bannerModel.image,
                                 fit: BoxFit.cover,
+                                placeholder: (context, url) => SizedBox(
+                                  height: 160.h,
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                        color: context.colorScheme.primary),
+                                  ),
+                                ),
                               ),
                             ),
                           );

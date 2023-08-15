@@ -43,7 +43,9 @@ class _HomePageState extends State<HomePage>
                   slivers: [
                     HeaderWidget(
                         categoryWithProductsList:
-                            state.categoryWithProductsList),
+                            state.categoryWithProductsList, onTap: () {
+                              
+                            },),
                     const BannerWidget(),
                     SliverList(
                       delegate: SliverChildBuilderDelegate(

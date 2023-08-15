@@ -4,11 +4,13 @@ import 'package:gap/gap.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
 import 'package:plaff_kebab/src/data/models/category/category_with_products_model.dart';
-import 'package:plaff_kebab/src/presentation/components/cards/cards.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/home/widgets/animated_container.dart';
 
 class HeaderWidget extends StatelessWidget {
-  const HeaderWidget({super.key, required this.categoryWithProductsList});
+  const HeaderWidget(
+      {super.key, required this.categoryWithProductsList, required this.onTap});
   final List<CategoryWithProducts> categoryWithProductsList;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -88,13 +90,11 @@ class HeaderWidget extends StatelessWidget {
                   itemCount: categoryWithProductsList.length,
                   padding: AppUtils.kPaddingAll16,
                   scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) => Cards(
-                    color: context.colorScheme.onSurface,
-                    child: Padding(
-                      padding: AppUtils.kPaddingHor16Ver10,
-                      child: Text(categoryWithProductsList[index].title.uz),
-                    ),
-                  ),
+                  itemBuilder: (context, index) {
+                    return AnimatedConWidget(
+                        categoryWithProducts: categoryWithProductsList[index],
+                        isTapped: false);
+                  },
                   separatorBuilder: (BuildContext context, int index) =>
                       const Gap(8),
                 ),

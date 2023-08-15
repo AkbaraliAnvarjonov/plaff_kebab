@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:plaff_kebab/src/core/constants/constants.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
+import 'package:plaff_kebab/src/core/extension/language_extension.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
 import 'package:plaff_kebab/src/data/models/category/product_model.dart';
 
@@ -28,7 +29,7 @@ class ProductCardWidget extends StatelessWidget {
                 width: 150.w,
                 height: 24.h,
                 child: Text(
-                  productModel.title.uz,
+                  productModel.title.getLocalizedDescription(),
                   style: context.textStyle.regularSubheadline,
                 ),
               ),
@@ -36,7 +37,7 @@ class ProductCardWidget extends StatelessWidget {
                 width: 239.h,
                 height: 38.h,
                 child: Text(
-                  productModel.description.uz,
+                  productModel.description.getLocalizedDescription(),
                   style: context.textStyle.regularFootnote
                       .copyWith(color: context.color.black3),
                 ),
