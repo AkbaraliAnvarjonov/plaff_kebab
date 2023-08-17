@@ -11,5 +11,5 @@ sealed class Routes {
   static const String confirmCode = '/confirm_code';
   static const String register = '/register';
   static const String language = '/language';
-
+  static const String product = '/product';
 }

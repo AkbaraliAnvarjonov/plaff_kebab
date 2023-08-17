@@ -8,6 +8,8 @@ sealed class AppIcons {
   static const location_icon = "assets/svg/location_icon.svg";
   static const bottom_arrow = "assets/svg/bottom_arrow.svg";
   static const dish = "assets/svg/dish.svg";
+  static const back_row = "assets/svg/back_row.svg";
+  static const share_icon = "assets/svg/share_icon.svg";
   static const String _fontFamily = 'AppIcons';
 
   static const IconData person_with_bag =

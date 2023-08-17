@@ -4,7 +4,7 @@ import 'package:plaff_kebab/src/config/router/app_routes.dart';
 import 'package:plaff_kebab/src/core/constants/constants.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
-import 'package:plaff_kebab/src/presentation/bloc/main/home/home_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/home/home_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/main/main_bloc.dart';
 import 'package:plaff_kebab/src/presentation/components/fade_indexed_stack/animated_fade_indexed_stack.dart';
 

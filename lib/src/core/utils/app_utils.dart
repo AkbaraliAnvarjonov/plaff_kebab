@@ -42,6 +42,8 @@ sealed class AppUtils {
   static const kPaddingBanner = EdgeInsets.only(top: 16, bottom: 8);
   static const kPaddingSearch =
       EdgeInsets.only(left: 16, top: 12, bottom: 12, right: 4);
+  static const kPaddingSearchWidget =
+      EdgeInsets.only(left: 16, bottom: 8, right: 16);
 
   static const kPaddingAllB16 = EdgeInsets.fromLTRB(16, 16, 16, 0);
 

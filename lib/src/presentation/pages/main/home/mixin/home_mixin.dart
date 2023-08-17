@@ -7,6 +7,7 @@ mixin HomeMixin on State<HomePage> {
   @override
   void initState() {
     super.initState();
+    BlocProvider.of<HomeBloc>(context).add(const GetCategoryEvent());
     scrollController = ScrollController();
   }
 
@@ -21,7 +22,7 @@ mixin HomeMixin on State<HomePage> {
     if (state.isScrollingTop) {
       scrollController.animateTo(
         0,
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 400),
         curve: Curves.easeInOut,
       );
       bloc.add(const HomeScroll(isScrollingTop: false));

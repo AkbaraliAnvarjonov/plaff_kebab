@@ -3,12 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plaff_kebab/src/data/models/screen_args/product_page_args.dart';
 import 'package:plaff_kebab/src/data/source/local_source.dart';
 import 'package:plaff_kebab/src/injector_container.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/auth_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/confirm/confirm_code_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/register/register_bloc.dart';
-import 'package:plaff_kebab/src/presentation/bloc/main/home/home_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/home/home_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/splash/splash_bloc.dart';
 import 'package:plaff_kebab/src/presentation/pages/auth/auth_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/auth/confirm/confirm_code_page.dart';
@@ -17,6 +18,7 @@ import 'package:plaff_kebab/src/presentation/pages/error/error_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/internet_connection/internet_connection_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/language/language_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/main_page.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/product/product_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/profile/settings/settings_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/splash/splash_page.dart';
 
@@ -86,6 +88,17 @@ sealed class AppRoutes {
         );
       case Routes.language:
         return MaterialPageRoute(builder: (_) => const LanguagePage());
+      case Routes.product:
+        return MaterialPageRoute(
+          builder: (_) {
+            ProductArgs productArgs = settings.arguments as ProductArgs;
+            return ProductPage(
+              description: productArgs.description,
+              image: productArgs.image,
+              title: productArgs.title,
+            );
+          },
+        );
 
       default:
         return MaterialPageRoute(builder: (_) => ErrorPage(settings: settings));

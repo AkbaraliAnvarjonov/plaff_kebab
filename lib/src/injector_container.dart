@@ -16,18 +16,20 @@ import 'package:plaff_kebab/src/domain/repositories/banner/banner_repository.dar
 import 'package:plaff_kebab/src/domain/repositories/banner/banner_repository_impl.dart';
 import 'package:plaff_kebab/src/domain/repositories/category/category_repository.dart';
 import 'package:plaff_kebab/src/domain/repositories/category/category_repository_impl.dart';
+import 'package:plaff_kebab/src/domain/repositories/product/product_repository.dart';
+import 'package:plaff_kebab/src/domain/repositories/product/product_repository_impl.dart';
 import 'package:plaff_kebab/src/domain/repositories/register/register_repository.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/auth_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/register/register_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/banner/banner_bloc.dart';
-import 'package:plaff_kebab/src/presentation/bloc/category/category_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/home/home_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/main/main_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/splash/splash_bloc.dart';
 
 import 'core/constants/constants.dart';
 import 'core/platform/network_info.dart';
 import 'presentation/bloc/auth/confirm/confirm_code_bloc.dart';
-import 'presentation/bloc/main/home/home_bloc.dart';
 
 final sl = GetIt.instance;
 late Box<dynamic> _box;
@@ -94,10 +96,13 @@ Future<void> init() async {
   registerFeature();
 
   //category
-  categoryFeature();
+  // categoryFeature();
 
   //banenr
   bannerFeature();
+
+  //
+  productFeature();
 }
 
 void mainFeature() {
@@ -108,7 +113,14 @@ void mainFeature() {
 }
 
 void homeFeature() {
-  sl.registerFactory<HomeBloc>(HomeBloc.new);
+  sl
+    ..registerFactory<HomeBloc>(() => HomeBloc(sl(), sl()))
+    ..registerLazySingleton<CategoryRepository>(
+      () => CategoryRepositoryImpl(
+        dio: sl(),
+        networkInfo: sl(),
+      ),
+    );
 }
 
 void registerFeature() {
@@ -134,11 +146,11 @@ void authFeature() {
     );
 }
 
-void categoryFeature() {
+void productFeature() {
   sl
-    ..registerFactory<CategoryBloc>(() => CategoryBloc(sl()))
-    ..registerLazySingleton<CategoryRepository>(
-      () => CategoryRepositoryImpl(
+    ..registerFactory<ProductBloc>(() => ProductBloc(sl()))
+    ..registerLazySingleton<ProductRepository>(
+      () => ProductRepositoryImpl(
         dio: sl(),
         networkInfo: sl(),
       ),
