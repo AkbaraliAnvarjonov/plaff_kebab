@@ -27,6 +27,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       },
       (r) {
         if (r.hasModifier) {
+          emit(state.copyWith(productIdModel: r));
           add(GetModifiers(productId: r.id));
         } else {
           emit(state.copyWith(
@@ -37,7 +38,6 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   }
 
   _getModifiers(GetModifiers event, Emitter<ProductState> emit) async {
-    emit(state.copyWith(productStatus: ProductStatus.loading));
     final result = await productRepository.getModifiers(id: event.productId);
     result.fold(
       (l) {

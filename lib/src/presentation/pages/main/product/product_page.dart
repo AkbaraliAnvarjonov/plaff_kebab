@@ -8,7 +8,6 @@ import 'package:plaff_kebab/src/data/models/translations_model.dart';
 import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
 import 'package:plaff_kebab/src/presentation/components/material_border/material_border_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/bottom_nav_widget.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/product_properties_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/product_tile_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/sliver_app_bar.dart';
 
@@ -54,14 +53,14 @@ class _ProductPageState extends State<ProductPage>
               BlocBuilder<ProductBloc, ProductState>(
                 builder: (context, state) {
                   if (state.productStatus.isSuccess) {
-                    return SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        childCount: state.productIdModel!.properties.length,
-                        (context, index) => ProductPropertiesWidget(
-                          property: state.productIdModel!.properties[index],
-                        ),
-                      ),
-                    );
+                    // return SliverList(
+                    //   delegate: SliverChildBuilderDelegate(
+                    //     childCount: state.productIdModel!.properties.length,
+                    //     (context, index) => ProductPropertiesWidget(
+                    //       property: state.productIdModel!.properties[index],
+                    //     ),
+                    //   ),
+                    // );
                   }
                   if (state.productStatus.getModifierSucces) {
                     return SliverList(
@@ -75,6 +74,8 @@ class _ProductPageState extends State<ProductPage>
                                         .getLocalizedDescription(),
                                   ),
                                   ListView.builder(
+                                    itemCount: state.modifiers[indexModifier]
+                                        .variants.length,
                                     shrinkWrap: true,
                                     itemBuilder: (context, indexVariant) =>
                                         ListTile(
