@@ -1,4 +1,4 @@
-import 'package:plaff_kebab/src/data/models/category/description_model.dart';
+import 'package:plaff_kebab/src/data/models/translations_model.dart';
 import 'package:plaff_kebab/src/data/models/category/product_model.dart';
 
 class CategoryWithProducts {
@@ -6,8 +6,8 @@ class CategoryWithProducts {
   final String slug;
   final String parentId;
   final String image;
-  final Description title;
-  final Description description;
+  final Translations title;
+  final Translations description;
   final String orderNo;
   final bool active;
   final List<ProductModel> products;
@@ -29,8 +29,8 @@ class CategoryWithProducts {
       slug: json['slug'] ?? '',
       parentId: json['parent_id'],
       image: json['image'] ?? '',
-      description: Description.fromJson(json['description']),
-      title: Description.fromJson(json['title']),
+      description: Translations.fromJson(json['description']),
+      title: Translations.fromJson(json['title']),
       orderNo: json['order_no'] ?? '',
       active: json['active'] ?? false,
       products: (json['products'] as List<dynamic>?)
@@ -59,8 +59,8 @@ class CategoryWithProducts {
     String? slug,
     String? parentId,
     String? image,
-    Description? description,
-    Description? title,
+    Translations? description,
+    Translations? title,
     String? orderNo,
     bool? active,
     List<ProductModel>? products,

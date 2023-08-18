@@ -2,6 +2,7 @@ part of 'themes.dart';
 
 class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   const ThemeTextStyles({
+    required this.subHead14Weight400,
     required this.appBarTitle,
     required this.buttonStyle,
     required this.regularCaption2,
@@ -20,14 +21,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.bodyFootnote,
     required this.subheadline,
     required this.bodyCallout,
-    required this.bodyBody,
+    required this.counterStyle,
     required this.bodyHeadline,
     required this.bodyTitle1,
     required this.bodyTitle2,
     required this.bodyTitle3,
     required this.bodyLargeTitle,
   });
-
+  final TextStyle subHead14Weight400;
   final TextStyle appBarTitle;
   final TextStyle buttonStyle;
   final TextStyle regularCaption2;
@@ -46,7 +47,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle bodyFootnote;
   final TextStyle subheadline;
   final TextStyle bodyCallout;
-  final TextStyle bodyBody;
+  final TextStyle counterStyle;
   final TextStyle bodyHeadline;
   final TextStyle bodyTitle1;
   final TextStyle bodyTitle2;
@@ -58,6 +59,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       color: Colors.black,
       fontSize: 20,
       fontWeight: FontWeight.w600,
+    ),
+    subHead14Weight400: TextStyle(
+      color: Color(0xFF141414),
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
     ),
     buttonStyle: TextStyle(
       color: Colors.white,
@@ -119,10 +125,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       fontSize: 22,
       fontWeight: FontWeight.w400,
     ),
-    bodyBody: TextStyle(
+    counterStyle: TextStyle(
       color: Colors.black,
       fontSize: 17,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500,
     ),
     bodyCallout: TextStyle(
       color: Colors.black,
@@ -176,6 +182,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     ),
   );
   static const ThemeTextStyles dark = ThemeTextStyles(
+    subHead14Weight400: TextStyle(
+      color: Colors.white,
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+    ),
     appBarTitle: TextStyle(
       color: Colors.black,
       fontSize: 20,
@@ -241,7 +252,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       fontSize: 22,
       fontWeight: FontWeight.w400,
     ),
-    bodyBody: TextStyle(
+    counterStyle: TextStyle(
       color: Colors.white,
       fontSize: 17,
       fontWeight: FontWeight.w400,
@@ -313,7 +324,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? regularTitle1,
     TextStyle? regularTitle2,
     TextStyle? regularTitle3,
-    TextStyle? bodyBody,
+    TextStyle? counterStyle,
     TextStyle? bodyCallout,
     TextStyle? bodyCaption1,
     TextStyle? bodyCaption2,
@@ -324,8 +335,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? bodyTitle1,
     TextStyle? bodyTitle2,
     TextStyle? bodyTitle3,
+    TextStyle? subHead14Weight400,
   }) =>
       ThemeTextStyles(
+        subHead14Weight400: subHead14Weight400 ?? this.subHead14Weight400,
         appBarTitle: appBarTitle ?? this.appBarTitle,
         buttonStyle: buttonStyle ?? this.buttonStyle,
         regularBody: regularBody ?? this.regularBody,
@@ -339,7 +352,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         regularTitle1: regularTitle1 ?? this.regularTitle1,
         regularTitle2: regularTitle2 ?? this.regularTitle2,
         regularTitle3: regularTitle3 ?? this.regularTitle3,
-        bodyBody: bodyBody ?? this.bodyBody,
+        counterStyle: counterStyle ?? this.counterStyle,
         bodyCallout: bodyCallout ?? this.bodyCallout,
         bodyCaption1: bodyCaption1 ?? this.bodyCaption1,
         bodyCaption2: bodyCaption2 ?? this.bodyCaption2,
@@ -359,6 +372,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       return this;
     }
     return ThemeTextStyles(
+      subHead14Weight400:
+          TextStyle.lerp(subHead14Weight400, other.subHead14Weight400, t)!,
       appBarTitle: TextStyle.lerp(appBarTitle, other.appBarTitle, t)!,
       buttonStyle: TextStyle.lerp(buttonStyle, other.buttonStyle, t)!,
       regularBody: TextStyle.lerp(regularBody, other.regularBody, t)!,
@@ -378,7 +393,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       regularTitle1: TextStyle.lerp(regularTitle1, other.regularTitle1, t)!,
       regularTitle2: TextStyle.lerp(regularTitle2, other.regularTitle2, t)!,
       regularTitle3: TextStyle.lerp(regularTitle3, other.regularTitle3, t)!,
-      bodyBody: TextStyle.lerp(bodyBody, other.bodyBody, t)!,
+      counterStyle: TextStyle.lerp(counterStyle, other.counterStyle, t)!,
       bodyCallout: TextStyle.lerp(bodyCallout, other.bodyCallout, t)!,
       bodyCaption1: TextStyle.lerp(bodyCaption1, other.bodyCaption1, t)!,
       bodyCaption2: TextStyle.lerp(bodyCaption2, other.bodyCaption2, t)!,

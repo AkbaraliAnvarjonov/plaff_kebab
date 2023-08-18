@@ -1,15 +1,16 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:plaff_kebab/src/core/constants/constants.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/core/extension/language_extension.dart';
-import 'package:plaff_kebab/src/core/utils/utils.dart';
-import 'package:plaff_kebab/src/data/models/category/description_model.dart';
+import 'package:plaff_kebab/src/data/models/translations_model.dart';
 import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
+import 'package:plaff_kebab/src/presentation/components/material_border/material_border_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/bottom_nav_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/product_properties_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/product_tile_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/sliver_app_bar.dart';
 
 part 'mixin/product_mixin.dart';
 
@@ -21,8 +22,8 @@ class ProductPage extends StatefulWidget {
     required this.title,
   });
   final String image;
-  final Description title;
-  final Description description;
+  final Translations title;
+  final Translations description;
 
   @override
   State<ProductPage> createState() => _ProductPageState();
@@ -32,7 +33,6 @@ class _ProductPageState extends State<ProductPage>
     with TickerProviderStateMixin, ProductMixin {
   @override
   Widget build(BuildContext context) {
-    print(widget.image);
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.white,
@@ -40,130 +40,59 @@ class _ProductPageState extends State<ProductPage>
         statusBarIconBrightness: Brightness.light,
       ),
       child: Scaffold(
-        backgroundColor: context.colorScheme.onSurface,
-        body: CustomScrollView(
-          controller: scrollController,
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          slivers: [
-            SliverAppBar(
-              actions: [
-                Padding(
-                  padding: AppUtils.kPaddingAll8,
-                  child: CircleAvatar(
-                    backgroundColor: context.color.cardColor.withOpacity(0.8),
-                    radius: 18,
-                    child: IconButton(
-                      icon: SvgPicture.asset(AppIcons.share_icon,
-                          width: 24, height: 24),
-                      onPressed: () {},
-                    ),
-                  ),
-                ),
-              ],
-              leading: Padding(
-                padding: AppUtils.kPaddingAll8,
-                child: CircleAvatar(
-                  backgroundColor: context.color.cardColor.withOpacity(0.8),
-                  radius: 18,
-                  child: IconButton(
-                    icon: SvgPicture.asset(AppIcons.back_row,
-                        width: 24, height: 24),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ),
+          backgroundColor: context.colorScheme.onSurface,
+          body: CustomScrollView(
+            controller: scrollController,
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            slivers: [
+              SliverAppBarWidget(image: widget.image),
+              ProductTitleWidget(
+                title: widget.title,
+                description: widget.description,
               ),
-              expandedHeight: 206,
-              flexibleSpace: CachedNetworkImage(
-                imageUrl: Constants.imageUrl + widget.image,
-                color: context.colorScheme.onSurface,
-                errorWidget: (context, url, error) => SizedBox(
-                  child: SvgPicture.asset(
-                    AppIcons.dish,
-                    height: 30,
-                    width: 45,
-                  ),
-                ),
-                placeholder: (context, url) => SizedBox(
-                  child: SvgPicture.asset(
-                    AppIcons.dish,
-                    height: 30,
-                    width: 45,
-                  ),
-                ),
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: 240,
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Material(
-                borderRadius: AppUtils.kBorderRadius12,
-                color: context.color.cardColor,
-                child: Padding(
-                  padding: AppUtils.kPaddingAll16,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.title.getLocalizedDescription(),
-                        style: context.textStyle.bodyTitle3
-                            .copyWith(fontWeight: FontWeight.w600),
+              const SliverGap(8),
+              BlocBuilder<ProductBloc, ProductState>(
+                builder: (context, state) {
+                  if (state.productStatus.isSuccess) {
+                    return SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        childCount: state.productIdModel!.properties.length,
+                        (context, index) => ProductPropertiesWidget(
+                          property: state.productIdModel!.properties[index],
+                        ),
                       ),
-                      const Gap(12),
-                      Text(
-                        widget.description.getLocalizedDescription(),
-                        style: context.textStyle.regularFootnote
-                            .copyWith(color: context.color.black3),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            BlocBuilder<ProductBloc, ProductState>(
-              builder: (context, state) {
-                if (state.productStatus.isSuccess) {
-                  return SliverToBoxAdapter(
-                      child: ListView.builder(
-                    itemCount: state.productIdModel!.properties.length,
-                    itemBuilder: (context, index) => Text(state
-                        .productIdModel!.properties[index].title
-                        .getLocalizedDescription()),
-                  ));
-                }
-                return const SliverToBoxAdapter(child: SizedBox());
-              },
-            )
-          ],
-        ),
-        bottomNavigationBar: Material(
-          color: context.color.cardColor,
-          child: Padding(
-            padding: AppUtils.kPaddingAll16,
-            child: SizedBox(
-              height: 50,
-              child: Column(
-                children: [
-                  const LinearProgressIndicator(
-                    minHeight: 2,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      context.tr("add_card"),
-                      style: context.textStyle.regularSubheadline.copyWith(
-                          color: context.color.black,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                    );
+                  }
+                  if (state.productStatus.getModifierSucces) {
+                    return SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                          childCount: state.modifiers.length,
+                          (context, indexModifier) => MaterialBorderWidget(
+                                  child: Column(
+                                children: [
+                                  Text(
+                                    state.modifiers[indexModifier].name
+                                        .getLocalizedDescription(),
+                                  ),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                    itemBuilder: (context, indexVariant) =>
+                                        ListTile(
+                                      title: Text(state.modifiers[indexModifier]
+                                          .variants[indexVariant].title
+                                          .getLocalizedDescription()),
+                                    ),
+                                  )
+                                ],
+                              ))),
+                    );
+                  }
+                  return const SliverToBoxAdapter(child: SizedBox());
+                },
+              )
+            ],
           ),
-        ),
-      ),
+          bottomNavigationBar: const BottomNavWidget()),
     );
   }
 }

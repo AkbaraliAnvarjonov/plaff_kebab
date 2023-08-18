@@ -1,8 +1,8 @@
-import 'package:plaff_kebab/src/data/models/category/description_model.dart';
+import 'package:plaff_kebab/src/data/models/translations_model.dart';
 import 'package:plaff_kebab/src/data/source/local_source.dart';
 import 'package:plaff_kebab/src/injector_container.dart';
 
-extension LocalizedDescription on Description {
+extension LocalizedDescription on Translations {
   String getLocalizedDescription() {
     String appLanguage = sl<LocalSource>().locale;
     switch (appLanguage) {

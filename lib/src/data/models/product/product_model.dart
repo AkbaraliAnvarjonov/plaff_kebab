@@ -1,4 +1,4 @@
-import 'package:plaff_kebab/src/data/models/category/description_model.dart';
+import 'package:plaff_kebab/src/data/models/translations_model.dart';
 import 'package:plaff_kebab/src/data/models/product/category_model.dart';
 import 'package:plaff_kebab/src/data/models/product/measurement_model.dart';
 import 'package:plaff_kebab/src/data/models/product/productproperty_model.dart';
@@ -9,9 +9,9 @@ import 'package:plaff_kebab/src/data/models/product/variant_product.dart';
 class ProductIdModel {
   final String id;
   final String slug;
-  final Description title;
+  final Translations title;
   final String code;
-  final Description description;
+  final Translations description;
   final List<Category> categories;
   final bool isDivisible;
   final String count;
@@ -97,9 +97,9 @@ class ProductIdModel {
     return ProductIdModel(
       id: json['id'] ?? '',
       slug: json['slug'] ?? '',
-      title: Description.fromJson(json['title'] ?? {}),
+      title: Translations.fromJson(json['title'] ?? {}),
       code: json['code'] ?? '',
-      description: Description.fromJson(json['description'] ?? {}),
+      description: Translations.fromJson(json['description'] ?? {}),
       categories: (json['categories'] as List<dynamic>?)
               ?.map<Category>((category) => Category.fromJson(category))
               .toList() ??
@@ -215,9 +215,9 @@ class ProductIdModel {
   ProductIdModel copyWith({
     String? id,
     String? slug,
-    Description? title,
+    Translations? title,
     String? code,
-    Description? description,
+    Translations? description,
     List<Category>? categories,
     bool? isDivisible,
     String? count,

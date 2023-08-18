@@ -1,11 +1,11 @@
-import 'package:plaff_kebab/src/data/models/category/description_model.dart';
+import 'package:plaff_kebab/src/data/models/translations_model.dart';
 
 class SearchProduct {
   String id;
   String image;
 
-  Description description;
-  Description title;
+  Translations description;
+  Translations title;
 
   SearchProduct({
     required this.id,
@@ -18,8 +18,8 @@ class SearchProduct {
     return SearchProduct(
       id: json['id'] ?? '',
       image: json['image'] ?? '',
-      description: Description.fromJson(json['description']),
-      title: Description.fromJson(json['title']),
+      description: Translations.fromJson(json['description']),
+      title: Translations.fromJson(json['title']),
     );
   }
 

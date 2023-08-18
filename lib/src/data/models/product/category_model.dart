@@ -1,10 +1,10 @@
-import 'package:plaff_kebab/src/data/models/category/description_model.dart';
+import 'package:plaff_kebab/src/data/models/translations_model.dart';
 
 class Category {
   final String id;
   final String slug;
-  final Description title;
-  final Description description;
+  final Translations title;
+  final Translations description;
   final String parentId;
   final String image;
   final List<String> propertyIds;
@@ -35,8 +35,8 @@ class Category {
     return Category(
       id: json['id'] ?? '',
       slug: json['slug'] ?? '',
-      title: Description.fromJson(json['title'] ?? {}),
-      description: Description.fromJson(json['description'] ?? {}),
+      title: Translations.fromJson(json['title'] ?? {}),
+      description: Translations.fromJson(json['description'] ?? {}),
       parentId: json['parent_id'] ?? '',
       image: json['image'] ?? '',
       propertyIds: (json['property_ids'] as List<dynamic>?)

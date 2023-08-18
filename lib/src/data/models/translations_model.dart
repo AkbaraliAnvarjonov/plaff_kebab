@@ -1,9 +1,9 @@
-class Description {
+class Translations {
   final String uz;
   final String ru;
   final String en;
 
-  Description({
+  Translations({
     required this.uz,
     required this.ru,
     required this.en,
@@ -16,19 +16,19 @@ class Description {
     };
   }
 
-  factory Description.fromJson(Map<String, dynamic> json) {
-    return Description(
+  factory Translations.fromJson(Map<String, dynamic> json) {
+    return Translations(
       uz: json['uz'] ?? '',
       ru: json['ru'] ?? '',
       en: json['en'] ?? '',
     );
   }
-  Description copyWith({
+  Translations copyWith({
     String? uz,
     String? ru,
     String? en,
   }) =>
-      Description(
+      Translations(
         uz: uz ?? this.uz,
         ru: ru ?? this.ru,
         en: en ?? this.en,

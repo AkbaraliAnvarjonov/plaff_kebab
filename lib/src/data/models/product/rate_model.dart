@@ -1,9 +1,9 @@
-import 'package:plaff_kebab/src/data/models/category/description_model.dart';
+import 'package:plaff_kebab/src/data/models/translations_model.dart';
 
 class Rate {
   final String? id;
   final String? slug;
-  final Description title;
+  final Translations title;
   final String shipperId;
   final String? shortName;
   final String? createdAt;
@@ -23,7 +23,7 @@ class Rate {
     return Rate(
       id: json['id'] ?? '',
       slug: json['slug'] ?? '',
-      title: Description.fromJson(json['title'] ?? {}),
+      title: Translations.fromJson(json['title'] ?? {}),
       shipperId: json['shipper_id'] ?? '',
       shortName: json['short_name'] ?? '',
       createdAt: json['created_at'] ?? '',

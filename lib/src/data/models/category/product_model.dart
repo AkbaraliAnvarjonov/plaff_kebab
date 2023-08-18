@@ -1,4 +1,4 @@
-import 'package:plaff_kebab/src/data/models/category/description_model.dart';
+import 'package:plaff_kebab/src/data/models/translations_model.dart';
 
 class ProductModel {
   final String id;
@@ -16,8 +16,8 @@ class ProductModel {
   final String toTime;
   final bool offAlways;
   final dynamic gallery;
-  final Description title;
-  final Description description;
+  final Translations title;
+  final Translations description;
   final bool active;
   final String iikoId;
   final String jowiId;
@@ -66,8 +66,8 @@ class ProductModel {
       toTime: json['to_time'] ?? '',
       offAlways: json['off_always'] ?? false,
       gallery: json['gallery'] ?? '',
-      title: Description.fromJson(json['title']),
-      description: Description.fromJson(json['description']),
+      title: Translations.fromJson(json['title']),
+      description: Translations.fromJson(json['description']),
       active: json['active'] ?? false,
       iikoId: json['iikoIiiko_idd'] ?? '',
       jowiId: json['jowi_id'] ?? '',
@@ -117,8 +117,8 @@ class ProductModel {
     String? toTime,
     bool? offAlways,
     dynamic gallery,
-    Description? title,
-    Description? description,
+    Translations? title,
+    Translations? description,
     bool? active,
     String? iikoId,
     String? jowiId,

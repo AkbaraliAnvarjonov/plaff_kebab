@@ -1,11 +1,11 @@
-import 'package:plaff_kebab/src/data/models/category/description_model.dart';
+import 'package:plaff_kebab/src/data/models/translations_model.dart';
 import 'package:plaff_kebab/src/data/models/product/options_model.dart';
 
 class Property {
   final String id;
   final String slug;
-  final Description title;
-  final Description description;
+  final Translations title;
+  final Translations description;
   final String createdAt;
   final String shipperId;
   final bool active;
@@ -28,8 +28,8 @@ class Property {
     return Property(
       id: json['id'] ?? '',
       slug: json['slug'] ?? '',
-      title: Description.fromJson(json['title'] ?? {}),
-      description: Description.fromJson(json['description'] ?? {}),
+      title: Translations.fromJson(json['title'] ?? {}),
+      description: Translations.fromJson(json['description'] ?? {}),
       createdAt: json['created_at'] ?? '',
       shipperId: json['shipper_id'] ?? '',
       active: json['active'] ?? false,

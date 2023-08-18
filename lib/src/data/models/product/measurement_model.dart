@@ -1,10 +1,10 @@
-import 'package:plaff_kebab/src/data/models/category/description_model.dart';
+import 'package:plaff_kebab/src/data/models/translations_model.dart';
 
 class Measurement {
   final String id;
   final String shipperId;
   final String slug;
-  final Description title;
+  final Translations title;
   final String shortName;
   final String createdAt;
   final int accuracy;
@@ -26,7 +26,7 @@ class Measurement {
       id: json['id'] ?? '',
       shipperId: json['shipper_id'] ?? '',
       slug: json['slug'] ?? '',
-      title: Description.fromJson(json['title'] ?? {}),
+      title: Translations.fromJson(json['title'] ?? {}),
       shortName: json['short_name'] ?? '',
       createdAt: json['created_at'] ?? '',
       accuracy: json['accuracy'] ?? 0,

@@ -71,7 +71,6 @@ class ProductCardWidget extends StatelessWidget {
             const Gap(8),
             CachedNetworkImage(
               imageUrl: Constants.imageUrl + productModel.image,
-              
               width: 88.h,
               height: 88.h,
               fit: BoxFit.cover,

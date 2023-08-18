@@ -1,9 +1,9 @@
-import 'package:plaff_kebab/src/data/models/category/description_model.dart';
+import 'package:plaff_kebab/src/data/models/translations_model.dart';
 
 class ProductArgs {
   final String image;
-  final Description title;
-  final Description description;
+  final Translations title;
+  final Translations description;
   const ProductArgs({
     required this.image,
     required this.description,

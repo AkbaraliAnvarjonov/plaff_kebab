@@ -1,8 +1,8 @@
-import 'package:plaff_kebab/src/data/models/category/description_model.dart';
+import 'package:plaff_kebab/src/data/models/translations_model.dart';
 
 class BannerModel {
   final String id;
-  final Description title;
+  final Translations title;
   final String position;
   final String image;
   final String url;
@@ -28,7 +28,7 @@ class BannerModel {
   factory BannerModel.fromJson(Map<String, dynamic> json) {
     return BannerModel(
       id: json['id'] ?? '',
-      title: Description.fromJson(json["title"]),
+      title: Translations.fromJson(json["title"]),
       position: json['position'] ?? '',
       image: json['image'] ?? '',
       url: json['url'] ?? '',
