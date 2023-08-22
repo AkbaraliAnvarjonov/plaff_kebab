@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
+import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
 
 class ProfileItemWidget extends StatelessWidget {
@@ -6,8 +9,6 @@ class ProfileItemWidget extends StatelessWidget {
     super.key,
     required this.icon,
     required this.text,
-    this.isTop = false,
-    this.isBottom = false,
     this.onTap,
     this.trailing,
   });
@@ -15,35 +16,29 @@ class ProfileItemWidget extends StatelessWidget {
   final Widget icon;
   final Widget? trailing;
   final String text;
-  final bool isTop;
-  final bool isBottom;
   final void Function()? onTap;
 
   @override
-  Widget build(BuildContext context) => ListTile(
+  Widget build(BuildContext context) => InkWell(
         onTap: onTap,
-        tileColor: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: isBottom ? const Radius.circular(12) : Radius.zero,
-            bottomRight: isBottom ? const Radius.circular(12) : Radius.zero,
-            topLeft: isTop ? const Radius.circular(12) : Radius.zero,
-            topRight: isTop ? const Radius.circular(12) : Radius.zero,
+        child: SizedBox(
+          height: 64,
+          child: Row(
+            children: [
+              Ink(
+                height: 24,
+                width: 24,
+                decoration: const BoxDecoration(
+                  borderRadius: AppUtils.kBorderRadius10,
+                ),
+                child: icon,
+              ),
+              const Gap(12),
+              Text(text),
+              const Spacer(),
+              SvgPicture.asset(AppIcons.next_row),
+            ],
           ),
         ),
-        leading: Ink(
-          height: 32,
-          width: 32,
-          decoration: const BoxDecoration(
-            borderRadius: AppUtils.kBorderRadius10,
-          ),
-          child: icon,
-        ),
-        title: Text(text),
-        trailing: trailing ??
-            const Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 20,
-            ),
       );
 }

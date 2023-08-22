@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plaff_kebab/src/config/router/app_routes.dart';
 import 'package:plaff_kebab/src/core/constants/constants.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
@@ -51,10 +50,10 @@ class MainPage extends StatelessWidget {
                       );
                   return;
                 }
-                if (i == 3 && !localSource.hasProfile) {
-                  Navigator.pushNamed(context, Routes.auth);
-                  return;
-                }
+                // if (i == 3 && !localSource.hasProfile) {
+                //   Navigator.pushNamed(context, Routes.auth);
+                //   return;
+                // }
                 context
                     .read<MainBloc>()
                     .add(MainEventChanged(BottomMenu.values[i]));

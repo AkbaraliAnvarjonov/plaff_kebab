@@ -12,6 +12,7 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   ProductBloc(this.productRepository) : super(const ProductState()) {
     on<GetProductEvent>(_getProductwithId);
     on<GetModifiers>(_getModifiers);
+    on<PriceChange>(_priceChange);
   }
 
   final ProductRepository productRepository;
@@ -51,5 +52,21 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         }
       },
     );
+  }
+
+  _priceChange(PriceChange event, Emitter<ProductState> emit) async {
+    emit(state.copyWith(productStatus: ProductStatus.loading));
+    if (event.isPlus) {
+      event.productIdModel.outPrice += event.price;
+      emit(state.copyWith(
+          productIdModel: event.productIdModel,
+          productStatus: ProductStatus.getModifierSucces));
+    } else {
+      event.productIdModel.outPrice -= event.price;
+      emit(state.copyWith(
+        productIdModel: event.productIdModel,
+        productStatus: ProductStatus.getModifierSucces,
+      ));
+    }
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:plaff_kebab/src/config/router/app_routes.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
-import 'package:plaff_kebab/src/core/utils/utils.dart';
+import 'package:plaff_kebab/src/presentation/components/material_border/material_border_widget.dart';
 
 import 'widgets/logout_dialog.dart';
 import 'widgets/profile_item_widget.dart';
@@ -12,109 +13,107 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-      appBar: AppBar(title: Text(context.tr('profile'))),
-      body: CustomScrollView(
-        slivers: [
-          const SliverGap(16),
-          SliverPadding(
-            padding: AppUtils.kPaddingHorizontal16,
-            sliver: SliverList(
+        appBar: AppBar(
+          title: Text(
+            context.tr('profile'),
+            style: context.textStyle.appBarTitle,
+          ),
+          centerTitle: true,
+        ),
+        body: CustomScrollView(
+          slivers: [
+            const SliverGap(16),
+            SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  ProfileItemWidget(
-                    icon:  const Icon(
-                      AppIcons.address_book,
-                      size: 20,
-                    ),
-                    text: context.tr('notebook'),
-                    isTop: true,
-                    onTap: () {
-                      // Navigator.pushNamed(context, Routes.notes);
-                    },
-                  ),
-                  const Divider(height: 1),
-                  ProfileItemWidget(
-                    icon: const Icon(
-                      AppIcons.wallet,
-                      size: 20,
-                    ),
-                    text: context.tr('my_cards'),
-                    isBottom: true,
-                    onTap: () {
-                      // Navigator.pushNamed(context, Routes.myCards);
-                    },
-                  ),
+                  ListTile(
+                      onTap: () {},
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                      ),
+                      tileColor: context.color.cardColor,
+                      trailing: SvgPicture.asset(
+                        AppIcons.pen_icon,
+                        width: 20,
+                        height: 20,
+                      ),
+                      title: Text(
+                        "Name",
+                        style: context.textStyle.appBarTitle,
+                      ),
+                      subtitle: Text(
+                        "+998900265088",
+                        style: context.textStyle.regularSubheadline
+                            .copyWith(color: context.color.black2),
+                      ))
                 ],
               ),
             ),
-          ),
-          const SliverGap(12),
-          SliverPadding(
-            padding: AppUtils.kPaddingHorizontal16,
-            sliver: SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  ProfileItemWidget(
-                    icon: const Icon(
-                      AppIcons.info,
-                      size: 20,
+            const SliverGap(12),
+            SliverToBoxAdapter(
+              child: MaterialBorderWidget(
+                child: Column(
+                  children: [
+                    ProfileItemWidget(
+                      icon: SvgPicture.asset(
+                        AppIcons.location_icon,
+                        color: context.color.iconColor,
+                      ),
+                      text: context.tr('branches'),
+                      onTap: () {},
                     ),
-                    text: context.tr('about_us'),
-                    isTop: true,
-                    onTap: () {},
-                  ),
-                  const Divider(height: 1),
-                  ProfileItemWidget(
-                    icon: const Icon(
-                      AppIcons.favorite_list,
-                      size: 20,
+                    Divider(
+                      height: 1,
+                      color: context.color.black.withOpacity(0.1),
                     ),
-                    text: context.tr('blog'),
-                    onTap: () {},
-                  ),
-                  const Divider(height: 1),
-                  ProfileItemWidget(
-                    icon: const Icon(
-                      AppIcons.agreement,
-                      size: 20,
+                    ProfileItemWidget(
+                      icon: SvgPicture.asset(
+                        AppIcons.settings_icon,
+                      ),
+                      text: context.tr('settings'),
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          Routes.settings,
+                        );
+                      },
                     ),
-                    text: context.tr('cooperation'),
-                    onTap: () {},
-                  ),
-                  const Divider(height: 1),
-                  ProfileItemWidget(
-                    icon: const Icon(
-                      Icons.settings,
-                      size: 20,
+                    Divider(
+                      height: 1,
+                      color: context.color.black.withOpacity(0.1),
                     ),
-                    text: context.tr('settings'),
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        Routes.settings,
-                      );
-                    },
-                  ),
-                  const Divider(height: 1),
-                  ProfileItemWidget(
-                    icon: const Icon(
-                      AppIcons.logout,
-                      size: 20,
+                    ProfileItemWidget(
+                      icon: SvgPicture.asset(
+                        AppIcons.loc_map_icon,
+                      ),
+                      text: context.tr('addresses'),
+                      onTap: () {},
                     ),
-                    isBottom: true,
-                    text: context.tr('logout'),
-                    onTap: () {
-                      showDialog<void>(
-                        context: context,
-                        builder: (_) => const LogOutDialog(),
-                      );
-                    },
-                  ),
-                ],
+                    ProfileItemWidget(
+                      icon: SvgPicture.asset(
+                        AppIcons.ui_icon,
+                      ),
+                      text: context.tr('about_us'),
+                      onTap: () {},
+                    ),
+                    ProfileItemWidget(
+                      icon: const Icon(
+                        AppIcons.logout,
+                        size: 20,
+                      ),
+                      text: context.tr('logout'),
+                      onTap: () {
+                        showDialog<void>(
+                          context: context,
+                          builder: (_) => const LogOutDialog(),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
 }

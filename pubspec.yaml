@@ -49,10 +49,15 @@ dependencies:
   flutter_native_splash: ^2.3.1
   # local notification
   flutter_local_notifications: ^15.1.0+1
-
+  # cupertino icons
   cupertino_icons: ^1.0.2
+  # screenutil
   flutter_screenutil: ^5.8.4
+  # slider
   carousel_slider: ^4.2.1
+  # yandex map
+  #yandex_mapkit: ^3.3.3
+
 
 dev_dependencies:
   flutter_test:

@@ -46,5 +46,7 @@
   "delete_passport_title": "Siz ushbu ma'lumotlarni o'chirib tashlashingizga ishonchingiz komilmi?",
   "delete_passport_subtitle": "Agar kerak bo'lib qolganda uni qayta tiklay olmaysiz",
   "select_country": "Mamlakatni tanlang",
-  "sum": "so'm"
+  "sum": "so'm",
+  "braches": "Filiallar",
+  "addresses": "Mening manzillarim"
 }

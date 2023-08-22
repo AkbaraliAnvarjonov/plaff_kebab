@@ -8,7 +8,6 @@ import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/plus_min
 
 class BottomNavWidget extends StatelessWidget {
   const BottomNavWidget({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -26,6 +25,7 @@ class BottomNavWidget extends StatelessWidget {
                   );
                 }
                 return Row(
+                  key: ValueKey(state.productIdModel!.outPrice),
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
@@ -60,7 +60,7 @@ class BottomNavWidget extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    const Text("shuncha so'm"),
+                    Text(state.productIdModel!.outPrice.toString()),
                   ],
                 );
               },

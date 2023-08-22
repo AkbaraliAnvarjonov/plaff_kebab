@@ -19,7 +19,7 @@ class ProductIdModel {
   final Measurement measurement;
   final Rate rate;
   final int inPrice;
-  final int outPrice;
+  int outPrice;
   final String image;
   final List<String> gallery;
   final List<String> favourites;

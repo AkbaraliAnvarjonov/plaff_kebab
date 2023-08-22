@@ -10,6 +10,13 @@ sealed class AppIcons {
   static const dish = "assets/svg/dish.svg";
   static const back_row = "assets/svg/back_row.svg";
   static const share_icon = "assets/svg/share_icon.svg";
+  static const check_icon = "assets/svg/check_icon.svg";
+  static const empty_icon = "assets/svg/empty_icon.svg";
+  static const settings_icon = "assets/svg/settings_icon.svg";
+  static const pen_icon = "assets/svg/pen_icon.svg";
+  static const loc_map_icon = "assets/svg/loc_map_icon.svg";
+  static const ui_icon = "assets/svg/ui_icon.svg";
+  static const next_row = "assets/svg/next_row.svg";
   static const String _fontFamily = 'AppIcons';
 
   static const IconData person_with_bag =

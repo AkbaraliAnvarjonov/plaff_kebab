@@ -28,7 +28,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.listileColor,
     required this.black5,
     required this.black3,
+    required this.black2,
     required this.black,
+    required this.iconColor,
   });
 
   final Color cardColor;
@@ -36,8 +38,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color listileColor;
   final Color black5;
   final Color black3;
+  final Color black2;
+  final Color iconColor;
 
   static const ThemeColors light = ThemeColors(
+    iconColor: Color(0xFF2B2A28),
+    black2: Color(0xFF5F5F5F),
     cardColor: Colors.white,
     black: Colors.black,
     listileColor: Color(0xFFF7F7F7),
@@ -45,6 +51,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     black3: Color(0xFF858585),
   );
   static const ThemeColors dark = ThemeColors(
+    iconColor: Color(0xFF2B2A28),
+    black2: Color(0xFF5F5F5F),
     cardColor: Color(0xFF1E1E1E),
     black: Colors.black,
     listileColor: Color(0xFFF7F7F7),
@@ -53,14 +61,17 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   );
 
   @override
-  ThemeExtension<ThemeColors> copyWith({
-    Color? cardColor,
-    Color? listileColor,
-    Color? black5,
-    Color? black3,
-    Color? black,
-  }) =>
+  ThemeExtension<ThemeColors> copyWith(
+          {Color? cardColor,
+          Color? listileColor,
+          Color? black5,
+          Color? black3,
+          Color? black,
+          Color? black2,
+          Color? iconColor}) =>
       ThemeColors(
+        iconColor: iconColor ?? this.iconColor,
+        black2: black2 ?? this.black2,
         cardColor: cardColor ?? this.cardColor,
         listileColor: listileColor ?? this.listileColor,
         black5: black5 ?? this.black5,
@@ -80,6 +91,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       black5: Color.lerp(black5, other.black5, t)!,
       black3: Color.lerp(black3, other.black3, t)!,
       black: Color.lerp(black, other.black, t)!,
+      black2: Color.lerp(black2, other.black, t)!,
+      iconColor: Color.lerp(iconColor, other.black, t)!,
     );
   }
 }

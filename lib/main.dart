@@ -55,8 +55,6 @@ class MainApp extends StatelessWidget {
         ),
         child: MultiBlocProvider(
           providers: [
-            // BlocProvider<CategoryBloc>(
-            //     create: (_) => sl<CategoryBloc>()..add(GetCategoryEvent())),
             BlocProvider<BannerBloc>(
                 create: (_) => sl<BannerBloc>()..add(GetBannerEvent())),
             BlocProvider<ProductBloc>(create: (_) => sl<ProductBloc>()),
