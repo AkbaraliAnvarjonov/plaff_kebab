@@ -15,7 +15,7 @@ class FavoritesPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                AppImages.bag,
+                AppImages.favourite,
                 height: 104,
                 width: 104,
               ),
