@@ -37,7 +37,7 @@ class LanguagePage extends StatelessWidget {
                         width: 148,
                       ),
                       const Gap(48),
-                      Text("${context.tr("settings")}:",
+                      Text("${context.tr("language")}:",
                           style: context.textStyle.subheadline),
                       LanguageWidget(
                         options: options,

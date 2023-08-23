@@ -90,12 +90,20 @@ class ProfilePage extends StatelessWidget {
                       text: context.tr('addresses'),
                       onTap: () {},
                     ),
+                    Divider(
+                      height: 1,
+                      color: context.color.black.withOpacity(0.1),
+                    ),
                     ProfileItemWidget(
                       icon: SvgPicture.asset(
                         AppIcons.ui_icon,
                       ),
                       text: context.tr('about_us'),
                       onTap: () {},
+                    ),
+                    Divider(
+                      height: 1,
+                      color: context.color.black.withOpacity(0.1),
                     ),
                     ProfileItemWidget(
                       icon: const Icon(

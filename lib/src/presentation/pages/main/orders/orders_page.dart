@@ -8,6 +8,7 @@ import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_event.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_state.dart';
 import 'package:plaff_kebab/src/presentation/components/material_border/material_border_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/orders/widgets/order_empty_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/orders/widgets/product_widget.dart';
 
 part 'mixin/order_mixin.dart';
@@ -59,23 +60,7 @@ class _OrdersPageState extends State<OrdersPage>
             );
           }
           if (state.products.isEmpty) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    AppImages.bag,
-                    height: 104,
-                    width: 104,
-                  ),
-                  AppUtils.kGap24,
-                  Text(
-                    context.tr("empty"),
-                    style: context.textStyle.regularSubheadline,
-                  )
-                ],
-              ),
-            );
+            return const OrderEmptyWidget();
           }
           return CustomScrollView(
             controller: scrollController,

@@ -6,4 +6,5 @@ class AppImages {
   static const rusFlag = "assets/png/rus_flag.png";
   static const engFlag = "assets/png/eng_flag.png";
   static const bag = "assets/png/bag.png";
+  static const favourite = "assets/png/favourite.png";
 }
