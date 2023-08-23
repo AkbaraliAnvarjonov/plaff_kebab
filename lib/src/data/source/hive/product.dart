@@ -11,7 +11,7 @@ class Products extends HiveObject {
   @HiveField(2)
   double price;
   @HiveField(3)
-  double quantity;
+  int quantity;
   @HiveField(4)
   String image;
   @HiveField(5)

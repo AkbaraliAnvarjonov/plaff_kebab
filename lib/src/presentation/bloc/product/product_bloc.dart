@@ -91,11 +91,17 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   }
 
   _changeCount(ChangeCount event, Emitter<ProductState> emit) {
+    emit(state.copyWith(
+      productIdModel: event.productIdModel,
+      productStatus: ProductStatus.loading,
+    ));
+
     int count = int.parse(event.productIdModel.count);
 
     count += event.isPlus ? 1 : -1;
 
     event.productIdModel.count = count.toString();
-    emit(state.copyWith(productIdModel: event.productIdModel));
+    emit(state.copyWith(
+        productIdModel: event.productIdModel, productStatus: event.status));
   }
 }

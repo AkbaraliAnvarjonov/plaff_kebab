@@ -48,5 +48,10 @@
   "select_country": "Choose country",
   "sum": "sum",
   "branches": "Branches",
-  "addresses": "My addresses"
+  "addresses": "My addresses",
+  "home": "Home",
+  "basket": "Basket",
+  "empty": "Your basket is empty",
+  "add_card": "Add card",
+  "is_delete": "Delete product from cart?"
 }

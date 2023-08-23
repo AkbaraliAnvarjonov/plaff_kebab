@@ -17,6 +17,10 @@ sealed class AppIcons {
   static const loc_map_icon = "assets/svg/loc_map_icon.svg";
   static const ui_icon = "assets/svg/ui_icon.svg";
   static const next_row = "assets/svg/next_row.svg";
+  static const home_icon = "assets/svg/home_icon.svg";
+  static const profile_icon = "assets/svg/profile_icon.svg";
+  static const basket_icon = "assets/svg/basket_icon.svg";
+  static const order_icon = "assets/svg/order_icon.svg";
   static const String _fontFamily = 'AppIcons';
 
   static const IconData person_with_bag =

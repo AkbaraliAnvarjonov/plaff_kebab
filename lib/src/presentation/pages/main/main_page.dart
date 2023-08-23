@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:plaff_kebab/src/core/constants/constants.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
@@ -61,24 +62,28 @@ class MainPage extends StatelessWidget {
               currentIndex: bottomMenu.index,
               items: [
                 _navigationBarItem(
-                  label: context.tr('search'),
-                  icon: AppIcons.search,
-                  activeIcon: AppIcons.search,
+                  context: context,
+                  label: context.tr('home'),
+                  icon: AppIcons.home_icon,
+                  activeIcon: AppIcons.home_icon,
                 ),
                 _navigationBarItem(
+                  context: context,
+                  label: context.tr('basket'),
+                  icon: AppIcons.basket_icon,
+                  activeIcon: AppIcons.basket_icon,
+                ),
+                _navigationBarItem(
+                  context: context,
                   label: context.tr('orders'),
-                  icon: AppIcons.history,
-                  activeIcon: AppIcons.history,
+                  icon: AppIcons.order_icon,
+                  activeIcon: AppIcons.order_icon,
                 ),
                 _navigationBarItem(
-                  label: context.tr('favorites'),
-                  icon: AppIcons.favorite,
-                  activeIcon: AppIcons.favorite_1,
-                ),
-                _navigationBarItem(
+                  context: context,
                   label: context.tr('profile'),
-                  icon: AppIcons.profile,
-                  activeIcon: AppIcons.active_profile,
+                  icon: AppIcons.profile_icon,
+                  activeIcon: AppIcons.profile_icon,
                 ),
               ],
             ),
@@ -86,19 +91,23 @@ class MainPage extends StatelessWidget {
         ),
       );
 
-  BottomNavigationBarItem _navigationBarItem({
-    required String label,
-    required IconData icon,
-    required IconData activeIcon,
-  }) =>
+  BottomNavigationBarItem _navigationBarItem(
+          {required String label,
+          required String icon,
+          required String activeIcon,
+          required BuildContext context}) =>
       BottomNavigationBarItem(
         icon: Padding(
           padding: AppUtils.kPaddingBottom2,
-          child: Icon(icon),
+          child: SvgPicture.asset(icon),
         ),
         activeIcon: Padding(
           padding: AppUtils.kPaddingBottom2,
-          child: Icon(activeIcon),
+          child: SvgPicture.asset(
+            activeIcon,
+            colorFilter:
+                ColorFilter.mode(context.colorScheme.primary, BlendMode.srcIn),
+          ),
         ),
         label: label,
         tooltip: label,

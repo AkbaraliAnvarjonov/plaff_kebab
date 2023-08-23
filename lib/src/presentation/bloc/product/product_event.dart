@@ -22,8 +22,10 @@ class GetCombo extends ProductEvent {
 class ChangeCount extends ProductEvent {
   final bool isPlus;
   final ProductIdModel productIdModel;
+  final ProductStatus status;
 
   ChangeCount({
+    required this.status,
     required this.isPlus,
     required this.productIdModel,
   });

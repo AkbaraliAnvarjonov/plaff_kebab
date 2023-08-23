@@ -39,6 +39,25 @@ class _OrdersPageState extends State<OrdersPage>
               child: CircularProgressIndicator(),
             );
           }
+          if (state.products.isEmpty) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    AppImages.bag,
+                    height: 104,
+                    width: 104,
+                  ),
+                  AppUtils.kGap24,
+                  Text(
+                    context.tr("empty"),
+                    style: context.textStyle.regularSubheadline,
+                  )
+                ],
+              ),
+            );
+          }
           return CustomScrollView(
             controller: scrollController,
             slivers: [

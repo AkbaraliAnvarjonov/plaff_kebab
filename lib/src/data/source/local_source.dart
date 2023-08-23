@@ -11,8 +11,8 @@ final class LocalSource {
   final Box<Products> _hiveDb;
 
   Future<void> updateQuantity({
-    bool isMinus = false,
-    bool isDelete = false,
+    required isMinus,
+    required isDelete,
     required Products product,
   }) async {
     if (isMinus) {

@@ -45,9 +45,10 @@ class BottomNavWidget extends StatelessWidget {
                           PlusMinusButton(
                             isMinus: true,
                             onTap: () {
-                              if (int.parse(state.productIdModel!.count) > 2) {
+                              if (int.parse(state.productIdModel!.count) > 1) {
                                 BlocProvider.of<ProductBloc>(context).add(
                                     ChangeCount(
+                                        status: state.productStatus,
                                         isPlus: false,
                                         productIdModel: state.productIdModel!));
                               }
@@ -64,6 +65,7 @@ class BottomNavWidget extends StatelessWidget {
                             onTap: () {
                               BlocProvider.of<ProductBloc>(context).add(
                                   ChangeCount(
+                                      status: state.productStatus,
                                       isPlus: true,
                                       productIdModel: state.productIdModel!));
                             },

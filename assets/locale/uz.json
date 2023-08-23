@@ -48,5 +48,10 @@
   "select_country": "Mamlakatni tanlang",
   "sum": "so'm",
   "branches": "Filiallar",
-  "addresses": "Mening manzillarim"
+  "addresses": "Mening manzillarim",
+  "home": "Asosiy",
+  "basket": "Savatcha",
+  "add_card": "Savatchaga qo'shish",
+  "empty": "Sizning savatchangiz bo'sh",
+  "is_delete": "Mahsulot savatchadan o'chirilsinmi?"
 }

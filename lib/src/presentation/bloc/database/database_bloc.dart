@@ -11,6 +11,7 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
   DatabaseBloc(this.localSource) : super(const DatabaseState()) {
     on<AddProduct>(_addProduct);
     on<GetProduct>(_getProduct);
+    on<UpdateProduct>(_updateProduct);
   }
 
   final LocalSource localSource;
@@ -26,7 +27,7 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
       image: event.product.image,
       name: _createNameTitle(event.product.title),
       price: event.product.outPrice.toDouble(),
-      quantity: double.parse(event.product.count),
+      quantity: int.parse(event.product.count),
       modifiers: modifiers,
       uniqueId: event.product.id,
       combos: combos,
@@ -47,6 +48,19 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
     emit(state.copyWith(status: DatabaseStatus.loading));
     final result = await localSource.products();
     emit(state.copyWith(products: result, status: DatabaseStatus.success));
+  }
+
+  _updateProduct(UpdateProduct event, Emitter<DatabaseState> emit) {
+    emit(state.copyWith(status: DatabaseStatus.loading));
+    localSource.updateQuantity(
+        product: event.product,
+        isMinus: event.isMinus ?? false,
+        isDelete: event.isDelete ?? false);
+    if (event.isDelete != null) {
+      add(GetProduct());
+    } else {
+      emit(state.copyWith(status: DatabaseStatus.success));
+    }
   }
 }
 

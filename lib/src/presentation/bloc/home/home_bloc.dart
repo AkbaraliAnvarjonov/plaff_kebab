@@ -72,11 +72,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   _selectCategory(CategorySelectEvent event, Emitter<HomeState> emit) {
+    state.copyWith(categoryStatus: HomeStatus.loading);
+
     if (event.selectedList.isEmpty) {
-      state.copyWith(selectedList: []);
+      state.copyWith(selectedList: [], categoryStatus: HomeStatus.success);
     } else {
       emit(state.copyWith(
         selectedList: event.selectedList,
+        categoryStatus: HomeStatus.success,
       ));
     }
   }

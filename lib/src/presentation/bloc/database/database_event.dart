@@ -26,7 +26,9 @@ class DeleteProduct extends DatabaseEvent {
 class GetProduct extends DatabaseEvent {}
 
 class UpdateProduct extends DatabaseEvent {
+  bool? isMinus;
+  bool? isDelete;
   final Products product;
 
-  UpdateProduct(this.product);
+  UpdateProduct(this.product, {this.isDelete, this.isMinus});
 }

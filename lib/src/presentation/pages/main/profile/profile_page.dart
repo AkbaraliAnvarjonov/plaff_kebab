@@ -53,8 +53,7 @@ class ProfilePage extends StatelessWidget {
             SliverToBoxAdapter(
               child: MaterialBorderWidget(
                 child: Column(
-                  children: 
-                  [
+                  children: [
                     ProfileItemWidget(
                       icon: SvgPicture.asset(
                         AppIcons.location_icon,

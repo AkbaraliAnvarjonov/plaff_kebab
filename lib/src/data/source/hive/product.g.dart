@@ -21,7 +21,7 @@ class ProductAdapter extends TypeAdapter<Products> {
       image: fields[4] as String,
       name: fields[1] as NameTitle,
       price: fields[2] as double,
-      quantity: fields[3] as double,
+      quantity: fields[3] as int,
       modifiers: (fields[5] as List).cast<Modifiers>(),
       uniqueId: fields[6] as String,
       discounts: fields[9] as double,
