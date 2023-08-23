@@ -2,11 +2,53 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:plaff_kebab/src/core/constants/app_keys.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
+import 'package:plaff_kebab/src/data/source/hive/product.dart';
 
 final class LocalSource {
-  const LocalSource(this.box);
+  LocalSource(this.box, this._hiveDb);
 
   final Box<dynamic> box;
+  final Box<Products> _hiveDb;
+
+  Future<void> updateQuantity({
+    bool isMinus = false,
+    bool isDelete = false,
+    required Products product,
+  }) async {
+    if (isMinus) {
+      if (product.quantity > 1) {
+        product.quantity = product.quantity - 1;
+        await updateProduct(product);
+      } else if (isDelete) {
+        await removeProduct(product.id);
+      }
+    } else {
+      product.quantity = product.quantity + 1;
+      await updateProduct(product);
+    }
+  }
+
+  Future<List<Products>> products() async {
+    return (_hiveDb.values).toList();
+  }
+
+  Future<void> insertProduct(Products product) async {
+    String uniqueId = product.uniqueId;
+    await _hiveDb.put(uniqueId, product);
+  }
+
+  Future<void> removeProduct(String id) async {
+    await _hiveDb.delete(id);
+  }
+
+  Future<void> updateProduct(Products product) async {
+    String uniqueId = product.uniqueId;
+    await _hiveDb.put(uniqueId, product);
+  }
+
+  Future<void> removeAll() async {
+    await _hiveDb.clear();
+  }
 
   void setHasProfile({
     required bool value,

@@ -22,17 +22,21 @@ import 'package:plaff_kebab/src/domain/repositories/register/register_repository
 import 'package:plaff_kebab/src/presentation/bloc/auth/auth_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/register/register_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/banner/banner_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/home/home_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/main/main_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/splash/splash_bloc.dart';
 
+import 'core/constants/app_keys.dart';
 import 'core/constants/constants.dart';
 import 'core/platform/network_info.dart';
+import 'data/source/hive/product.dart';
 import 'presentation/bloc/auth/confirm/confirm_code_bloc.dart';
 
 final sl = GetIt.instance;
 late Box<dynamic> _box;
+late Box<Products> _boxProduct;
 
 Future<void> init() async {
   /// External
@@ -84,7 +88,7 @@ Future<void> init() async {
   sl
     ..registerLazySingleton(InternetConnectionChecker.new)
     ..registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()))
-    ..registerSingleton<LocalSource>(LocalSource(_box));
+    ..registerSingleton<LocalSource>(LocalSource(_box, _boxProduct));
 
   /// main
   mainFeature();
@@ -101,8 +105,11 @@ Future<void> init() async {
   //banenr
   bannerFeature();
 
-  //
+  //product
   productFeature();
+
+  //database
+  databaseFeature();
 }
 
 void mainFeature() {
@@ -132,6 +139,10 @@ void registerFeature() {
         networkInfo: sl(),
       ),
     );
+}
+
+void databaseFeature() {
+  sl.registerFactory<DatabaseBloc>(() => DatabaseBloc(sl()));
 }
 
 void authFeature() {
@@ -172,5 +183,10 @@ Future<void> initHive() async {
   const boxName = 'plaff_kebab';
   final Directory directory = await getApplicationDocumentsDirectory();
   Hive.init(directory.path);
+  Hive.registerAdapter(ProductAdapter());
+  Hive.registerAdapter(ModifierAdapter());
+  Hive.registerAdapter(ComboAdapter());
+  Hive.registerAdapter(NameTitleAdapter());
   _box = await Hive.openBox<dynamic>(boxName);
+  _boxProduct = await Hive.openBox<Products>(AppKeys.localSource);
 }

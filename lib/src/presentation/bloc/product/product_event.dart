@@ -12,6 +12,23 @@ class GetModifiers extends ProductEvent {
   GetModifiers({required this.productId});
 }
 
+class SelectValue extends ProductEvent {}
+
+class GetCombo extends ProductEvent {
+  final String id;
+  GetCombo({required this.id});
+}
+
+class ChangeCount extends ProductEvent {
+  final bool isPlus;
+  final ProductIdModel productIdModel;
+
+  ChangeCount({
+    required this.isPlus,
+    required this.productIdModel,
+  });
+}
+
 class PriceChange extends ProductEvent {
   final int price;
   final bool isPlus;

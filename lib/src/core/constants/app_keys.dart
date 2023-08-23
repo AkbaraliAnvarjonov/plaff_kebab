@@ -1,6 +1,7 @@
 sealed class AppKeys {
   AppKeys._();
 
+  static const String localSource = 'plaff_kebab_products';
   static const String currentTransactionKey = 'current_transaction';
   static const String accessToken = 'access_token';
   static const String refreshToken = 'refresh_token';

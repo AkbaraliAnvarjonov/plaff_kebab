@@ -33,6 +33,7 @@ sealed class Urls {
   static const String getProductWithId = 'v2/product/';
   static const String searchProduct = 'v2/product';
   static const String modifier = 'v2/modifier';
+  static const String combo = 'v2/combo/';
   static const String getBanners = 'v1/banner';
 }
 

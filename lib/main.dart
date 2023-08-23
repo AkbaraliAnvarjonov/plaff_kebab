@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaff_kebab/src/presentation/bloc/banner/banner_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/database/database_event.dart';
 import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
 
 import 'src/app_options.dart';
@@ -59,6 +61,8 @@ class MainApp extends StatelessWidget {
                 create: (_) => sl<BannerBloc>()..add(GetBannerEvent())),
             BlocProvider<ProductBloc>(create: (_) => sl<ProductBloc>()),
             BlocProvider<MainBloc>(create: (_) => sl<MainBloc>()),
+            BlocProvider<DatabaseBloc>(
+                create: (_) => sl<DatabaseBloc>()..add(GetProduct())),
           ],
           child: KeyboardDismiss(
             child: Builder(

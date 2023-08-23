@@ -6,6 +6,7 @@ import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/data/models/translations_model.dart';
 import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/bottom_nav_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/combo_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/modifiers_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/product_properties_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/product_tile_widget.dart';
@@ -68,6 +69,16 @@ class _ProductPageState extends State<ProductPage>
                         childCount: state.modifiers.length,
                         (context, indexModifier) => ModifiersWidget(
                           indexModifier: indexModifier,
+                        ),
+                      ),
+                    );
+                  }
+                  if (state.productStatus.getComboSucces) {
+                    return SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        childCount: state.combo.length,
+                        (context, indexCombo) => ComboWidget(
+                          indexCombo: indexCombo,
                         ),
                       ),
                     );

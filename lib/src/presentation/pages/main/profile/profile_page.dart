@@ -53,11 +53,13 @@ class ProfilePage extends StatelessWidget {
             SliverToBoxAdapter(
               child: MaterialBorderWidget(
                 child: Column(
-                  children: [
+                  children: 
+                  [
                     ProfileItemWidget(
                       icon: SvgPicture.asset(
                         AppIcons.location_icon,
-                        color: context.color.iconColor,
+                        colorFilter: ColorFilter.mode(
+                            context.color.iconColor, BlendMode.srcIn),
                       ),
                       text: context.tr('branches'),
                       onTap: () {},

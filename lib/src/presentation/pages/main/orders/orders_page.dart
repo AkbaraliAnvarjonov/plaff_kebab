@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
-import 'package:plaff_kebab/src/core/utils/utils.dart';
 
-import 'widgets/purchase_item_widget.dart';
+import 'package:plaff_kebab/src/core/utils/utils.dart';
+import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/database/database_event.dart';
+import 'package:plaff_kebab/src/presentation/bloc/database/database_state.dart';
+import 'package:plaff_kebab/src/presentation/components/material_border/material_border_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/orders/widgets/product_widget.dart';
 
 part 'mixin/order_mixin.dart';
 
@@ -24,53 +28,40 @@ class _OrdersPageState extends State<OrdersPage>
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text('Мои заказы'),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(56),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-              child: Material(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Мои заказы'),
+      ),
+      body: BlocBuilder<DatabaseBloc, DatabaseState>(
+        builder: (context, state) {
+          if (state.status.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return CustomScrollView(
+            controller: scrollController,
+            slivers: [
+              SliverToBoxAdapter(
+                  child: Padding(
+                padding: AppUtils.kPaddingVer16,
+                child: MaterialBorderWidget(
+                  padding: AppUtils.kPaddingHorizontal16,
+                  child: ListView.separated(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: state.products.length,
+                    itemBuilder: (context, index) =>
+                        ProductItemWidget(products: state.products[index]),
+                    separatorBuilder: (context, index) => Divider(
+                      height: 1,
+                      color: context.color.black.withOpacity(0.1),
+                    ),
+                  ),
                 ),
-                color: const Color(0xffE8F1F7),
-                child: TabBar(
-                  padding: const EdgeInsets.all(4),
-                  controller: tabController,
-                  indicatorColor: Colors.white,
-                  labelColor: Colors.black,
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  tabs: const [
-                    Tab(text: 'Авиабилеты', height: 36),
-                    Tab(text: 'Ж/д билеты', height: 36),
-                    Tab(text: 'Отели', height: 36),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-        body: CustomScrollView(
-          slivers: [
-            SliverPadding(
-              padding: AppUtils.kPaddingAll16,
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (_, index) {
-                    if (index.isEven) {
-                      return PurchaseItemWidget(
-                        onTap: () {},
-                      );
-                    }
-                    return AppUtils.kGap16;
-                  },
-                  childCount: 2.doubleTheListCount,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
+              ))
+            ],
+          );
+        },
+      ));
 }

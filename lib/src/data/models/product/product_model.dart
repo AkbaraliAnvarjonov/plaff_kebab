@@ -14,7 +14,7 @@ class ProductIdModel {
   final Translations description;
   final List<Category> categories;
   final bool isDivisible;
-  final String count;
+  String count;
   final List<String> tags;
   final Measurement measurement;
   final Rate rate;
