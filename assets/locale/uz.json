@@ -53,5 +53,6 @@
   "basket": "Savatcha",
   "add_card": "Savatchaga qo'shish",
   "empty": "Sizning savatchangiz bo'sh",
-  "is_delete": "Mahsulot savatchadan o'chirilsinmi?"
+  "is_delete": "Mahsulot savatchadan o'chirilsinmi?",
+  "warning": "Diqqat"
 }

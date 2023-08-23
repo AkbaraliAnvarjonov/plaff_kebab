@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
 
 import 'package:plaff_kebab/src/core/utils/utils.dart';
@@ -31,6 +32,24 @@ class _OrdersPageState extends State<OrdersPage>
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Мои заказы'),
+        actions: [
+          BlocBuilder<DatabaseBloc, DatabaseState>(
+            builder: (context, state) {
+              if (state.status.isLoading) {
+                return const CircularProgressIndicator();
+              }
+              if (state.products.isNotEmpty) {
+                return IconButton(
+                    onPressed: () {
+                      BlocProvider.of<DatabaseBloc>(context)
+                          .add(DeleteProducts());
+                    },
+                    icon: SvgPicture.asset(AppIcons.delete_icon));
+              }
+              return const SizedBox();
+            },
+          )
+        ],
       ),
       body: BlocBuilder<DatabaseBloc, DatabaseState>(
         builder: (context, state) {

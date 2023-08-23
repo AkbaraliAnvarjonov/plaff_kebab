@@ -53,5 +53,6 @@
   "basket": "Basket",
   "empty": "Your basket is empty",
   "add_card": "Add card",
-  "is_delete": "Delete product from cart?"
+  "is_delete": "Delete product from cart?",
+  "warning" : "Warning"
 }

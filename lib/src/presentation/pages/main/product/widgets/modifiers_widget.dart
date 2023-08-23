@@ -65,7 +65,7 @@ class ModifiersWidget extends StatelessWidget {
                             )
                           ],
                         ),
-                        const Gap(4),
+                        const Gap(8),
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [

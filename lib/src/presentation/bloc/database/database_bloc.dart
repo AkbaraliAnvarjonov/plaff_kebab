@@ -12,9 +12,18 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
     on<AddProduct>(_addProduct);
     on<GetProduct>(_getProduct);
     on<UpdateProduct>(_updateProduct);
+    on<DeleteProducts>(_deleteProducts);
   }
 
   final LocalSource localSource;
+
+  _deleteProducts(DeleteProducts event, Emitter<DatabaseState> emit) {
+    emit(state.copyWith(status: DatabaseStatus.loading));
+    localSource.removeAll();
+    emit(state.copyWith(
+        status: DatabaseStatus.success, products: state.products));
+    add(GetProduct());
+  }
 
   _addProduct(AddProduct event, Emitter<DatabaseState> emit) {
     emit(state.copyWith(status: DatabaseStatus.loading));

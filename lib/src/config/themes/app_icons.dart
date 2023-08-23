@@ -21,6 +21,8 @@ sealed class AppIcons {
   static const profile_icon = "assets/svg/profile_icon.svg";
   static const basket_icon = "assets/svg/basket_icon.svg";
   static const order_icon = "assets/svg/order_icon.svg";
+  static const delete_icon = "assets/svg/delete_icon.svg";
+  static const remove_icon = "assets/svg/remove_icon.svg";
   static const String _fontFamily = 'AppIcons';
 
   static const IconData person_with_bag =

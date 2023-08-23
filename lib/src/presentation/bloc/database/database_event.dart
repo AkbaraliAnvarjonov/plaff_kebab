@@ -17,10 +17,8 @@ class AddProduct extends DatabaseEvent {
   });
 }
 
-class DeleteProduct extends DatabaseEvent {
-  final String productId;
-
-  DeleteProduct(this.productId);
+class DeleteProducts extends DatabaseEvent {
+  DeleteProducts();
 }
 
 class GetProduct extends DatabaseEvent {}
