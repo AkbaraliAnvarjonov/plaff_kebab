@@ -33,6 +33,7 @@ class CustomTextField extends StatelessWidget {
     this.haveBorder = true,
     this.style,
     this.filled,
+    this.borderColor
   });
 
   final String? hintText;
@@ -49,6 +50,7 @@ class CustomTextField extends StatelessWidget {
   final bool? obscureText;
   final bool readOnly;
   final Color? fillColor;
+  final Color? borderColor;
   final bool? autofocus;
   final bool? enabled;
   final void Function()? onTap;
@@ -108,7 +110,7 @@ class CustomTextField extends StatelessWidget {
               contentPadding: contentPadding,
               focusedBorder: OutlineInputBorder(
                 borderSide: haveBorder
-                    ? const BorderSide(color: Color(0xff22B99A))
+                    ? BorderSide(color: borderColor ?? Colors.grey.shade300)
                     : BorderSide.none,
                 borderRadius: AppUtils.kBorderRadius10,
               ),
@@ -116,19 +118,19 @@ class CustomTextField extends StatelessWidget {
                 borderSide: haveBorder
                     ? BorderSide(color: Colors.grey.shade300)
                     : BorderSide.none,
-                borderRadius: AppUtils.kBorderRadius10,
+                borderRadius: AppUtils.kBorderRadius8,
               ),
               errorBorder: OutlineInputBorder(
                 borderSide: haveBorder
                     ? const BorderSide(color: Colors.red)
                     : BorderSide.none,
-                borderRadius: AppUtils.kBorderRadius10,
+                borderRadius: AppUtils.kBorderRadius8,
               ),
               focusedErrorBorder: OutlineInputBorder(
                 borderSide: haveBorder
                     ? const BorderSide(color: Colors.red)
                     : BorderSide.none,
-                borderRadius: AppUtils.kBorderRadius10,
+                borderRadius: AppUtils.kBorderRadius8,
               ),
               prefixText: prefixText,
               prefixStyle: prefixStyle,

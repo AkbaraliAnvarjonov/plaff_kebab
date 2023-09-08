@@ -12,12 +12,10 @@ class ConfirmInitialState extends ConfirmCodeState {
 }
 
 class ConfirmCodeSuccessState extends ConfirmCodeState {
-  const ConfirmCodeSuccessState({required this.isUserFound});
-
-  final bool isUserFound;
+  const ConfirmCodeSuccessState();
 
   @override
-  List<Object?> get props => [isUserFound];
+  List<Object?> get props => [];
 }
 
 class ConfirmCodeLoadingState extends ConfirmCodeState {
@@ -37,8 +35,8 @@ class ConfirmCodePhoneState extends ConfirmCodeState {
 }
 
 class ConfirmCodeErrorState extends ConfirmCodeState {
-  const ConfirmCodeErrorState();
-
+  const ConfirmCodeErrorState({required this.message});
+  final String message;
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [message];
 }

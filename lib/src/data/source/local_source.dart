@@ -64,26 +64,22 @@ final class LocalSource {
     required String accessToken,
     required String refreshToken,
     required String userId,
-    required String imageUrl,
     required String phone,
-    required String email,
-    required String login,
   }) async {
     await box.put(AppKeys.hasProfile, true);
     await box.put(AppKeys.phone, phone);
-    await box.put(AppKeys.login, login);
-    await box.put(AppKeys.email, email);
     await box.put(AppKeys.fullName, name);
     await box.put(AppKeys.accessToken, accessToken);
     await box.put(AppKeys.refreshToken, refreshToken);
     await box.put(AppKeys.userId, userId);
-    await box.put(AppKeys.imageUrl, imageUrl);
   }
 
   String get accessToken =>
       box.get(AppKeys.accessToken, defaultValue: '') as String;
 
   String get fullName => box.get(AppKeys.fullName, defaultValue: '') as String;
+
+  String get phone => box.get(AppKeys.phone, defaultValue: '') as String;
 
   String get userId => box.get(AppKeys.userId, defaultValue: '') as String;
 

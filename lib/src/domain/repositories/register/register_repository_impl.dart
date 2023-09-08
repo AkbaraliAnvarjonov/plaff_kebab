@@ -10,16 +10,16 @@ class RegisterUserRepositoryImpl implements RegisterUserRepository {
   final NetworkInfo networkInfo;
 
   @override
-  Future<Either<Failure, RegisterUserResponse>> registerUser({
+  Future<Either<Failure, String>> registerUser({
     required Map<String, dynamic> request,
   }) async {
     if (await networkInfo.isConnected) {
       try {
         final Response response = await dio.post(
-          Constants.authUrl + Urls.register,
+          "${Constants.baseUrl}${Urls.customers}/register",
           data: request,
         );
-        return Right(RegisterUserResponse.fromJson(response.data));
+        return Right(response.data["message"]);
       } on DioException catch (error, stacktrace) {
         log('Exception occurred: $error stacktrace: $stacktrace');
         return Left(

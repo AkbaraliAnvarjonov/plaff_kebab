@@ -11,6 +11,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc(this.authRepository) : super(const AuthInitialState()) {
     on<AuthPhoneChangeEvent>(_onChanged);
     on<AuthCheckMessageEvent>(_onSendMessage);
+    on<CheckPhoneNumberEvent>(_onCheckPhoneNumber);
   }
 
   final AuthRepository authRepository;
@@ -44,11 +45,36 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       (r) {
         emit(
           AuthSuccessState(
-            r.data?['sms_id'] as String? ?? '',
-            "+998${event.phone.replaceAll(" ", "")}",
-            event.phone,
-            r.data?['data'] as Map? ?? {},
+            smsId: r.data?['sms_id'] as String? ?? '',
+            phone: "+998${event.phone.replaceAll(" ", "")}",
+            uiPhone: event.phone,
+            data: r.data?['data'] as Map? ?? {},
           ),
+        );
+      },
+    );
+  }
+
+  Future<void> _onCheckPhoneNumber(
+      CheckPhoneNumberEvent event, Emitter<AuthState> emit) async {
+    emit(const AuthLoadingState());
+
+    final result = await authRepository.phoneNumber(
+      phoneNumber: "+998${event.phone.replaceAll(" ", "")}",
+    );
+    result.fold(
+      (l) {
+        emit(const AuthErrorState());
+      },
+      (r) {
+        emit(AuthSuccessState(
+          smsId: r.id,
+          phone: r.phone,
+          uiPhone: event.phone,
+          data: r.toJson(),
+        ));
+        authRepository.codeSend(
+          phoneNumber: "+998${event.phone.replaceAll(" ", "")}",
         );
       },
     );

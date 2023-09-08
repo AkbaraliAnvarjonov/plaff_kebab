@@ -17,20 +17,17 @@ class UserRegisterEvent extends RegisterEvent {
   const UserRegisterEvent({
     required this.additionalProps,
     required this.phoneNumber,
-    required this.bloodGroup,
     required this.fullName,
   });
 
   final Map<String, dynamic> additionalProps;
   final String phoneNumber;
-  final String bloodGroup;
   final String fullName;
 
   @override
   List<Object?> get props => [
         additionalProps,
         phoneNumber,
-        bloodGroup,
         fullName,
       ];
 }

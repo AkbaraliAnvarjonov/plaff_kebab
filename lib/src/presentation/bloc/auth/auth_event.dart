@@ -28,3 +28,12 @@ class AuthCheckMessageEvent extends AuthEvent {
   @override
   List<Object?> get props => [phone];
 }
+
+class CheckPhoneNumberEvent extends AuthEvent {
+  const CheckPhoneNumberEvent(this.phone);
+
+  final String phone;
+
+  @override
+  List<Object?> get props => [phone];
+}

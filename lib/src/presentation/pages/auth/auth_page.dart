@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plaff_kebab/src/config/router/app_routes.dart';
+import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/auth_bloc.dart';
 import 'package:plaff_kebab/src/presentation/components/buttons/bottom_navigation_button.dart';
@@ -31,19 +32,31 @@ class _AuthPageState extends State<AuthPage> with AuthMixin {
                   AuthPhoneChangeEvent(phoneController.text),
                 );
           }
+          if (state is AuthErrorState) {
+            Navigator.pushNamed(
+              context,
+              Routes.register,
+              arguments: phoneController.text,
+            );
+            context.read<AuthBloc>().add(
+                  AuthPhoneChangeEvent(phoneController.text),
+                );
+          }
         },
         child: Scaffold(
-          backgroundColor: const Color(0xFFF7F7F7),
+          backgroundColor: context.color.cardColor,
           appBar: AppBar(
-            backgroundColor: Colors.white,
-            bottom: const PreferredSize(
-              preferredSize: Size.fromHeight(kToolbarHeight),
+            backgroundColor: context.color.cardColor,
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(kToolbarHeight),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Padding(
                   padding: AppUtils.kPaddingHor16Ver12,
                   child: Text(
-                      '''Введите номер телефона\nдля входа или регистраций'''),
+                    context.tr("register"),
+                    style: context.textStyle.regularTitle1,
+                  ),
                 ),
               ),
             ),
@@ -53,19 +66,24 @@ class _AuthPageState extends State<AuthPage> with AuthMixin {
                 previous is AuthLoadingState != current is AuthLoadingState,
             builder: (_, state) => ModalProgressHUD(
               inAsyncCall: state is AuthLoadingState,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  AppUtils.kGap20,
-                  Padding(
-                    padding: AppUtils.kPaddingHorizontal16,
-                    child: CustomTextField(
+              child: Padding(
+                padding: AppUtils.kPaddingHorizontal16,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    AppUtils.kGap20,
+                    Text(
+                      context.tr("number_phone"),
+                      style: context.textStyle.smallLink,
+                    ),
+                    AppUtils.kGap4,
+                    CustomTextField(
+                      borderColor: context.colorScheme.primary,
                       controller: phoneController,
                       autofocus: true,
-                      haveBorder: false,
-                      fillColor: const Color(0xFFEDEFF2),
+                      haveBorder: true,
+                      fillColor: context.color.cardColor,
                       filled: true,
-                      onTap: () {},
                       inputFormatters: [
                         MaskedTextInputFormatter(
                           mask: '## ### ## ##',
@@ -84,8 +102,8 @@ class _AuthPageState extends State<AuthPage> with AuthMixin {
                       prefixStyle: Theme.of(context).textTheme.titleMedium,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -98,10 +116,13 @@ class _AuthPageState extends State<AuthPage> with AuthMixin {
                     ? () {
                         context
                             .read<AuthBloc>()
-                            .add(AuthCheckMessageEvent(phoneController.text));
+                            .add(CheckPhoneNumberEvent(phoneController.text));
                       }
                     : null,
-                child: const Text('Продолжить'),
+                child: Text(
+                  context.tr("continue"),
+                  style: context.textStyle.appBarTitle,
+                ),
               ),
             ),
           ),

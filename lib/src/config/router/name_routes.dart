@@ -12,4 +12,5 @@ sealed class Routes {
   static const String register = '/register';
   static const String language = '/language';
   static const String product = '/product';
+  static const String favourites = '/favourites';
 }

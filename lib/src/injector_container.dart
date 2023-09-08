@@ -52,6 +52,7 @@ Future<void> init() async {
         headers: {
           "accept": "application/json",
           "Shipper": Constants.shipperId,
+          "Platform": Constants.platformId
         },
       )
       ..interceptors.addAll(
@@ -132,7 +133,7 @@ void homeFeature() {
 
 void registerFeature() {
   sl
-    ..registerFactory<RegisterBloc>(() => RegisterBloc(sl()))
+    ..registerFactory<RegisterBloc>(() => RegisterBloc(sl(), sl()))
     ..registerLazySingleton<RegisterUserRepository>(
       () => RegisterUserRepositoryImpl(
         dio: sl(),

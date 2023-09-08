@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:plaff_kebab/src/config/router/app_routes.dart';
+import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/auth_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/confirm/confirm_code_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/main/main_bloc.dart';
 import 'package:plaff_kebab/src/presentation/components/buttons/bottom_navigation_button.dart';
 
 part 'mixin/confirm_code_mixin.dart';
@@ -28,41 +30,29 @@ class _ConfirmCodePageState extends State<ConfirmCodePage>
       BlocListener<ConfirmCodeBloc, ConfirmCodeState>(
         listener: (_, state) {
           if (state is ConfirmCodeSuccessState) {
-            // if (state.isUserFound) {
-            //   localSource.setHasProfile(true);
-            //   Navigator.popUntil(
-            //     context,
-            //     (route) => route.isFirst,
-            //   );
-            //   return;
-            // }
-            Navigator.pushNamed(
+            context
+                .read<MainBloc>()
+                .add(const MainEventChanged(BottomMenu.search));
+            Navigator.pushNamedAndRemoveUntil(
               context,
-              Routes.register,
+              Routes.main,
+              (route) => route.isFirst,
             );
           }
         },
         child: Scaffold(
+          backgroundColor: context.color.cardColor,
           appBar: AppBar(
-            bottom: const PreferredSize(
-              preferredSize: Size.fromHeight(kToolbarHeight + 32),
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(16, 0, 16, 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('Введите код подтверждения'),
-                    AppUtils.kGap8,
-                    Text(
-                      'Мы отправили вам 4-значный код подтверждения',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFFA4A4A4),
-                      ),
-                    ),
-                  ],
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(kToolbarHeight),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: AppUtils.kPaddingHor16Ver12,
+                  child: Text(
+                    context.tr("register"),
+                    style: context.textStyle.regularTitle1,
+                  ),
                 ),
               ),
             ),

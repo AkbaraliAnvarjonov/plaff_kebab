@@ -21,7 +21,7 @@ class ConfirmCodeBloc extends Bloc<ConfirmCodeEvent, ConfirmCodeState>
     emit(const ConfirmCodeLoadingState());
     final result = await authRepository.verifySmsCode(
       request: VerifyRequest(
-        registerType: 'phone',
+        registerType: 'app',
         data: event.data,
       ),
       smsId: event.smsId,
@@ -29,25 +29,19 @@ class ConfirmCodeBloc extends Bloc<ConfirmCodeEvent, ConfirmCodeState>
     );
     result.fold(
       (l) {
-        emit(const ConfirmCodeErrorState());
+        emit(ConfirmCodeErrorState(message: l.toString()));
       },
       (r) {
-        if (r.data?.isNotEmpty ?? false) {
-          setUserInfo(
-            name: r.data?['user']['name'] as String? ?? '',
-            id: r.data?['user_id'] as String? ?? '',
-            login: r.data?['user']['login'] as String? ?? '',
-            email: r.data?['user']['email'] as String? ?? '',
-            phoneNumber: r.data?['user']['phone'] as String? ?? '',
-            accessToken: r.data?['token']['access_token'] as String? ?? '',
-            refreshToken: r.data?['token']['refresh_token'] as String? ?? '',
-            imageUrl: '',
-          );
-        }
+        setUserInfo(
+          name: r.name,
+          id: r.id,
+          phoneNumber: r.phone,
+          accessToken: r.accessToken,
+          refreshToken: r.refreshToken,
+        );
+
         emit(
-          ConfirmCodeSuccessState(
-            isUserFound: r.message != 'User verified but not found',
-          ),
+          const ConfirmCodeSuccessState(),
         );
       },
     );

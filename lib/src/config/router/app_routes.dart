@@ -17,6 +17,7 @@ import 'package:plaff_kebab/src/presentation/pages/auth/register/register_page.d
 import 'package:plaff_kebab/src/presentation/pages/error/error_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/internet_connection/internet_connection_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/language/language_page.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/favorites/bookmark_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/main_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/product/product_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/profile/settings/settings_page.dart';
@@ -70,7 +71,7 @@ sealed class AppRoutes {
           ),
         );
       case Routes.confirmCode:
-        final AuthSuccessState state = settings.arguments! as AuthSuccessState;
+        final AuthSuccessState state = settings.arguments as AuthSuccessState;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (_) => sl<ConfirmCodeBloc>(),
@@ -83,11 +84,15 @@ sealed class AppRoutes {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (_) => sl<RegisterBloc>(),
-            child: const RegisterPage(),
+            child: RegisterPage(
+              phoneNumber: settings.arguments as String,
+            ),
           ),
         );
       case Routes.language:
         return MaterialPageRoute(builder: (_) => const LanguagePage());
+      case Routes.favourites:
+        return MaterialPageRoute(builder: (_) => const FavoritesPage());
       case Routes.product:
         return MaterialPageRoute(
           builder: (_) {

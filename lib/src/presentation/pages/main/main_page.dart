@@ -7,6 +7,7 @@ import 'package:plaff_kebab/src/core/utils/utils.dart';
 import 'package:plaff_kebab/src/presentation/bloc/home/home_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/main/main_bloc.dart';
 import 'package:plaff_kebab/src/presentation/components/fade_indexed_stack/animated_fade_indexed_stack.dart';
+import 'package:plaff_kebab/src/config/router/app_routes.dart';
 
 import 'favorites/bookmark_page.dart';
 import 'home/home_page.dart';
@@ -51,10 +52,10 @@ class MainPage extends StatelessWidget {
                       );
                   return;
                 }
-                // if (i == 3 && !localSource.hasProfile) {
-                //   Navigator.pushNamed(context, Routes.auth);
-                //   return;
-                // }
+                if ((i == 2 || i == 3) && !localSource.hasProfile) {
+                  Navigator.pushNamed(context, Routes.auth);
+                  return;
+                }
                 context
                     .read<MainBloc>()
                     .add(MainEventChanged(BottomMenu.values[i]));

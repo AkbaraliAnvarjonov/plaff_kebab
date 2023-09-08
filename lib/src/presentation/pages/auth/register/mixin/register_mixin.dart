@@ -3,8 +3,6 @@ part of 'package:plaff_kebab/src/presentation/pages/auth/register/register_page.
 mixin RegisterMixin on State<RegisterPage> {
   late final TextEditingController _fullNameController =
       TextEditingController();
-  late final TextEditingController _bloodGroupController =
-      TextEditingController();
   late final TextEditingController _phoneNumberController =
       TextEditingController();
   late final RegisterBloc _bloc = context.read<RegisterBloc>();
@@ -28,23 +26,20 @@ mixin RegisterMixin on State<RegisterPage> {
 
   void _disposeControllers() {
     _fullNameController.dispose();
-    _bloodGroupController.dispose();
     _phoneNumberController.dispose();
   }
 
-  void _registerUser() {
-    final String phoneNum =
-        _phoneNumberController.text.replaceAll(RegExp('[0-9]'), '');
+  void _registerUser(String phoneNumber) {
+    final String phoneNum = "+998${phoneNumber.replaceAll(" ", "")}";
     _bloc.add(
       UserRegisterEvent(
         additionalProps: {
-          'client_name': _fullNameController.text,
-          'phone_number': phoneNum,
-          'blood_group': _bloodGroupController.text,
-          'table_slug': 'clients'
+          'name': _fullNameController.text,
+          'phone': phoneNum,
+          'tag': "tag",
+          'registration_source': 'app'
         },
         phoneNumber: phoneNum,
-        bloodGroup: _bloodGroupController.text,
         fullName: _fullNameController.text,
       ),
     );

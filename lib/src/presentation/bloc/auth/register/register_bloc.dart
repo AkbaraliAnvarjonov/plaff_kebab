@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plaff_kebab/src/core/constants/constants.dart';
 import 'package:plaff_kebab/src/core/mixin/cache_mixin.dart';
+import 'package:plaff_kebab/src/domain/repositories/auth/auth_repository.dart';
 import 'package:plaff_kebab/src/domain/repositories/register/register_repository.dart';
 
 part 'register_event.dart';
@@ -9,7 +9,7 @@ part 'register_event.dart';
 part 'register_state.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> with CacheMixin {
-  RegisterBloc(this.registerUserRepository)
+  RegisterBloc(this.registerUserRepository, this.authRepository)
       : super(const RegisterInitialState()) {
     on<UserRegisterEvent>(_onUserRegister);
     on<PhoneNumberChangedEvent>(_onPhoneNumberChangedEvent);
@@ -18,6 +18,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> with CacheMixin {
   }
 
   final RegisterUserRepository registerUserRepository;
+  final AuthRepository authRepository;
 
   void _onPhoneNumberChangedEvent(
       PhoneNumberChangedEvent event, Emitter<RegisterState> emit) {
@@ -54,33 +55,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> with CacheMixin {
       );
       return false;
     }
-    // if (event.phoneNumber.isEmpty) {
-    //   emit(
-    //     const RegisterState.userPhoneNumberErrorState(
-    //       showError: true,
-    //       errorMessage: 'Number is required',
-    //     ),
-    //   );
-    //   return false;
-    // }
-    // if (event.phoneNumber.length < 12) {
-    //   emit(
-    //     const RegisterState.userPhoneNumberErrorState(
-    //       showError: true,
-    //       errorMessage: 'Enter your number correctly',
-    //     ),
-    //   );
-    //   return false;
-    // }
-    if (event.bloodGroup.isEmpty) {
-      emit(
-        const UserBloodGroupErrorState(
-          showError: true,
-          errorMessage: 'Blood group needed',
-        ),
-      );
-      return false;
-    }
+
     return true;
   }
 
@@ -91,40 +66,18 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> with CacheMixin {
     }
     emit(const UserRegisterLoadingState());
     final result = await registerUserRepository.registerUser(
-      request: _getUserRegisterRequestData(event),
-    );
+        request: event.additionalProps);
     result.fold(
       (left) {
         emit(const UserRegisterErrorState(errorMessage: ''));
       },
       (r) {
-        setUserInfo(
-          name: r.data?.user?.name ?? '',
-          id: r.data?.userId ?? '',
-          login: r.data?.user?.login ?? '',
-          email: r.data?.user?.email ?? '',
-          phoneNumber: r.data?.user?.phone ?? '',
-          accessToken: r.data?.token?.accessToken ?? '',
-          refreshToken: r.data?.token?.refreshToken ?? '',
-          imageUrl: '',
-        );
         emit(const UserRegisterSuccessState());
+        // authRepository.codeSend(
+        //   phoneNumber:
+        //       "+998${event.additionalProps["phone"].replaceAll(" ", "")}",
+        // );
       },
     );
   }
-
-  Map<String, dynamic> _getUserRegisterRequestData(UserRegisterEvent event) => {
-        'data': {
-          'addational_table': event.additionalProps,
-          'client_type_id': Constants.clientTypeId,
-          'company_id': Constants.companyId,
-          'project_id': Constants.projectId,
-          'expires_at': Constants.expiresAt,
-          'name': event.additionalProps['client_name'],
-          'phone': event.additionalProps['phone_number'],
-          'role_id': Constants.roledId,
-          'active': 1,
-          'type': 'phone'
-        }
-      };
 }

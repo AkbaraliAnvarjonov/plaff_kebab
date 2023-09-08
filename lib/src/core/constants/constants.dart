@@ -8,7 +8,9 @@ sealed class Constants {
   static const authUrl = 'https://api.auth.u-code.io';
 
   /// id
+
   static const String shipperId = 'd4b1658f-3271-4973-8591-98a82939a664';
+  static const String platformId = '6bd7c2e3-d35e-47df-93ce-ed54ed53f95f';
   static const String imageUrl = 'https://test.cdn.delever.uz/delever/';
   static const String projectId = 'a4dc1f1c-d20f-4c1a-abf5-b819076604bc';
   static const String environmentId = 'dcd76a3d-c71b-4998-9e5c-ab1e783264d0';
@@ -35,6 +37,7 @@ sealed class Urls {
   static const String modifier = 'v2/modifier';
   static const String combo = 'v2/combo/';
   static const String getBanners = 'v1/banner';
+  static const String customers = 'v1/customers';
 }
 
 // Sentinel value for the system text scale factor option.

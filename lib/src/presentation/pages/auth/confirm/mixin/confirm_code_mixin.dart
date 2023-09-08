@@ -15,23 +15,23 @@ mixin ConfirmCodeMixin on State<ConfirmCodePage> {
       height: 56,
       textStyle: const TextStyle(
         fontSize: 20,
-        color: Color.fromRGBO(30, 60, 87, 1),
+        color: Colors.black,
         fontWeight: FontWeight.w600,
       ),
       decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: const Color.fromRGBO(234, 239, 243, 1)),
+        color: const Color(0xFFF5F5F5),
+        border: Border.all(color: const Color(0xFFF5F5F5)),
         borderRadius: BorderRadius.circular(10),
       ),
     );
     focusedPinTheme = defaultPinTheme.copyDecorationWith(
       color: Colors.white,
-      border: Border.all(color: const Color.fromRGBO(114, 178, 238, 1)),
+      border: Border.all(color: const Color(0xFFFFCC00)),
       borderRadius: BorderRadius.circular(10),
     );
     submittedPinTheme = defaultPinTheme.copyWith(
       decoration: defaultPinTheme.decoration?.copyWith(
-        color: const Color.fromRGBO(234, 239, 243, 1),
+        color: const Color(0xFFF5F5F5),
       ),
     );
   }

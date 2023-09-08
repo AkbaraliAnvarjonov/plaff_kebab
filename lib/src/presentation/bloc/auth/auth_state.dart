@@ -12,12 +12,12 @@ class AuthInitialState extends AuthState {
 }
 
 class AuthSuccessState extends AuthState {
-  const AuthSuccessState(
-    this.smsId,
-    this.phone,
-    this.uiPhone,
-    this.data,
-  );
+  const AuthSuccessState({
+    required this.smsId,
+    required this.phone,
+    required this.uiPhone,
+    required this.data,
+  });
 
   final String smsId;
   final String phone;

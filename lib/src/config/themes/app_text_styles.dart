@@ -27,9 +27,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.bodyTitle2,
     required this.bodyTitle3,
     required this.bodyLargeTitle,
+    required this.smallLink,
   });
   final TextStyle subHead14Weight400;
   final TextStyle appBarTitle;
+  final TextStyle smallLink;
   final TextStyle buttonStyle;
   final TextStyle regularCaption2;
   final TextStyle regularCaption1;
@@ -59,6 +61,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       color: Colors.black,
       fontSize: 20,
       fontWeight: FontWeight.w600,
+    ),
+    smallLink: TextStyle(
+      color: Colors.black,
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
     ),
     subHead14Weight400: TextStyle(
       color: Color(0xFF141414),
@@ -113,7 +120,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     regularTitle1: TextStyle(
       color: Colors.black,
       fontSize: 28,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w600,
     ),
     regularTitle2: TextStyle(
       color: Colors.black,
@@ -182,13 +189,18 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     ),
   );
   static const ThemeTextStyles dark = ThemeTextStyles(
+    smallLink: TextStyle(
+      color: Colors.white,
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+    ),
     subHead14Weight400: TextStyle(
       color: Colors.white,
       fontSize: 14,
       fontWeight: FontWeight.w400,
     ),
     appBarTitle: TextStyle(
-      color: Colors.black,
+      color: Colors.white,
       fontSize: 20,
       fontWeight: FontWeight.w600,
     ),
@@ -310,36 +322,37 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   );
 
   @override
-  ThemeExtension<ThemeTextStyles> copyWith({
-    TextStyle? appBarTitle,
-    TextStyle? buttonStyle,
-    TextStyle? regularBody,
-    TextStyle? regularCallout,
-    TextStyle? regularCaption1,
-    TextStyle? regularCaption2,
-    TextStyle? regularFootnote,
-    TextStyle? regularHeadline,
-    TextStyle? regularLargeTitle,
-    TextStyle? regularSubheadline,
-    TextStyle? regularTitle1,
-    TextStyle? regularTitle2,
-    TextStyle? regularTitle3,
-    TextStyle? counterStyle,
-    TextStyle? bodyCallout,
-    TextStyle? bodyCaption1,
-    TextStyle? bodyCaption2,
-    TextStyle? bodyFootnote,
-    TextStyle? bodyHeadline,
-    TextStyle? bodyLargeTitle,
-    TextStyle? subheadline,
-    TextStyle? bodyTitle1,
-    TextStyle? bodyTitle2,
-    TextStyle? bodyTitle3,
-    TextStyle? subHead14Weight400,
-  }) =>
+  ThemeExtension<ThemeTextStyles> copyWith(
+          {TextStyle? appBarTitle,
+          TextStyle? buttonStyle,
+          TextStyle? regularBody,
+          TextStyle? regularCallout,
+          TextStyle? regularCaption1,
+          TextStyle? regularCaption2,
+          TextStyle? regularFootnote,
+          TextStyle? regularHeadline,
+          TextStyle? regularLargeTitle,
+          TextStyle? regularSubheadline,
+          TextStyle? regularTitle1,
+          TextStyle? regularTitle2,
+          TextStyle? regularTitle3,
+          TextStyle? counterStyle,
+          TextStyle? bodyCallout,
+          TextStyle? bodyCaption1,
+          TextStyle? bodyCaption2,
+          TextStyle? bodyFootnote,
+          TextStyle? bodyHeadline,
+          TextStyle? bodyLargeTitle,
+          TextStyle? subheadline,
+          TextStyle? bodyTitle1,
+          TextStyle? bodyTitle2,
+          TextStyle? bodyTitle3,
+          TextStyle? subHead14Weight400,
+          TextStyle? smallLink}) =>
       ThemeTextStyles(
         subHead14Weight400: subHead14Weight400 ?? this.subHead14Weight400,
         appBarTitle: appBarTitle ?? this.appBarTitle,
+        smallLink: smallLink ?? this.appBarTitle,
         buttonStyle: buttonStyle ?? this.buttonStyle,
         regularBody: regularBody ?? this.regularBody,
         regularCallout: regularCallout ?? this.regularCallout,
@@ -376,6 +389,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(subHead14Weight400, other.subHead14Weight400, t)!,
       appBarTitle: TextStyle.lerp(appBarTitle, other.appBarTitle, t)!,
       buttonStyle: TextStyle.lerp(buttonStyle, other.buttonStyle, t)!,
+      smallLink: TextStyle.lerp(smallLink, other.buttonStyle, t)!,
       regularBody: TextStyle.lerp(regularBody, other.regularBody, t)!,
       regularCallout: TextStyle.lerp(regularCallout, other.regularCallout, t)!,
       regularCaption1:

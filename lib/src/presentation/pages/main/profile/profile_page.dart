@@ -38,11 +38,11 @@ class ProfilePage extends StatelessWidget {
                         height: 20,
                       ),
                       title: Text(
-                        "Name",
+                        localSource.fullName,
                         style: context.textStyle.appBarTitle,
                       ),
                       subtitle: Text(
-                        "+998900265088",
+                        localSource.phone,
                         style: context.textStyle.regularSubheadline
                             .copyWith(color: context.color.black2),
                       ))
