@@ -55,5 +55,9 @@
   "add_card": "Add card",
   "is_delete": "Delete product from cart?",
   "warning": "Warning",
-  "empty_adress": "You don't have saved addresses"
+  "empty_adress": "You don't have saved addresses",
+  "register": "Sign Up",
+  "continue": "Continue",
+  "number_phone": "Phone number",
+  "resend": "Send the code again"
 }

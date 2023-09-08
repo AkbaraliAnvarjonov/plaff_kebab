@@ -55,5 +55,9 @@
   "empty": "Sizning savatchangiz bo'sh",
   "is_delete": "Mahsulot savatchadan o'chirilsinmi?",
   "warning": "Diqqat",
-  "empty_adress": "Sizda saqlanganlar yo'q"
+  "empty_adress": "Sizda saqlanganlar yo'q",
+  "register": "Ro'yxatdan o'tish",
+  "continue": "Davom etish",
+  "number_phone": "Telefon raqam",
+  "resend": "Kodni qayta jo'natish"
 }

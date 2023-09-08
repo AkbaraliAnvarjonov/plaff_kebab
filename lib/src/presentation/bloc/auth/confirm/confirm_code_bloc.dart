@@ -10,15 +10,18 @@ part 'confirm_code_event.dart';
 
 class ConfirmCodeBloc extends Bloc<ConfirmCodeEvent, ConfirmCodeState>
     with CacheMixin {
-  ConfirmCodeBloc(this.authRepository) : super(const ConfirmInitialState()) {
+  ConfirmCodeBloc(this.authRepository) : super(ConfirmCodeState()) {
     on<ConfirmCodeCheckMessageEvent>(_onConfirmCode);
+    on<ConfirmTime>(_confirmTime);
+    on<ConfirmErrorChange>(_confirmErrorChange);
   }
 
   final AuthRepository authRepository;
 
   Future<void> _onConfirmCode(ConfirmCodeCheckMessageEvent event,
       Emitter<ConfirmCodeState> emit) async {
-    emit(const ConfirmCodeLoadingState());
+    emit(state.copyWith(
+        confirmStatus: ConfirmStatus.loading, inAsyncCall: true));
     final result = await authRepository.verifySmsCode(
       request: VerifyRequest(
         registerType: 'app',
@@ -29,7 +32,12 @@ class ConfirmCodeBloc extends Bloc<ConfirmCodeEvent, ConfirmCodeState>
     );
     result.fold(
       (l) {
-        emit(ConfirmCodeErrorState(message: l.toString()));
+        emit(state.copyWith(
+          confirmStatus: ConfirmStatus.error,
+          message: l.toString(),
+          isError: true,
+          inAsyncCall: false,
+        ));
       },
       (r) {
         setUserInfo(
@@ -40,10 +48,27 @@ class ConfirmCodeBloc extends Bloc<ConfirmCodeEvent, ConfirmCodeState>
           refreshToken: r.refreshToken,
         );
 
-        emit(
-          const ConfirmCodeSuccessState(),
-        );
+        emit(state.copyWith(confirmStatus: ConfirmStatus.success));
       },
     );
+  }
+
+  _confirmTime(ConfirmTime event, Emitter<ConfirmCodeState> emit) async {
+    for (int i = 60; i >= 0; i--) {
+      emit(state.copyWith(time: formatCountdownTime(i)));
+      await Future.delayed(const Duration(seconds: 1));
+    }
+  }
+
+  _confirmErrorChange(
+      ConfirmErrorChange event, Emitter<ConfirmCodeState> emit) {
+    emit(state.copyWith(isError: false));
+  }
+
+  String formatCountdownTime(int seconds) {
+    final Duration duration = Duration(seconds: seconds);
+    final String formattedTime =
+        '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
+    return formattedTime;
   }
 }

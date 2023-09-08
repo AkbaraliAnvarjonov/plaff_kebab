@@ -6,9 +6,15 @@ mixin RegisterMixin on State<RegisterPage> {
   late final TextEditingController _phoneNumberController =
       TextEditingController();
   late final RegisterBloc _bloc = context.read<RegisterBloc>();
+  late final String tag;
 
   @override
   void initState() {
+    SmsAutoFill().getAppSignature.then(
+      (signature) {
+        tag = signature;
+      },
+    );
     super.initState();
   }
 
@@ -36,7 +42,7 @@ mixin RegisterMixin on State<RegisterPage> {
         additionalProps: {
           'name': _fullNameController.text,
           'phone': phoneNum,
-          'tag': "tag",
+          'tag': tag,
           'registration_source': 'app'
         },
         phoneNumber: phoneNum,

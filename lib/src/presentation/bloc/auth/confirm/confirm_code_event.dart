@@ -4,6 +4,20 @@ abstract class ConfirmCodeEvent extends Equatable {
   const ConfirmCodeEvent();
 }
 
+class ConfirmTime extends ConfirmCodeEvent {
+  const ConfirmTime();
+
+  @override
+  List<Object?> get props => [];
+}
+
+class ConfirmErrorChange extends ConfirmCodeEvent {
+  const ConfirmErrorChange();
+
+  @override
+  List<Object?> get props => [];
+}
+
 class ConfirmCodeEventInitial extends ConfirmCodeEvent {
   const ConfirmCodeEventInitial();
 

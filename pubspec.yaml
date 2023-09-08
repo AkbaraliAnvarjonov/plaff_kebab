@@ -55,6 +55,7 @@ dependencies:
   flutter_screenutil: ^5.8.4
   # slider
   carousel_slider: ^4.2.1
+  sms_autofill: ^2.3.0
   # yandex map
   #yandex_mapkit: ^3.3.3
 

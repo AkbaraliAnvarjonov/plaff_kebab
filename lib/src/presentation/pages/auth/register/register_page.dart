@@ -6,6 +6,7 @@ import 'package:plaff_kebab/src/core/utils/utils.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/auth_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/register/register_bloc.dart';
 import 'package:plaff_kebab/src/presentation/components/inputs/custom_text_field.dart';
+import 'package:sms_autofill/sms_autofill.dart';
 
 part 'package:plaff_kebab/src/presentation/pages/auth/register/mixin/register_mixin.dart';
 
@@ -47,7 +48,7 @@ class _RegisterPageState extends State<RegisterPage> with RegisterMixin {
                 padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Text(context.tr("fullName")),
+                  child: Text(context.tr("full_name")),
                 ),
               ),
             ),
