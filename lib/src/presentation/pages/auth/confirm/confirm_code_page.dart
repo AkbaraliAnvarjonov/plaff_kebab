@@ -5,6 +5,7 @@ import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/auth_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/confirm/confirm_code_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/location/location_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/main/main_bloc.dart';
 import 'package:plaff_kebab/src/presentation/components/buttons/bottom_navigation_button.dart';
 import 'package:plaff_kebab/src/presentation/components/loading_widgets/modal_progress_hud.dart';
@@ -34,6 +35,10 @@ class _ConfirmCodePageState extends State<ConfirmCodePage>
             context
                 .read<MainBloc>()
                 .add(const MainEventChanged(BottomMenu.search));
+            BlocProvider.of<LocationBloc>(context)
+                .add(const GetCustomerAdresses());
+            BlocProvider.of<ConfirmCodeBloc>(context).close();
+
             Navigator.popUntil(
               context,
               (route) => route.isFirst,

@@ -85,4 +85,6 @@ constraints {
         because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
     }
     }
+    implementation 'com.yandex.android:maps.mobile:4.3.2-full'
+
 }

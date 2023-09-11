@@ -18,8 +18,9 @@ import 'package:plaff_kebab/src/presentation/pages/error/error_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/internet_connection/internet_connection_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/language/language_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/favorites/bookmark_page.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/home/map/map_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/main_page.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/product/product_page.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/home/product/product_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/profile/settings/settings_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/splash/splash_page.dart';
 
@@ -91,6 +92,8 @@ sealed class AppRoutes {
         );
       case Routes.language:
         return MaterialPageRoute(builder: (_) => const LanguagePage());
+      case Routes.map:
+        return MaterialPageRoute(builder: (_) => const MapPage());
       case Routes.favourites:
         return MaterialPageRoute(builder: (_) => const FavoritesPage());
       case Routes.product:

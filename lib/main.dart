@@ -9,7 +9,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaff_kebab/src/presentation/bloc/banner/banner_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_event.dart';
+import 'package:plaff_kebab/src/presentation/bloc/location/location_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 import 'src/app_options.dart';
 import 'src/config/router/app_routes.dart';
@@ -24,7 +26,7 @@ import 'src/presentation/components/keyboard/keyboard_dismiss.dart';
 void main() async {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
+  AndroidYandexMap.useAndroidViewSurface = false;
   if (defaultTargetPlatform != TargetPlatform.linux &&
       defaultTargetPlatform != TargetPlatform.windows) {
     // await NotificationService.initialize();
@@ -63,6 +65,9 @@ class MainApp extends StatelessWidget {
             BlocProvider<MainBloc>(create: (_) => sl<MainBloc>()),
             BlocProvider<DatabaseBloc>(
                 create: (_) => sl<DatabaseBloc>()..add(GetProduct())),
+            BlocProvider<LocationBloc>(
+                create: (_) =>
+                    sl<LocationBloc>()..add(const GetCustomerAdresses())),
           ],
           child: KeyboardDismiss(
             child: Builder(

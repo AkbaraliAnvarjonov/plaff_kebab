@@ -5,12 +5,12 @@ import 'package:gap/gap.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/data/models/translations_model.dart';
 import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/bottom_nav_widget.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/combo_widget.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/modifiers_widget.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/product_properties_widget.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/product_tile_widget.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/sliver_app_bar.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/home/product/widgets/bottom_nav_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/home/product/widgets/combo_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/home/product/widgets/modifiers_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/home/product/widgets/product_properties_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/home/product/widgets/product_tile_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/home/product/widgets/sliver_app_bar.dart';
 
 part 'mixin/product_mixin.dart';
 

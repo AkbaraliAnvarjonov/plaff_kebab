@@ -50,7 +50,6 @@ mixin ConfirmCodeMixin on State<ConfirmCodePage> {
 
   @override
   void dispose() {
-    BlocProvider.of<ConfirmCodeBloc>(context).close();
     controller.dispose();
     super.dispose();
   }

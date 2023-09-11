@@ -38,6 +38,7 @@ sealed class Urls {
   static const String combo = 'v2/combo/';
   static const String getBanners = 'v1/banner';
   static const String customers = 'v1/customers';
+  static const String customerAddress = 'v1/customer_address';
 }
 
 // Sentinel value for the system text scale factor option.

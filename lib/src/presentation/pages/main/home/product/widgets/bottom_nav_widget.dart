@@ -6,7 +6,7 @@ import 'package:plaff_kebab/src/core/utils/utils.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_event.dart';
 import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/plus_minus_button.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/home/product/widgets/plus_minus_button.dart';
 
 class BottomNavWidget extends StatelessWidget {
   const BottomNavWidget({super.key});

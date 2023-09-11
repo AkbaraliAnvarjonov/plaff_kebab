@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:plaff_kebab/src/core/constants/constants.dart';
@@ -31,62 +32,71 @@ class MainPage extends StatelessWidget {
             }
             return true;
           },
-          child: Scaffold(
-            body: FadeIndexedStack(
-              index: bottomMenu.index,
-              children: const [
-                HomePage(),
-                OrdersPage(),
-                FavoritesPage(),
-                ProfilePage()
-              ],
+          child: AnnotatedRegion<SystemUiOverlayStyle>(
+            value: const SystemUiOverlayStyle(
+              systemNavigationBarColor: Colors.black,
+              statusBarColor: Colors.white,
+              statusBarBrightness: Brightness.light,
+              statusBarIconBrightness: Brightness.dark,
             ),
-            bottomNavigationBar: BottomNavigationBar(
-              selectedItemColor: context.colorScheme.primary,
-              unselectedItemColor: context.color.black5,
-              key: Constants.bottomNavigatorKey,
-              onTap: (i) {
-                if (bottomMenu.index == 0 && i == 0) {
-                  context.read<HomeBloc>().add(
-                        const HomeScroll(isScrollingTop: true),
-                      );
-                  return;
-                }
-                if ((i == 2 || i == 3) && !localSource.hasProfile) {
-                  Navigator.pushNamed(context, Routes.auth);
-                  return;
-                }
-                context
-                    .read<MainBloc>()
-                    .add(MainEventChanged(BottomMenu.values[i]));
-              },
-              currentIndex: bottomMenu.index,
-              items: [
-                _navigationBarItem(
-                  context: context,
-                  label: context.tr('home'),
-                  icon: AppIcons.home_icon,
-                  activeIcon: AppIcons.home_icon,
-                ),
-                _navigationBarItem(
-                  context: context,
-                  label: context.tr('basket'),
-                  icon: AppIcons.basket_icon,
-                  activeIcon: AppIcons.basket_icon,
-                ),
-                _navigationBarItem(
-                  context: context,
-                  label: context.tr('orders'),
-                  icon: AppIcons.order_icon,
-                  activeIcon: AppIcons.order_icon,
-                ),
-                _navigationBarItem(
-                  context: context,
-                  label: context.tr('profile'),
-                  icon: AppIcons.profile_icon,
-                  activeIcon: AppIcons.profile_icon,
-                ),
-              ],
+            child: Scaffold(
+              body: FadeIndexedStack(
+                index: bottomMenu.index,
+                children: const [
+                  HomePage(),
+                  OrdersPage(),
+                  FavoritesPage(),
+                  ProfilePage()
+                ],
+              ),
+              bottomNavigationBar: BottomNavigationBar(
+                elevation: 10,
+                selectedItemColor: context.colorScheme.primary,
+                unselectedItemColor: context.color.black5,
+                key: Constants.bottomNavigatorKey,
+                onTap: (i) {
+                  if (bottomMenu.index == 0 && i == 0) {
+                    context.read<HomeBloc>().add(
+                          const HomeScroll(isScrollingTop: true),
+                        );
+                    return;
+                  }
+                  if ((i == 2 || i == 3) && !localSource.hasProfile) {
+                    Navigator.pushNamed(context, Routes.auth);
+                    return;
+                  }
+                  context
+                      .read<MainBloc>()
+                      .add(MainEventChanged(BottomMenu.values[i]));
+                },
+                currentIndex: bottomMenu.index,
+                items: [
+                  _navigationBarItem(
+                    context: context,
+                    label: context.tr('home'),
+                    icon: AppIcons.home_icon,
+                    activeIcon: AppIcons.home_icon,
+                  ),
+                  _navigationBarItem(
+                    context: context,
+                    label: context.tr('basket'),
+                    icon: AppIcons.basket_icon,
+                    activeIcon: AppIcons.basket_icon,
+                  ),
+                  _navigationBarItem(
+                    context: context,
+                    label: context.tr('orders'),
+                    icon: AppIcons.order_icon,
+                    activeIcon: AppIcons.order_icon,
+                  ),
+                  _navigationBarItem(
+                    context: context,
+                    label: context.tr('profile'),
+                    icon: AppIcons.profile_icon,
+                    activeIcon: AppIcons.profile_icon,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

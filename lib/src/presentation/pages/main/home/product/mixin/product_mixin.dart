@@ -1,4 +1,4 @@
-part of 'package:plaff_kebab/src/presentation/pages/main/product/product_page.dart';
+part of 'package:plaff_kebab/src/presentation/pages/main/home/product/product_page.dart';
 
 mixin ProductMixin on State<ProductPage> {
   late final ScrollController scrollController;

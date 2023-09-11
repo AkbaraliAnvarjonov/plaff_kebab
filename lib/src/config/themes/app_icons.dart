@@ -23,6 +23,8 @@ sealed class AppIcons {
   static const order_icon = "assets/svg/order_icon.svg";
   static const delete_icon = "assets/svg/delete_icon.svg";
   static const remove_icon = "assets/svg/remove_icon.svg";
+  static const map_pointer = "assets/svg/map_pointer.svg";
+  static const get_location_icon = "assets/svg/location_get_icon.svg";
   static const String _fontFamily = 'AppIcons';
 
   static const IconData person_with_bag =

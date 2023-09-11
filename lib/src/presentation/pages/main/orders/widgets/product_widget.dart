@@ -13,7 +13,7 @@ import 'package:plaff_kebab/src/presentation/bloc/database/database_event.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/orders/widgets/alert_dialog.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/orders/widgets/combo_name_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/orders/widgets/modifier_name_widget.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/product/widgets/plus_minus_button.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/home/product/widgets/plus_minus_button.dart';
 
 class ProductItemWidget extends StatelessWidget {
   const ProductItemWidget({super.key, required this.products});
