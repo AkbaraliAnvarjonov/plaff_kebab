@@ -22,6 +22,15 @@ sealed class Constants {
   static const String expiresAt = '2025-06-23T06:00:10.049Z';
   static const String roledId = '425486de-89dc-48a7-9fa8-47f7b4eeffcb';
 
+  // yandex
+
+  static const yandexApiKey = '31f1de67-b97e-4d0b-88df-10e8862dd331';
+  static const yandexApiKey1 = 'fd8dd043-5ad9-472e-89ef-46290ec8442c';
+  static const yandexApiKey2 = '404852a9-99e2-460d-a85c-8ffd8a1c773a';
+  static const yandexApiKey3 = '402a7d79-b669-44ff-ad64-160e14581e9a';
+
+  static const yandexUrl = 'https://geocode-maps.yandex.ru/1.x/';
+
   static GlobalKey<FormState> bottomNavigatorKey = GlobalKey<FormState>();
 }
 

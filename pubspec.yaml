@@ -61,6 +61,8 @@ dependencies:
   yandex_mapkit: ^3.3.3
   #geolocator
   geolocator: ^10.0.1
+  map_launcher: ^2.5.0+1
+  json_annotation: ^4.8.1
 
 
 dev_dependencies:

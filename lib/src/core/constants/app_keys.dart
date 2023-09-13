@@ -16,4 +16,5 @@ sealed class AppKeys {
   static const String login = 'login';
   static const String email = 'email';
   static const String langSelected = 'lang_selected';
+  static const String yandex = 'yandex_key';
 }

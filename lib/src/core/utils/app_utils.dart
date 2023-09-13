@@ -32,6 +32,7 @@ sealed class AppUtils {
       EdgeInsets.symmetric(horizontal: 32, vertical: 20);
   static const kPaddingBottom8Hor16top16 = EdgeInsets.fromLTRB(16, 16, 16, 8);
   static const kPaddingBottom16 = EdgeInsets.fromLTRB(0, 0, 0, 16);
+  static const kPaddingBottom16left8 = EdgeInsets.fromLTRB(8, 0, 0, 16);
   static const kPaddingBottom2 = EdgeInsets.fromLTRB(0, 0, 0, 2);
   static const kPaddingBottom8 = EdgeInsets.fromLTRB(0, 0, 0, 8);
   static const kPaddingHor14Ver16 =

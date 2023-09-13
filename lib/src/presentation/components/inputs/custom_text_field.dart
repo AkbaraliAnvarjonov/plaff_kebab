@@ -33,7 +33,7 @@ class CustomTextField extends StatelessWidget {
     this.haveBorder = true,
     this.style,
     this.filled,
-    this.borderColor
+    this.borderColor,
   });
 
   final String? hintText;

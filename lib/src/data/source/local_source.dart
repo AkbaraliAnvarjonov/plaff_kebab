@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:plaff_kebab/src/core/constants/app_keys.dart';
+import 'package:plaff_kebab/src/core/constants/constants.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
 import 'package:plaff_kebab/src/data/source/hive/product.dart';
 
@@ -95,6 +96,14 @@ final class LocalSource {
 
   Future<void> setThemeMode(ThemeMode mode) async {
     await box.put(AppKeys.themeMode, mode.name);
+  }
+
+  Future<void> setYandexKey(String value) async {
+    await box.put(AppKeys.yandex, value);
+  }
+
+  String getYandexKey() {
+    return box.get(AppKeys.yandex, defaultValue: Constants.yandexApiKey);
   }
 
   Future<void> setLocale(String lang) async {

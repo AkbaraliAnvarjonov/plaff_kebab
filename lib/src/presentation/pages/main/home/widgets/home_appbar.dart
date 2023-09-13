@@ -6,7 +6,7 @@ import 'package:plaff_kebab/src/config/router/app_routes.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
 import 'package:plaff_kebab/src/data/models/adress/adress_model.dart';
-import 'package:plaff_kebab/src/presentation/bloc/location/location_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/user_adresses/user_adresses_bloc.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/home/widgets/modal_bottom_sheet.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -60,7 +60,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Column(
         children: [
-          BlocSelector<LocationBloc, LocationState, List<CustomerAddress>>(
+          BlocSelector<UserAdressesBloc, UserAdressesState,
+              List<CustomerAddress>>(
             selector: (state) => state.customerAddresses,
             builder: (context, state) => InkWell(
               onTap: () {

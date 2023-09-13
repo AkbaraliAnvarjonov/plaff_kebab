@@ -26,7 +26,8 @@ import 'package:plaff_kebab/src/presentation/bloc/auth/register/register_bloc.da
 import 'package:plaff_kebab/src/presentation/bloc/banner/banner_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/home/home_bloc.dart';
-import 'package:plaff_kebab/src/presentation/bloc/location/location_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/map/map_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/user_adresses/user_adresses_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/main/main_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/splash/splash_bloc.dart';
@@ -103,7 +104,8 @@ Future<void> init() async {
   registerFeature();
 
   //adress
-  locationFeature();
+  adressFeature();
+  mapFeature();
 
   //banenr
   bannerFeature();
@@ -144,6 +146,10 @@ void registerFeature() {
     );
 }
 
+void mapFeature() {
+  sl.registerFactory<MapBloc>(() => MapBloc(sl()));
+}
+
 void databaseFeature() {
   sl.registerFactory<DatabaseBloc>(() => DatabaseBloc(sl()));
 }
@@ -160,9 +166,9 @@ void authFeature() {
     );
 }
 
-void locationFeature() {
+void adressFeature() {
   sl
-    ..registerFactory<LocationBloc>(() => LocationBloc(sl()))
+    ..registerFactory<UserAdressesBloc>(() => UserAdressesBloc(sl()))
     ..registerLazySingleton<AdressRepository>(
       () => AdressRepositoryImpl(
         dio: sl(),

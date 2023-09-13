@@ -3,19 +3,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plaff_kebab/src/data/models/adress/adress_model.dart';
 import 'package:plaff_kebab/src/domain/repositories/adress/adress_repository.dart';
 
-part 'location_event.dart';
+part 'user_adresses_event.dart';
 
-part 'location_state.dart';
+part 'user_adresses_state.dart';
 
-class LocationBloc extends Bloc<LocationEvent, LocationState> {
-  LocationBloc(this.adressRepository) : super(const LocationState()) {
+class UserAdressesBloc extends Bloc<UserAdressesEvent, UserAdressesState> {
+  UserAdressesBloc(this.adressRepository) : super(const UserAdressesState()) {
     on<GetCustomerAdresses>(_getCustomerAdresses);
   }
 
   final AdressRepository adressRepository;
 
   _getCustomerAdresses(
-      GetCustomerAdresses event, Emitter<LocationState> emit) async {
+      GetCustomerAdresses event, Emitter<UserAdressesState> emit) async {
     emit(state.copyWith(locationStatus: LocationStatus.loading));
 
     final result = await adressRepository.getAdresses();

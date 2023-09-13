@@ -36,4 +36,17 @@ class CustomerAddress {
       name: json['name'] as String? ?? '',
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'address': address,
+      'apartment': apartment,
+      'building': building,
+      'customer_id': customerId,
+      'description': description,
+      'floor': floor,
+      'location': location.toJson(),
+      'name': name,
+    };
+  }
 }

@@ -9,7 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaff_kebab/src/presentation/bloc/banner/banner_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_event.dart';
-import 'package:plaff_kebab/src/presentation/bloc/location/location_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/user_adresses/user_adresses_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
@@ -65,9 +65,9 @@ class MainApp extends StatelessWidget {
             BlocProvider<MainBloc>(create: (_) => sl<MainBloc>()),
             BlocProvider<DatabaseBloc>(
                 create: (_) => sl<DatabaseBloc>()..add(GetProduct())),
-            BlocProvider<LocationBloc>(
+            BlocProvider<UserAdressesBloc>(
                 create: (_) =>
-                    sl<LocationBloc>()..add(const GetCustomerAdresses())),
+                    sl<UserAdressesBloc>()..add(const GetCustomerAdresses())),
           ],
           child: KeyboardDismiss(
             child: Builder(

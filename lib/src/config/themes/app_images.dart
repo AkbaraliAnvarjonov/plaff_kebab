@@ -7,4 +7,5 @@ class AppImages {
   static const engFlag = "assets/png/eng_flag.png";
   static const bag = "assets/png/bag.png";
   static const favourite = "assets/png/favourite.png";
+  static const mapPointer = "assets/png/map_pointer.png";
 }

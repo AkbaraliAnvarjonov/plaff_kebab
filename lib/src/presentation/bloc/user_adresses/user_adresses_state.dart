@@ -1,7 +1,7 @@
-part of 'location_bloc.dart';
+part of 'user_adresses_bloc.dart';
 
-class LocationState extends Equatable {
-  const LocationState({
+class UserAdressesState extends Equatable {
+  const UserAdressesState({
     this.error = "",
     this.locationStatus = LocationStatus.initial,
     this.customerAddresses = const [],
@@ -10,12 +10,12 @@ class LocationState extends Equatable {
   final LocationStatus locationStatus;
   final List<CustomerAddress> customerAddresses;
 
-  LocationState copyWith({
+  UserAdressesState copyWith({
     String? error,
     LocationStatus? locationStatus,
     List<CustomerAddress>? customerAddresses,
   }) =>
-      LocationState(
+      UserAdressesState(
         error: error ?? this.error,
         locationStatus: locationStatus ?? this.locationStatus,
         customerAddresses: customerAddresses ?? this.customerAddresses,

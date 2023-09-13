@@ -1,5 +1,4 @@
 import 'package:chuck_interceptor/chuck.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,14 +42,14 @@ sealed class AppRoutes {
     }
     switch (settings.name) {
       case Routes.initial:
-        return CupertinoPageRoute(
+        return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (_) => sl<SplashBloc>(),
             child: const SplashPage(),
           ),
         );
       case Routes.main:
-        return FadePageRoute(
+        return MaterialPageRoute(
           builder: (_) => MultiBlocProvider(
             providers: [
               BlocProvider(create: (_) => sl<HomeBloc>()),
