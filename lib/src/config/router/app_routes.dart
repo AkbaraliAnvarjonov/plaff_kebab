@@ -16,6 +16,7 @@ import 'package:plaff_kebab/src/presentation/pages/auth/register/register_page.d
 import 'package:plaff_kebab/src/presentation/pages/error/error_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/internet_connection/internet_connection_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/language/language_page.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/checkout_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/favorites/bookmark_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/home/map/map_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/main_page.dart';
@@ -95,6 +96,8 @@ sealed class AppRoutes {
         return MaterialPageRoute(builder: (_) => const MapPage());
       case Routes.favourites:
         return MaterialPageRoute(builder: (_) => const FavoritesPage());
+      case Routes.checkout:
+        return MaterialPageRoute(builder: (_) => const CheckoutPage());
       case Routes.product:
         return MaterialPageRoute(
           builder: (_) {

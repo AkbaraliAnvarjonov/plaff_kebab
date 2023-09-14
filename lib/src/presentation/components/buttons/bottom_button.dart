@@ -14,15 +14,18 @@ class BottomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(
-            color ?? context.colorScheme.primary),
-      ),
-      onPressed: onTap,
-      child: Text(
-        text,
-        style: context.textStyle.appBarTitle,
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(
+              color ?? context.colorScheme.primary),
+        ),
+        onPressed: onTap,
+        child: Text(
+          text,
+          style: context.textStyle.appBarTitle,
+        ),
       ),
     );
   }

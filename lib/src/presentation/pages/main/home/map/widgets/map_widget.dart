@@ -100,40 +100,37 @@ class MapWidget extends StatelessWidget {
                   fillColor: context.color.black5.withOpacity(0.15),
                 ),
                 AppUtils.kGap8,
-                SizedBox(
-                  width: double.infinity,
-                  child: BlocConsumer<MapBloc, MapState>(
-                      listener: (context, state) {
-                    if (state.mapStatus == MapStatus.success) {
-                      BlocProvider.of<UserAdressesBloc>(context)
-                          .add(const GetCustomerAdresses());
-                      Navigator.popUntil(
-                        context,
-                        (route) => route.isFirst,
-                      );
-                    }
-                  }, builder: (context, state) {
-                    return BottomButton(
-                      text: context.tr("confirm"),
-                      onTap: () {
-                        BlocProvider.of<MapBloc>(context).add(PostLocationInfo(
-                            adress: CustomerAddress(
-                          address: locationNameController.text,
-                          apartment: flatController.text,
-                          building: entranceController.text,
-                          customerId: localSource.userId,
-                          description: "",
-                          floor: floorController.text,
-                          id: "",
-                          location: LocationModel(
-                              lat: state.point.latitude,
-                              long: state.point.longitude),
-                          name: adressNameController.text,
-                        )));
-                      },
+                BlocConsumer<MapBloc, MapState>(
+                    listener: (context, state) {
+                  if (state.mapStatus == MapStatus.success) {
+                    BlocProvider.of<UserAdressesBloc>(context)
+                        .add(const GetCustomerAdresses());
+                    Navigator.popUntil(
+                      context,
+                      (route) => route.isFirst,
                     );
-                  }),
-                ),
+                  }
+                }, builder: (context, state) {
+                  return BottomButton(
+                    text: context.tr("confirm"),
+                    onTap: () {
+                      BlocProvider.of<MapBloc>(context).add(PostLocationInfo(
+                          adress: CustomerAddress(
+                        address: locationNameController.text,
+                        apartment: flatController.text,
+                        building: entranceController.text,
+                        customerId: localSource.userId,
+                        description: "",
+                        floor: floorController.text,
+                        id: "",
+                        location: LocationModel(
+                            lat: state.point.latitude,
+                            long: state.point.longitude),
+                        name: adressNameController.text,
+                      )));
+                    },
+                  );
+                }),
               ],
             ),
           ),

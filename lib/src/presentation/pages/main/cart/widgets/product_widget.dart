@@ -10,9 +10,9 @@ import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/data/source/hive/product.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_event.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/orders/widgets/alert_dialog.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/orders/widgets/combo_name_widget.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/orders/widgets/modifier_name_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/cart/widgets/alert_dialog.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/cart/widgets/combo_name_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/cart/widgets/modifier_name_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/home/product/widgets/plus_minus_button.dart';
 
 class ProductItemWidget extends StatelessWidget {
@@ -22,21 +22,22 @@ class ProductItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: AppUtils.kPaddingVer16,
-      child: SizedBox(
-        width: double.infinity,
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            CachedNetworkImage(
-              errorWidget: (context, url, error) =>
-                  SvgPicture.asset(AppIcons.dish),
-              placeholder: (context, url) => SvgPicture.asset(AppIcons.dish),
-              height: 88,
-              width: 88,
-              imageUrl: Constants.imageUrl + products.image,
-            ),
-            const Gap(16),
-            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          CachedNetworkImage(
+            errorWidget: (context, url, error) =>
+                SvgPicture.asset(AppIcons.dish),
+            placeholder: (context, url) => SvgPicture.asset(AppIcons.dish),
+            height: 88,
+            width: 88,
+            imageUrl: Constants.imageUrl + products.image,
+          ),
+          const Gap(16),
+          Column(
+            
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -99,9 +100,9 @@ class ProductItemWidget extends StatelessWidget {
                   ),
                 ],
               ),
-            ]),
-          ],
-        ),
+            ],
+          ),
+        ],
       ),
     );
   }
