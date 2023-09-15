@@ -7,10 +7,14 @@ mixin OrdersMixin on State<CheckoutPage> {
   late final TextEditingController floorController;
   late final TextEditingController flatController;
   late final TextEditingController adressNameController;
+  late final TextEditingController chooseController;
+  late final YandexMapController yandexMapController;
+  late int selectedAdress;
   // late final DatabaseBloc bloc;
   void initStateController(TickerProvider tickerProvider) {}
   @override
   void initState() {
+    selectedAdress = -1;
     // BlocProvider.of<DatabaseBloc>(context).add(GetProduct());
     scrollController = ScrollController();
     locationNameController = TextEditingController();
@@ -18,6 +22,7 @@ mixin OrdersMixin on State<CheckoutPage> {
     floorController = TextEditingController();
     flatController = TextEditingController();
     adressNameController = TextEditingController();
+    chooseController = TextEditingController();
     super.initState();
   }
 

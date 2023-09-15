@@ -2,6 +2,7 @@ part of 'utils.dart';
 
 sealed class AppUtils {
   AppUtils._();
+  static const kBox = SizedBox.shrink();
 
   static const kSpacer = Spacer();
 
@@ -16,7 +17,10 @@ sealed class AppUtils {
   static const kGap40 = Gap(40);
 
   /// divider
-  static const kDivider = Divider(height: 1);
+  static final kDivider = Divider(
+    height: 1,
+    color: const Color(0xFF000000).withOpacity(0.08),
+  );
 
   /// padding
   static const kPadding0 = EdgeInsets.zero;
@@ -27,11 +31,13 @@ sealed class AppUtils {
   static const kPaddingAll24 = EdgeInsets.all(24);
   static const kPaddingHorizontal12 = EdgeInsets.symmetric(horizontal: 12);
   static const kPaddingHorizontal8 = EdgeInsets.symmetric(horizontal: 8);
+  static const kPaddingVertical8 = EdgeInsets.symmetric(vertical: 8);
   static const kPaddingHorizontal16 = EdgeInsets.symmetric(horizontal: 16);
   static const kPaddingHor32Ver20 =
       EdgeInsets.symmetric(horizontal: 32, vertical: 20);
   static const kPaddingBottom8Hor16top16 = EdgeInsets.fromLTRB(16, 16, 16, 8);
   static const kPaddingBottom16 = EdgeInsets.fromLTRB(0, 0, 0, 16);
+  static const kPaddingTop16 = EdgeInsets.fromLTRB(0, 16, 0, 0);
   static const kPaddingBottom16left8 = EdgeInsets.fromLTRB(8, 0, 0, 16);
   static const kPaddingBottom2 = EdgeInsets.fromLTRB(0, 0, 0, 2);
   static const kPaddingBottom8 = EdgeInsets.fromLTRB(0, 0, 0, 8);

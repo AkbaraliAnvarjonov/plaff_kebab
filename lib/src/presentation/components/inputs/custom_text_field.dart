@@ -100,6 +100,8 @@ class CustomTextField extends StatelessWidget {
             textInputAction: inputAction ?? TextInputAction.next,
             onChanged: onChanged,
             decoration: InputDecoration(
+              suffixIconConstraints:
+                  const BoxConstraints(minHeight: 24, minWidth: 24),
               fillColor: fillColor,
               filled: filled,
               suffixIcon: suffixIcon,

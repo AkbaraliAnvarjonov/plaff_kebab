@@ -6,15 +6,19 @@ import 'package:plaff_kebab/src/core/utils/utils.dart';
 class MapCustomButton extends StatelessWidget {
   final String icon;
   final Function()? onTap;
-  final EdgeInsets? margin;
+  final EdgeInsets? padding;
 
-  const MapCustomButton({Key? key, required this.icon, this.onTap, this.margin})
-      : super(key: key);
+  const MapCustomButton({
+    Key? key,
+    required this.icon,
+    this.onTap,
+    this.padding,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: AppUtils.kPaddingAll16,
+      padding: padding ?? AppUtils.kPaddingAll16,
       child: InkWell(
         borderRadius: AppUtils.kBorderRadius12,
         onTap: onTap,

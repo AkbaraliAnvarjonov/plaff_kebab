@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaff_kebab/src/presentation/bloc/banner/banner_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_event.dart';
+import 'package:plaff_kebab/src/presentation/bloc/map/map_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/user_adresses/user_adresses_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
@@ -63,6 +64,7 @@ class MainApp extends StatelessWidget {
                 create: (_) => sl<BannerBloc>()..add(GetBannerEvent())),
             BlocProvider<ProductBloc>(create: (_) => sl<ProductBloc>()),
             BlocProvider<MainBloc>(create: (_) => sl<MainBloc>()),
+            BlocProvider<MapBloc>(create: (_) => sl<MapBloc>()),
             BlocProvider<DatabaseBloc>(
                 create: (_) => sl<DatabaseBloc>()..add(GetProduct())),
             BlocProvider<UserAdressesBloc>(

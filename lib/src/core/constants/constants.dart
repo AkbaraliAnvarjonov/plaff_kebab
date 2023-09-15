@@ -24,7 +24,7 @@ sealed class Constants {
 
   // yandex
 
-  static const yandexApiKey = '31f1de67-b97e-4d0b-88df-10e8862dd331';
+  static const yandexApiKey = 'd9b0f53f-48f0-4fe4-a270-b9f953109f85';
   static const yandexApiKey1 = 'fd8dd043-5ad9-472e-89ef-46290ec8442c';
   static const yandexApiKey2 = '404852a9-99e2-460d-a85c-8ffd8a1c773a';
   static const yandexApiKey3 = '402a7d79-b669-44ff-ad64-160e14581e9a';

@@ -4,13 +4,18 @@ import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
 import 'package:plaff_kebab/src/data/models/adress/adress_model.dart';
 
-class BottomSheetWidget extends StatelessWidget {
+class BottomSheetWidget extends StatefulWidget {
   const BottomSheetWidget({
     super.key,
     required this.state,
   });
   final List<CustomerAddress> state;
 
+  @override
+  State<BottomSheetWidget> createState() => _BottomSheetWidgetState();
+}
+
+class _BottomSheetWidgetState extends State<BottomSheetWidget> {
   @override
   Widget build(BuildContext context) {
     int selectRadioValue = 0;
@@ -28,10 +33,11 @@ class BottomSheetWidget extends StatelessWidget {
         ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          itemCount: state.length,
+          itemCount: widget.state.length,
           itemBuilder: (context, index) => ListTile(
             onTap: () {
               selectRadioValue = index;
+              setState(() {});
             },
             leading: SizedBox(
               width: 20,
@@ -44,12 +50,12 @@ class BottomSheetWidget extends StatelessWidget {
               ),
             ),
             title: Text(
-              state[index].name,
+              widget.state[index].name,
               style: context.textStyle.regularSubheadline
                   .copyWith(color: context.color.black3),
             ),
             subtitle: Text(
-              state[index].address,
+              widget.state[index].address,
               style: context.textStyle.subHead14Weight400,
             ),
           ),

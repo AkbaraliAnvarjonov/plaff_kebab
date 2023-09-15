@@ -34,7 +34,6 @@ class MapWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         MapCustomButton(
-          margin: const EdgeInsets.only(bottom: 16, right: 16),
           icon: AppIcons.get_location_icon,
           onTap: () {
             BlocProvider.of<MapBloc>(context).add(MapLoadedEvent());
@@ -100,8 +99,7 @@ class MapWidget extends StatelessWidget {
                   fillColor: context.color.black5.withOpacity(0.15),
                 ),
                 AppUtils.kGap8,
-                BlocConsumer<MapBloc, MapState>(
-                    listener: (context, state) {
+                BlocConsumer<MapBloc, MapState>(listener: (context, state) {
                   if (state.mapStatus == MapStatus.success) {
                     BlocProvider.of<UserAdressesBloc>(context)
                         .add(const GetCustomerAdresses());
