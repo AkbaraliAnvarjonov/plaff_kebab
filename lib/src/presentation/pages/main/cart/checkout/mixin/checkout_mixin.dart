@@ -1,7 +1,6 @@
 part of 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/checkout_page.dart';
 
 mixin OrdersMixin on State<CheckoutPage> {
-  late final ScrollController scrollController;
   late final TextEditingController locationNameController;
   late final TextEditingController entranceController;
   late final TextEditingController floorController;
@@ -9,14 +8,11 @@ mixin OrdersMixin on State<CheckoutPage> {
   late final TextEditingController adressNameController;
   late final TextEditingController chooseController;
   late final YandexMapController yandexMapController;
+  late final TabController tabController;
   late int selectedAdress;
-  // late final DatabaseBloc bloc;
-  void initStateController(TickerProvider tickerProvider) {}
   @override
   void initState() {
     selectedAdress = -1;
-    // BlocProvider.of<DatabaseBloc>(context).add(GetProduct());
-    scrollController = ScrollController();
     locationNameController = TextEditingController();
     entranceController = TextEditingController();
     floorController = TextEditingController();
@@ -29,7 +25,6 @@ mixin OrdersMixin on State<CheckoutPage> {
   @override
   void didChangeDependencies() {
     if (!mounted) return;
-    // bloc = context.read<DatabaseBloc>();
     super.didChangeDependencies();
   }
 
@@ -40,6 +35,7 @@ mixin OrdersMixin on State<CheckoutPage> {
     flatController.dispose();
     floorController.dispose();
     adressNameController.dispose();
+    tabController.dispose();
     super.dispose();
   }
 }

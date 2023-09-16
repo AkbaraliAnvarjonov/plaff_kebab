@@ -24,6 +24,7 @@ sealed class AppUtils {
 
   /// padding
   static const kPadding0 = EdgeInsets.zero;
+  static const kPaddingAll4 = EdgeInsets.all(4);
   static const kPaddingAll6 = EdgeInsets.all(6);
   static const kPaddingAll8 = EdgeInsets.all(8);
   static const kPaddingAll12 = EdgeInsets.all(12);

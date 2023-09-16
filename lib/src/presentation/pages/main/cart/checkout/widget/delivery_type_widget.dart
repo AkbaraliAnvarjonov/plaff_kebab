@@ -27,7 +27,7 @@ class SelectDeliveryTypeWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Padding(
-                padding: AppUtils.kPaddingTop16,
+                padding: AppUtils.kPaddingAll12,
                 child: Text(
                   'delivery_method'.tr,
                 ),

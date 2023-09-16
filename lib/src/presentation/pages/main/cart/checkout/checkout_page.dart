@@ -9,6 +9,7 @@ import 'package:plaff_kebab/src/presentation/components/inputs/custom_text_field
 import 'package:plaff_kebab/src/presentation/components/material_border/material_border_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/checkout_bottom_sheet.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/courier_call.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/custom_tab_bar.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/delivery_type_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/select_payment_type_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/home/map/widgets/info_text_field.dart';
@@ -25,7 +26,13 @@ class CheckoutPage extends StatefulWidget {
 }
 
 class _CheckoutPageState extends State<CheckoutPage>
-    with SingleTickerProviderStateMixin, OrdersMixin {
+    with OrdersMixin, TickerProviderStateMixin {
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(vsync: this, length: 2);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +41,16 @@ class _CheckoutPageState extends State<CheckoutPage>
         title: Text(
           context.tr("checkout_order"),
           style: context.textStyle.appBarTitle,
+        ),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(56),
+          child: CustomTabBar(
+            controller: tabController,
+            labels: [
+              'delivery'.tr,
+              'self_pick_up'.tr,
+            ],
+          ),
         ),
       ),
       body: SingleChildScrollView(
@@ -52,19 +69,20 @@ class _CheckoutPageState extends State<CheckoutPage>
                       style: context.textStyle.regularSubheadline),
                   AppUtils.kGap4,
                   BlocSelector<MapBloc, MapState, String>(
-                      selector: (state) => state.title,
-                      builder: (context, state) {
-                        locationNameController.text = state;
-                        return CustomTextField(
-                          controller: locationNameController,
-                          haveBorder: false,
-                          filled: true,
-                          maxLines: 2,
-                          minLines: 2,
-                          readOnly: true,
-                          fillColor: context.color.black5.withOpacity(0.15),
-                        );
-                      }),
+                    selector: (state) => state.title,
+                    builder: (context, state) {
+                      locationNameController.text = state;
+                      return CustomTextField(
+                        controller: locationNameController,
+                        haveBorder: false,
+                        filled: true,
+                        maxLines: 2,
+                        minLines: 2,
+                        readOnly: true,
+                        fillColor: context.color.black5.withOpacity(0.15),
+                      );
+                    },
+                  ),
                   AppUtils.kGap8,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -185,12 +203,15 @@ class _CheckoutPageState extends State<CheckoutPage>
             ),
             AppUtils.kGap12,
             const SelectPaymentTypeWidget(),
+            AppUtils.kGap12
           ],
         ),
       ),
-      bottomNavigationBar: BottomButton(
-        text: context.tr("order"),
-        onTap: () {},
+      bottomNavigationBar: MaterialBorderWidget(
+        child: BottomButton(
+          text: context.tr("order"),
+          onTap: () {},
+        ),
       ),
     );
   }
