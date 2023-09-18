@@ -18,6 +18,8 @@ import 'package:plaff_kebab/src/domain/repositories/banner/banner_repository.dar
 import 'package:plaff_kebab/src/domain/repositories/banner/banner_repository_impl.dart';
 import 'package:plaff_kebab/src/domain/repositories/category/category_repository.dart';
 import 'package:plaff_kebab/src/domain/repositories/category/category_repository_impl.dart';
+import 'package:plaff_kebab/src/domain/repositories/one_demand/on_demand_repository.dart';
+import 'package:plaff_kebab/src/domain/repositories/one_demand/on_demand_repository_impl.dart';
 import 'package:plaff_kebab/src/domain/repositories/product/product_repository.dart';
 import 'package:plaff_kebab/src/domain/repositories/product/product_repository_impl.dart';
 import 'package:plaff_kebab/src/domain/repositories/register/register_repository.dart';
@@ -159,7 +161,10 @@ void databaseFeature() {
 }
 
 void checkoutFeature() {
-  sl.registerFactory<CheckoutBloc>(() => CheckoutBloc(sl()));
+  sl
+    ..registerFactory<CheckoutBloc>(() => CheckoutBloc(sl(), sl()))
+    ..registerLazySingleton<OnDemandRepository>(
+        () => OnDemandRepositoryImpl(networkInfo: sl(), dio: sl()));
 }
 
 void authFeature() {
