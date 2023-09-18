@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:plaff_kebab/src/presentation/bloc/banner/banner_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/checkout/checkout_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_event.dart';
 import 'package:plaff_kebab/src/presentation/bloc/map/map_bloc.dart';
@@ -67,6 +68,7 @@ class MainApp extends StatelessWidget {
             BlocProvider<MapBloc>(create: (_) => sl<MapBloc>()),
             BlocProvider<DatabaseBloc>(
                 create: (_) => sl<DatabaseBloc>()..add(GetProduct())),
+            BlocProvider<CheckoutBloc>(create: (_) => sl<CheckoutBloc>()),
             BlocProvider<UserAdressesBloc>(
                 create: (_) =>
                     sl<UserAdressesBloc>()..add(const GetCustomerAdresses())),

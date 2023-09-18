@@ -14,8 +14,10 @@ class CheckoutBottomSheet extends StatelessWidget {
     required this.yandexMapController,
     required this.controller,
     required this.selectRadioValue,
+    required this.orderPrice,
   });
   final YandexMapController yandexMapController;
+  final double orderPrice;
   final TextEditingController controller;
   int selectRadioValue;
 
@@ -63,6 +65,7 @@ class CheckoutBottomSheet extends StatelessWidget {
                           longitude: state[index].location.long),
                     ),
                   );
+
                   Navigator.pop(context);
                 },
                 leading: SizedBox(

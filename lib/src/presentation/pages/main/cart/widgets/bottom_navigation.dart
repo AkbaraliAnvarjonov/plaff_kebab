@@ -39,7 +39,11 @@ class CartBottomNavigation extends StatelessWidget {
                     BottomButton(
                       text: "checkout_order",
                       onTap: () {
-                        Navigator.pushNamed(context, Routes.checkout);
+                        Navigator.pushNamed(
+                          context,
+                          Routes.checkout,
+                          arguments: state.products,
+                        );
                       },
                     ),
                   ],

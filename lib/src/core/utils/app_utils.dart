@@ -7,6 +7,7 @@ sealed class AppUtils {
   static const kSpacer = Spacer();
 
   static const kGap = Gap(0);
+  static const kGap2 = Gap(2);
   static const kGap4 = Gap(4);
   static const kGap6 = Gap(6);
   static const kGap8 = Gap(8);

@@ -10,6 +10,7 @@ mixin OrdersMixin on State<CheckoutPage> {
   late final YandexMapController yandexMapController;
   late final TabController tabController;
   late int selectedAdress;
+  bool isCourierCall = true;
   @override
   void initState() {
     selectedAdress = -1;

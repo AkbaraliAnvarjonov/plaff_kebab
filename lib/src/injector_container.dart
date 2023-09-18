@@ -24,6 +24,7 @@ import 'package:plaff_kebab/src/domain/repositories/register/register_repository
 import 'package:plaff_kebab/src/presentation/bloc/auth/auth_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/register/register_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/banner/banner_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/checkout/checkout_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/home/home_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/map/map_bloc.dart';
@@ -99,7 +100,7 @@ Future<void> init() async {
   mainFeature();
   homeFeature();
 
-  /// auth
+  // auth
   authFeature();
   registerFeature();
 
@@ -115,6 +116,9 @@ Future<void> init() async {
 
   //database
   databaseFeature();
+
+  //checkout
+  checkoutFeature();
 }
 
 void mainFeature() {
@@ -152,6 +156,10 @@ void mapFeature() {
 
 void databaseFeature() {
   sl.registerFactory<DatabaseBloc>(() => DatabaseBloc(sl()));
+}
+
+void checkoutFeature() {
+  sl.registerFactory<CheckoutBloc>(() => CheckoutBloc(sl()));
 }
 
 void authFeature() {

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
+import 'package:plaff_kebab/src/core/extension/list_product_extension.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
+import 'package:plaff_kebab/src/data/source/hive/product.dart';
+import 'package:plaff_kebab/src/presentation/bloc/checkout/checkout_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/map/map_bloc.dart';
 import 'package:plaff_kebab/src/presentation/components/buttons/bottom_button.dart';
 import 'package:plaff_kebab/src/presentation/components/inputs/custom_text_field.dart';
@@ -11,6 +14,7 @@ import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/che
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/courier_call.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/custom_tab_bar.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/delivery_type_widget.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/price_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/select_payment_type_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/home/map/widgets/info_text_field.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/home/map/widgets/map_custom_button.dart';
@@ -19,7 +23,11 @@ import 'package:yandex_mapkit/yandex_mapkit.dart';
 part 'mixin/checkout_mixin.dart';
 
 class CheckoutPage extends StatefulWidget {
-  const CheckoutPage({super.key});
+  const CheckoutPage({
+    super.key,
+    required this.products,
+  });
+  final List<Products> products;
 
   @override
   State<CheckoutPage> createState() => _CheckoutPageState();
@@ -45,6 +53,10 @@ class _CheckoutPageState extends State<CheckoutPage>
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(56),
           child: CustomTabBar(
+            onTap: (tabIndex) {
+              BlocProvider.of<CheckoutBloc>(context)
+                  .add(ChangeTabEvent(tabIndex: tabIndex));
+            },
             controller: tabController,
             labels: [
               'delivery'.tr,
@@ -113,7 +125,16 @@ class _CheckoutPageState extends State<CheckoutPage>
                   SizedBox(
                     height: 156,
                     child: BlocSelector<MapBloc, MapState, List<MapObject>>(
-                      selector: (state) => state.mapObjects,
+                      selector: (state) {
+                        BlocProvider.of<CheckoutBloc>(context).add(
+                          BranchesEvent(
+                            point: state.point,
+                            orderPrice:
+                                widget.products.calculateTotalPrice().toInt(),
+                          ),
+                        );
+                        return state.mapObjects;
+                      },
                       builder: (context, state) {
                         return Stack(
                           children: [
@@ -129,9 +150,10 @@ class _CheckoutPageState extends State<CheckoutPage>
                               onMapCreated: (controller) async {
                                 yandexMapController = controller;
                                 BlocProvider.of<MapBloc>(context).add(
-                                    MapLoadedEvent(
-                                        yandexMapController:
-                                            yandexMapController));
+                                  MapLoadedEvent(
+                                      yandexMapController: yandexMapController),
+                                );
+
                                 await yandexMapController.toggleUserLayer(
                                     visible: false);
                               },
@@ -185,6 +207,7 @@ class _CheckoutPageState extends State<CheckoutPage>
                         showDragHandle: false,
                         context: context,
                         builder: (context) => CheckoutBottomSheet(
+                          orderPrice: widget.products.calculateTotalPrice(),
                           selectRadioValue: selectedAdress,
                           yandexMapController: yandexMapController,
                           controller: chooseController,
@@ -196,14 +219,22 @@ class _CheckoutPageState extends State<CheckoutPage>
               ),
             ),
             AppUtils.kGap12,
-            CourierCallWidget(),
+            const CourierCallWidget(),
             AppUtils.kGap12,
-            SelectDeliveryTypeWidget(
-              onTap: (value) {},
-            ),
+            const DeliveryTimeWidget(),
             AppUtils.kGap12,
             const SelectPaymentTypeWidget(),
-            AppUtils.kGap12
+            AppUtils.kGap12,
+            PriceWidget(
+              isCheckout: true,
+              generalSum: widget.products.calculateTotalPrice(),
+              listOfBasketProducts: widget.products,
+              // sum: ctr.getAllPrice,
+              // sumDiscount: ctr.generalSumWithDiscount +
+              //     (ctr.deliveryType == DeliveryType.delivery
+              //         ? ctr.computePriceResponse?.price ?? 0
+              //         : 0),
+            )
           ],
         ),
       ),

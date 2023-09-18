@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plaff_kebab/src/data/models/screen_args/product_page_args.dart';
+import 'package:plaff_kebab/src/data/source/hive/product.dart';
 import 'package:plaff_kebab/src/data/source/local_source.dart';
 import 'package:plaff_kebab/src/injector_container.dart';
 import 'package:plaff_kebab/src/presentation/bloc/auth/auth_bloc.dart';
@@ -97,7 +98,11 @@ sealed class AppRoutes {
       case Routes.favourites:
         return MaterialPageRoute(builder: (_) => const FavoritesPage());
       case Routes.checkout:
-        return MaterialPageRoute(builder: (_) => const CheckoutPage());
+        return MaterialPageRoute(
+          builder: (_) => CheckoutPage(
+            products: settings.arguments as List<Products>,
+          ),
+        );
       case Routes.product:
         return MaterialPageRoute(
           builder: (_) {
