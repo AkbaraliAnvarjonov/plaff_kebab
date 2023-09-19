@@ -11,6 +11,7 @@ class CheckoutState extends Equatable {
     this.error = '',
     this.branches = const [],
     this.point = const Point(latitude: 41, longitude: 63),
+    this.selectedBranch,
   });
 
   final String error;
@@ -22,6 +23,7 @@ class CheckoutState extends Equatable {
   final OnDemandStatus status;
   final List<Branch> branches;
   final Point point;
+  final Branch? selectedBranch;
 
   CheckoutState copyWith({
     final String? error,
@@ -32,9 +34,11 @@ class CheckoutState extends Equatable {
     final int? shippingPrice,
     final OnDemandStatus? status,
     final List<Branch>? branches,
+    final Branch? selectedBranch,
     final Point? point,
   }) =>
       CheckoutState(
+        selectedBranch: selectedBranch ?? this.selectedBranch,
         paymentType: paymentType ?? this.paymentType,
         error: error ?? this.error,
         deliveryTime: deliveryTime ?? this.deliveryTime,
@@ -56,6 +60,7 @@ class CheckoutState extends Equatable {
         branches,
         status,
         point,
+        selectedBranch,
       ];
 }
 

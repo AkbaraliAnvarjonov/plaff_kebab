@@ -61,6 +61,7 @@ class BranchesEvent extends CheckoutEvent {
   @override
   List<Object?> get props => [point, orderPrice];
 }
+
 class OnDemandEvent extends CheckoutEvent {
   final OnDemandModel onDemandModel;
 
@@ -68,4 +69,13 @@ class OnDemandEvent extends CheckoutEvent {
 
   @override
   List<Object?> get props => [onDemandModel];
+}
+
+class SelectBranchEvent extends CheckoutEvent {
+  final Branch selectedBranch;
+
+  const SelectBranchEvent({required this.selectedBranch});
+
+  @override
+  List<Object?> get props => [selectedBranch];
 }

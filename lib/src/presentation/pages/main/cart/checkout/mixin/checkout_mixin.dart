@@ -7,7 +7,6 @@ mixin OrdersMixin on State<CheckoutPage> {
   late final TextEditingController flatController;
   late final TextEditingController adressNameController;
   late final TextEditingController chooseController;
-  late final YandexMapController yandexMapController;
   late final TabController tabController;
   late int selectedAdress;
   bool isCourierCall = true;

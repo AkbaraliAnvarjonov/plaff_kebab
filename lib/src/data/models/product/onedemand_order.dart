@@ -1,7 +1,6 @@
 import 'package:plaff_kebab/src/data/models/adress/location_model.dart';
 import 'package:plaff_kebab/src/data/models/product/steps_model.dart';
 
-
 enum PaymentType {
   cash,
   click,
@@ -12,11 +11,21 @@ enum DeliveryType {
   delivery,
   selfPickup,
 }
-//qo'shish kere
-//bool? isCourierCall;
 
-//qayta qilnvotkan zakazmi check qlsh kere
-//bool? isCancelOldOrder;
+extension PaymentTypeExtension on PaymentType {
+  String get stringValue {
+    switch (this) {
+      case PaymentType.cash:
+        return 'Cash';
+      case PaymentType.click:
+        return 'Click';
+      case PaymentType.payMe:
+        return 'PayMe';
+      default:
+        return 'Unknown'; // You can return a default value if needed.
+    }
+  }
+}
 
 enum DeliveryTime {
   fastDelivery,

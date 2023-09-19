@@ -53,6 +53,7 @@ sealed class AppUtils {
   static const kPaddingHor16Ver10 =
       EdgeInsets.symmetric(horizontal: 16, vertical: 10);
   static const kPaddingVer16 = EdgeInsets.symmetric(vertical: 16);
+  static const kPaddingVer12 = EdgeInsets.symmetric(vertical: 12);
   static const kPaddingVer8 = EdgeInsets.symmetric(vertical: 8);
   static const kPaddingBanner = EdgeInsets.only(top: 16, bottom: 8);
   static const kPaddingSearch =

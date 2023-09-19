@@ -57,9 +57,10 @@ class CheckoutBottomButtonWidget extends StatelessWidget {
                 listModifier.add(ModifiersOnDemand(
                   modifierId: element.modifierId,
                   modifierName: Translations(
-                      uz: element.modifierName.uz,
-                      ru: element.modifierName.ru,
-                      en: element.modifierName.en),
+                    uz: element.modifierName.uz,
+                    ru: element.modifierName.ru,
+                    en: element.modifierName.en,
+                  ),
                   modifierQuantity: (element.modifierQuantity *
                           (int.tryParse(numbers.first) ?? 1))
                       .toString(),
@@ -95,14 +96,16 @@ class CheckoutBottomButtonWidget extends StatelessWidget {
               clientId: localSource.userId,
               coDeliveryPrice: 0,
               deliveryTime: '',
-              deliveryType: 'delivery',
+              deliveryType: state.deliveryType == DeliveryType.delivery
+                  ? "delivery"
+                  : "self-pickup",
               description: '',
               isCourierCall: state.isCall,
               extraPhoneNumber: '',
               floor: floorController.text,
               paid: false,
               paymentType:
-                  state.paymentType == PaymentType.cash ? 'cash' : 'clicl',
+                  state.paymentType == PaymentType.cash ? 'cash' : 'click',
               source: 'android',
               statusId: '',
               steps: [

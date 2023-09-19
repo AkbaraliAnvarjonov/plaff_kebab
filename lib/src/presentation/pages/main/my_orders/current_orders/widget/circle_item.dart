@@ -26,13 +26,14 @@ class CircleItemSvgWidget extends StatelessWidget {
           shape: BoxShape.circle,
         ),
         child: Center(
-          child: SvgPicture.asset(
-            assets,
-            height: 24,
-            width: 24,
-            color:
-                status ? context.color.cardColor : context.colorScheme.primary,
-          ),
+          child: SvgPicture.asset(assets,
+              height: 24,
+              width: 24,
+              colorFilter: ColorFilter.mode(
+                  status
+                      ? context.color.cardColor
+                      : context.colorScheme.primary,
+                  BlendMode.srcIn)),
         ),
       ),
     );

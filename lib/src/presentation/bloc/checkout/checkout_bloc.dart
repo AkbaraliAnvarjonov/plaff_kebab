@@ -22,6 +22,7 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
     on<ShippingPriceEvent>(_calculateShipping);
     on<BranchesEvent>(_getNearestBranches);
     on<OnDemandEvent>(_onDemandOrder);
+    on<SelectBranchEvent>(_selectBranch);
   }
 
   final AdressRepository adressRepository;
@@ -36,6 +37,10 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
 
   _isCall(CourierCallEvent event, Emitter<CheckoutState> emit) {
     emit(state.copyWith(isCall: event.isCall));
+  }
+
+  _selectBranch(SelectBranchEvent event, Emitter<CheckoutState> emit) {
+    emit(state.copyWith(selectedBranch: event.selectedBranch));
   }
 
   _changeDeliveryType(DeliveryTimeEvent event, Emitter<CheckoutState> emit) {
