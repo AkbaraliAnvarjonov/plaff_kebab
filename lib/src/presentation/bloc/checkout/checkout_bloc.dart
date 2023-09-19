@@ -78,6 +78,8 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
         emit(state.copyWith(status: OnDemandStatus.success));
       },
     );
+
+    emit(state.copyWith(status: OnDemandStatus.initial));
   }
 
   _getNearestBranches(BranchesEvent event, Emitter<CheckoutState> emit) async {

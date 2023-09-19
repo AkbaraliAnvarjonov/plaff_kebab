@@ -12,7 +12,10 @@ class CurrentOrdersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        physics: const BouncingScrollPhysics(),
         slivers: [
+          const SliverToBoxAdapter(child: AppUtils.kGap12),
           BlocSelector<OrderBloc, OrderState, List<Orders>>(
               selector: (state) => state.orders,
               builder: (context, state) {
@@ -20,17 +23,12 @@ class CurrentOrdersPage extends StatelessWidget {
                   itemCount: state.length,
                   itemBuilder: (context, index) => CurrentOrderStatusItemWidget(
                     order: state[index],
-                    onTap: (value) {
-                      // Get.toNamed(
-                      //   AppRoutes.currentOrdersDetail,
-                      //   arguments:
-                      //       CurrentOrderDetailPageArguments(id: value?.id ?? ''),
-                      // );
-                    },
+                    onTap: (value) {},
                   ),
                   separatorBuilder: (context, index) => AppUtils.kGap12,
                 );
               }),
+          const SliverToBoxAdapter(child: AppUtils.kGap12),
         ],
       ),
     );

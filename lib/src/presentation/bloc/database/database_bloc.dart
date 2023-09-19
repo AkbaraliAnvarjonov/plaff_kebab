@@ -49,6 +49,7 @@ class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
     } catch (e) {
       emit(state.copyWith(status: DatabaseStatus.error));
     }
+    emit(state.copyWith(status: DatabaseStatus.initial));
 
     add(GetProduct());
   }

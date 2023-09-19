@@ -5,7 +5,9 @@ import 'package:plaff_kebab/src/core/extension/extension.dart';
 import 'package:plaff_kebab/src/core/utils/utils.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_event.dart';
+import 'package:plaff_kebab/src/presentation/bloc/database/database_state.dart';
 import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
+import 'package:plaff_kebab/src/presentation/components/snack/snack.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/home/product/widgets/plus_minus_button.dart';
 
 class BottomNavWidget extends StatelessWidget {
@@ -81,24 +83,34 @@ class BottomNavWidget extends StatelessWidget {
               },
             ),
             const Gap(8),
-            BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
-              return ElevatedButton(
-                onPressed: () {
-                  BlocProvider.of<DatabaseBloc>(context).add(AddProduct(
-                      combo: state.combo,
-                      modifier: state.modifiers,
-                      product: state.productIdModel!));
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 52),
-                ),
-                child: Text(
-                  context.tr("add_card"),
-                  style: context.textStyle.regularSubheadline.copyWith(
-                      color: context.color.black, fontWeight: FontWeight.w600),
-                ),
-              );
-            }),
+            BlocBuilder<ProductBloc, ProductState>(
+              builder: (context, state) {
+                return BlocListener<DatabaseBloc, DatabaseState>(
+                    listener: (context, state) {
+                      if (state.status.isSuccess) {
+                        Navigator.popUntil(context, (route) => route.isFirst);
+                        showSnackBar(context, "Succesfuly added to cart");
+                      }
+                    },
+                    child: ElevatedButton(
+                      onPressed: () {
+                        BlocProvider.of<DatabaseBloc>(context).add(AddProduct(
+                            combo: state.combo,
+                            modifier: state.modifiers,
+                            product: state.productIdModel!));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(double.infinity, 52),
+                      ),
+                      child: Text(
+                        context.tr("add_card"),
+                        style: context.textStyle.regularSubheadline.copyWith(
+                            color: context.color.black,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ));
+              },
+            ),
           ],
         ),
       ),

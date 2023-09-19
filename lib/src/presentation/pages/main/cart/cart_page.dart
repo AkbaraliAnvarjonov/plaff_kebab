@@ -30,6 +30,7 @@ class _OrdersPageState extends State<OrdersPage>
         title: const Text('Мои заказы'),
         actions: [
           BlocBuilder<DatabaseBloc, DatabaseState>(
+            buildWhen: (previous, current) => previous.status != current.status,
             builder: (context, state) {
               if (state.status.isLoading) {
                 return const CircularProgressIndicator();
@@ -48,6 +49,8 @@ class _OrdersPageState extends State<OrdersPage>
         ],
       ),
       body: BlocBuilder<DatabaseBloc, DatabaseState>(
+        buildWhen: (previous, current) =>
+            previous.status.toString() != current.status.toString(),
         builder: (context, state) {
           if (state.status.isLoading) {
             return const Center(
