@@ -20,6 +20,8 @@ import 'package:plaff_kebab/src/domain/repositories/category/category_repository
 import 'package:plaff_kebab/src/domain/repositories/category/category_repository_impl.dart';
 import 'package:plaff_kebab/src/domain/repositories/one_demand/on_demand_repository.dart';
 import 'package:plaff_kebab/src/domain/repositories/one_demand/on_demand_repository_impl.dart';
+import 'package:plaff_kebab/src/domain/repositories/order/order_repository.dart';
+import 'package:plaff_kebab/src/domain/repositories/order/order_repository_impl.dart';
 import 'package:plaff_kebab/src/domain/repositories/product/product_repository.dart';
 import 'package:plaff_kebab/src/domain/repositories/product/product_repository_impl.dart';
 import 'package:plaff_kebab/src/domain/repositories/register/register_repository.dart';
@@ -30,6 +32,7 @@ import 'package:plaff_kebab/src/presentation/bloc/checkout/checkout_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/home/home_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/map/map_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/order/order_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/user_adresses/user_adresses_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/main/main_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
@@ -121,6 +124,9 @@ Future<void> init() async {
 
   //checkout
   checkoutFeature();
+
+  //order
+  orderFeature();
 }
 
 void mainFeature() {
@@ -195,6 +201,17 @@ void productFeature() {
     ..registerFactory<ProductBloc>(() => ProductBloc(sl()))
     ..registerLazySingleton<ProductRepository>(
       () => ProductRepositoryImpl(
+        dio: sl(),
+        networkInfo: sl(),
+      ),
+    );
+}
+
+void orderFeature() {
+  sl
+    ..registerFactory<OrderBloc>(() => OrderBloc(sl()))
+    ..registerLazySingleton<OrderRepository>(
+      () => OrderRepositoryImpl(
         dio: sl(),
         networkInfo: sl(),
       ),

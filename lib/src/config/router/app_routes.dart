@@ -18,7 +18,7 @@ import 'package:plaff_kebab/src/presentation/pages/error/error_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/internet_connection/internet_connection_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/language/language_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/checkout_page.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/favorites/bookmark_page.dart';
+import 'package:plaff_kebab/src/presentation/pages/main/my_orders/bookmark_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/home/map/map_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/main_page.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/home/product/product_page.dart';

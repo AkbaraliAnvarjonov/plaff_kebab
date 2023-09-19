@@ -10,7 +10,7 @@ import 'package:plaff_kebab/src/presentation/bloc/main/main_bloc.dart';
 import 'package:plaff_kebab/src/presentation/components/fade_indexed_stack/animated_fade_indexed_stack.dart';
 import 'package:plaff_kebab/src/config/router/app_routes.dart';
 
-import 'favorites/bookmark_page.dart';
+import 'my_orders/bookmark_page.dart';
 import 'home/home_page.dart';
 import 'cart/cart_page.dart';
 import 'profile/profile_page.dart';

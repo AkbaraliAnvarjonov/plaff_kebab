@@ -5,7 +5,7 @@ const colorLightScheme = ColorScheme.light(
   primary: Color(0xFFFFCC00),
   surface: Color(0xFFF7F9FC),
   onSurface: Color(0xFFF5F5F5),
-  secondary: Color(0xFF69D7C7),
+  secondary: Color(0xFF0E73F6),
   onSecondary: Color(0xFF020000),
   error: Color(0xFFD93F2F),
   background: Color(0xFFF7F5F6),

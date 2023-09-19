@@ -11,6 +11,7 @@ import 'package:plaff_kebab/src/presentation/bloc/checkout/checkout_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/database/database_event.dart';
 import 'package:plaff_kebab/src/presentation/bloc/map/map_bloc.dart';
+import 'package:plaff_kebab/src/presentation/bloc/order/order_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/user_adresses/user_adresses_bloc.dart';
 import 'package:plaff_kebab/src/presentation/bloc/product/product_bloc.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
@@ -66,6 +67,7 @@ class MainApp extends StatelessWidget {
             BlocProvider<ProductBloc>(create: (_) => sl<ProductBloc>()),
             BlocProvider<MainBloc>(create: (_) => sl<MainBloc>()),
             BlocProvider<MapBloc>(create: (_) => sl<MapBloc>()),
+            BlocProvider<OrderBloc>(create: (_) => sl<OrderBloc>()),
             BlocProvider<DatabaseBloc>(
                 create: (_) => sl<DatabaseBloc>()..add(GetProduct())),
             BlocProvider<CheckoutBloc>(create: (_) => sl<CheckoutBloc>()),

@@ -3,6 +3,19 @@ import 'package:flutter/material.dart';
 sealed class Constants {
   Constants._();
 
+  static const String newId = '986a0d09-7b4d-4ca9-8567-aa1c6d770505';
+  static const String courierAccepted = '8781af8e-f74d-4fb6-ae23-fd997f4a2ee0';
+  static const String operatorAccepted = 'ccb62ffb-f0e1-472e-bf32-d130bea90617';
+  static const String vendorAccepted = '1b6dc9a3-64aa-4f68-b54f-71ffe8164cd3';
+  static const String vendorReady = 'b0cb7c69-5e3d-47c7-9813-b0a7cc3d81fd';
+  static const String courierPickedUp = '84be5a2f-3a92-4469-8283-220ca34a0de4';
+  static const String serverCancelled = 'd39cb255-6cf5-4602-896d-9c559d40cbbe';
+  static const String operatorCancelled =
+      'b5d1aa93-bccd-40bb-ae29-ea5a85a2b1d1';
+  static const String delivered = '79413606-a56f-45ed-97c3-f3f18e645972';
+  static const String finished = 'e665273d-5415-4243-a329-aee410e39465';
+  static const String futureTime = 'bf9cc968-367d-4391-93fa-f77eda2a7a99';
+
   /// test
   static const baseUrl = 'https://test.customer.api.delever.uz/';
   static const authUrl = 'https://api.auth.u-code.io';
@@ -46,6 +59,7 @@ sealed class Urls {
   static const String modifier = 'v2/modifier';
   static const String combo = 'v2/combo/';
   static const String getBanners = 'v1/banner';
+  static const String order = 'v1/order';
   static const String customers = 'v1/customers';
   static const String customerAddress = 'v1/customer_address';
   static const String computePrice = 'v1/fares/compute-price';
