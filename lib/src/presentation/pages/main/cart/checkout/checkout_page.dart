@@ -10,7 +10,6 @@ import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/bot
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/courier_call.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/custom_tab_bar.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/delivery_map_widget.dart';
-import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/delivery_type_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/price_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/select_payment_type_widget.dart';
 import 'package:plaff_kebab/src/presentation/pages/main/cart/checkout/widget/self_pick_up_widget.dart';
@@ -85,9 +84,9 @@ class _CheckoutPageState extends State<CheckoutPage>
                         ? const CourierCallWidget()
                         : AppUtils.kGap,
                     AppUtils.kGap12,
-                    deliveryTypeState == DeliveryType.delivery
-                        ? const DeliveryTimeWidget()
-                        : AppUtils.kGap,
+                    // deliveryTypeState == DeliveryType.delivery
+                    //     ? const DeliveryTimeWidget()
+                    //     : AppUtils.kGap,
                     AppUtils.kGap12,
                     const SelectPaymentTypeWidget(),
                     AppUtils.kGap12,

@@ -16,13 +16,13 @@ extension PaymentTypeExtension on PaymentType {
   String get stringValue {
     switch (this) {
       case PaymentType.cash:
-        return 'Cash';
+        return 'cash';
       case PaymentType.click:
-        return 'Click';
+        return 'click';
       case PaymentType.payMe:
         return 'PayMe';
       default:
-        return 'Unknown'; // You can return a default value if needed.
+        return 'cash'; // You can return a default value if needed.
     }
   }
 }
@@ -76,7 +76,6 @@ class OnDemandOrderRequest {
   });
 
   OnDemandOrderRequest.fromJson(Map<String, dynamic> json) {
-    // apartment = json['aggregator_id'];
     apartment = json['apartment'];
     building = json['building'];
     clientId = json['client_id'];

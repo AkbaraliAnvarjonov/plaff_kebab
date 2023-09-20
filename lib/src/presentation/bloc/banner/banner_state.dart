@@ -1,27 +1,48 @@
 part of 'banner_bloc.dart';
 
 class BannerState extends Equatable {
-  const BannerState();
+  const BannerState({
+    this.error = '',
+    this.bannerList = const [],
+    this.status = BannerStatus.initial,
+    this.index = 0,
+  });
 
-  @override
-  List<Object?> get props => [];
-}
-
-class GetBannerErrosState extends BannerState {
   final String error;
-  const GetBannerErrosState({required this.error});
-
-  @override
-  List<Object?> get props => [error];
-}
-
-class GetBannerSuccesState extends BannerState {
   final List<BannerModel> bannerList;
-
-  const GetBannerSuccesState({required this.bannerList});
-
+  final BannerStatus status;
+  final int index;
   @override
-  List<Object?> get props => [bannerList];
+  List<Object?> get props => [error, bannerList, status, index];
+
+  BannerState copyWith({
+    String? error,
+    List<BannerModel>? bannerList,
+    BannerStatus? status,
+    int? index,
+  }) {
+    return BannerState(
+      error: error ?? this.error,
+      bannerList: bannerList ?? this.bannerList,
+      status: status ?? this.status,
+      index: index ?? this.index,
+    );
+  }
 }
 
-class GetBannerLoading extends BannerState {}
+enum BannerStatus {
+  initial,
+  loading,
+  success,
+  error,
+}
+
+extension BannerStatusX on BannerStatus {
+  bool get isInitial => this == BannerStatus.initial;
+
+  bool get isLoading => this == BannerStatus.loading;
+
+  bool get isSuccess => this == BannerStatus.success;
+
+  bool get isError => this == BannerStatus.error;
+}

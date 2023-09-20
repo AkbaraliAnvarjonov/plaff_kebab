@@ -20,7 +20,8 @@ class ProductCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
+      borderRadius: BorderRadius.circular(12),
       onTap: () {
         Navigator.pushNamed(
           context,
@@ -35,7 +36,7 @@ class ProductCardWidget extends StatelessWidget {
             .add(GetProductEvent(id: productModel.id));
       },
       child: Padding(
-        padding: AppUtils.kPaddingVer16,
+        padding: AppUtils.kPaddingAll16,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,

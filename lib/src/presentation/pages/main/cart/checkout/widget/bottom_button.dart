@@ -89,38 +89,40 @@ class CheckoutBottomButtonWidget extends StatelessWidget {
                 ),
               );
             }
-            BlocProvider.of<CheckoutBloc>(context).add(OnDemandEvent(
+            BlocProvider.of<CheckoutBloc>(context).add(
+              OnDemandEvent(
                 onDemandModel: OnDemandModel(
-              apartment: entranceController.text,
-              building: flatController.text,
-              clientId: localSource.userId,
-              coDeliveryPrice: 0,
-              deliveryTime: '',
-              deliveryType: state.deliveryType == DeliveryType.delivery
-                  ? "delivery"
-                  : "self-pickup",
-              description: '',
-              isCourierCall: state.isCall,
-              extraPhoneNumber: '',
-              floor: floorController.text,
-              paid: false,
-              paymentType:
-                  state.paymentType == PaymentType.cash ? 'cash' : 'click',
-              source: 'android',
-              statusId: '',
-              steps: [
-                StepModel(
-                  branchId: state.branches[0].id,
+                  apartment: entranceController.text,
+                  building: flatController.text,
+                  clientId: localSource.userId,
+                  coDeliveryPrice: 0,
+                  deliveryTime: '',
+                  deliveryType: state.deliveryType == DeliveryType.delivery
+                      ? "delivery"
+                      : "self-pickup",
                   description: '',
-                  products: list,
-                )
-              ],
-              toAddress: locationNameController.text,
-              toLocation: ToLocation(
-                lat: state.point.latitude,
-                long: state.point.longitude,
+                  isCourierCall: state.isCall,
+                  extraPhoneNumber: '',
+                  floor: floorController.text,
+                  paid: false,
+                  paymentType: state.paymentType.stringValue,
+                  source: 'android',
+                  statusId: '',
+                  steps: [
+                    StepModel(
+                      branchId: state.branches[0].id,
+                      description: '',
+                      products: list,
+                    )
+                  ],
+                  toAddress: locationNameController.text,
+                  toLocation: ToLocation(
+                    lat: state.point.latitude,
+                    long: state.point.longitude,
+                  ),
+                ),
               ),
-            )));
+            );
           },
         );
       }),

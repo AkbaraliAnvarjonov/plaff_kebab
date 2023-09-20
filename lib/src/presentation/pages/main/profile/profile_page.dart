@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gap/gap.dart';
 import 'package:plaff_kebab/src/config/router/app_routes.dart';
 import 'package:plaff_kebab/src/core/extension/extension.dart';
-import 'package:plaff_kebab/src/presentation/components/material_border/material_border_widget.dart';
+import 'package:plaff_kebab/src/core/utils/utils.dart';
 
 import 'widgets/logout_dialog.dart';
 import 'widgets/profile_item_widget.dart';
@@ -16,42 +15,41 @@ class ProfilePage extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             context.tr('profile'),
-            style: context.textStyle.appBarTitle,
           ),
           centerTitle: true,
         ),
-        body: CustomScrollView(
-          slivers: [
-            const SliverGap(16),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  ListTile(
-                      onTap: () {},
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                      ),
-                      tileColor: context.color.cardColor,
-                      trailing: SvgPicture.asset(
-                        AppIcons.pen_icon,
-                        width: 20,
-                        height: 20,
-                      ),
-                      title: Text(
-                        localSource.fullName,
-                        style: context.textStyle.appBarTitle,
-                      ),
-                      subtitle: Text(
-                        localSource.phone,
-                        style: context.textStyle.regularSubheadline
-                            .copyWith(color: context.color.black2),
-                      ))
-                ],
+        body: Column(
+          children: [
+            AppUtils.kGap12,
+            ListTile(
+              onTap: () {},
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(12)),
+              ),
+              tileColor: context.color.cardColor,
+              trailing: SvgPicture.asset(
+                AppIcons.pen_icon,
+                width: 20,
+                height: 20,
+              ),
+              title: Text(
+                localSource.fullName,
+                style: context.textStyle.appBarTitle,
+              ),
+              subtitle: Text(
+                localSource.phone,
+                style: context.textStyle.regularSubheadline
+                    .copyWith(color: context.color.black2),
               ),
             ),
-            const SliverGap(12),
-            SliverToBoxAdapter(
-              child: MaterialBorderWidget(
+            AppUtils.kGap12,
+            ClipRRect(
+              borderRadius: AppUtils.kBorderRadius12,
+              child: Material(
+                color: context.theme.cardColor,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: AppUtils.kBorderRadius12,
+                ),
                 child: Column(
                   children: [
                     ProfileItemWidget(
@@ -63,9 +61,12 @@ class ProfilePage extends StatelessWidget {
                       text: context.tr('branches'),
                       onTap: () {},
                     ),
-                    Divider(
-                      height: 1,
-                      color: context.color.black.withOpacity(0.1),
+                    Padding(
+                      padding: AppUtils.kPaddingHorizontal16,
+                      child: Divider(
+                        height: 0.5,
+                        color: context.color.black.withOpacity(0.1),
+                      ),
                     ),
                     ProfileItemWidget(
                       icon: SvgPicture.asset(
@@ -79,9 +80,12 @@ class ProfilePage extends StatelessWidget {
                         );
                       },
                     ),
-                    Divider(
-                      height: 1,
-                      color: context.color.black.withOpacity(0.1),
+                    Padding(
+                      padding: AppUtils.kPaddingHorizontal16,
+                      child: Divider(
+                        height: 0.5,
+                        color: context.color.black.withOpacity(0.1),
+                      ),
                     ),
                     ProfileItemWidget(
                       icon: SvgPicture.asset(
@@ -90,9 +94,12 @@ class ProfilePage extends StatelessWidget {
                       text: context.tr('addresses'),
                       onTap: () {},
                     ),
-                    Divider(
-                      height: 1,
-                      color: context.color.black.withOpacity(0.1),
+                    Padding(
+                      padding: AppUtils.kPaddingHorizontal16,
+                      child: Divider(
+                        height: 0.5,
+                        color: context.color.black.withOpacity(0.1),
+                      ),
                     ),
                     ProfileItemWidget(
                       icon: SvgPicture.asset(
@@ -101,9 +108,12 @@ class ProfilePage extends StatelessWidget {
                       text: context.tr('about_us'),
                       onTap: () {},
                     ),
-                    Divider(
-                      height: 1,
-                      color: context.color.black.withOpacity(0.1),
+                    Padding(
+                      padding: AppUtils.kPaddingHorizontal16,
+                      child: Divider(
+                        height: 0.5,
+                        color: context.color.black.withOpacity(0.1),
+                      ),
                     ),
                     ProfileItemWidget(
                       icon: const Icon(

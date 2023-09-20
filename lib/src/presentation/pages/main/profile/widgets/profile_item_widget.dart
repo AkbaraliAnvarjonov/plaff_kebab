@@ -21,8 +21,12 @@ class ProfileItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => InkWell(
         onTap: onTap,
-        child: SizedBox(
-          height: 64,
+        child: Ink(
+          padding: AppUtils.kPaddingHor16Ver20,
+          decoration: BoxDecoration(
+            borderRadius: AppUtils.kBorderRadius12,
+            color: context.theme.cardColor,
+          ),
           child: Row(
             children: [
               Ink(

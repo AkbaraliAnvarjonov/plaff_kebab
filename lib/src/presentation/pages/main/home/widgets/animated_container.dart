@@ -48,10 +48,14 @@ class _AnimatedConWidgetState extends State<AnimatedConWidget> {
           borderRadius: AppUtils.kBorderRadius8,
         ),
         duration: const Duration(milliseconds: 100),
-        child: Padding(
-          padding: AppUtils.kPaddingHor16Ver10,
-          child:
-              Text(widget.categoryWithProducts.title.getLocalizedDescription()),
+        child: Center(
+          child: Padding(
+            padding: AppUtils.kPaddingHorizontal16,
+            child: Text(
+              widget.categoryWithProducts.title.getLocalizedDescription(),
+              style: context.textStyle.style15Wight400,
+            ),
+          ),
         ),
       ),
     );

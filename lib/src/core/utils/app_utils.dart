@@ -33,6 +33,7 @@ sealed class AppUtils {
   static const kPaddingAll24 = EdgeInsets.all(24);
   static const kPaddingHorizontal12 = EdgeInsets.symmetric(horizontal: 12);
   static const kPaddingHorizontal8 = EdgeInsets.symmetric(horizontal: 8);
+  static const kPaddingHorizontal4 = EdgeInsets.symmetric(horizontal: 4);
   static const kPaddingVertical8 = EdgeInsets.symmetric(vertical: 8);
   static const kPaddingHorizontal16 = EdgeInsets.symmetric(horizontal: 16);
   static const kPaddingHor32Ver20 =
@@ -44,12 +45,15 @@ sealed class AppUtils {
   static const kPaddingBottom16left8 = EdgeInsets.fromLTRB(8, 0, 0, 16);
   static const kPaddingBottom2 = EdgeInsets.fromLTRB(0, 0, 0, 2);
   static const kPaddingBottom8 = EdgeInsets.fromLTRB(0, 0, 0, 8);
+  static const kPaddinTop16Left16 = EdgeInsets.fromLTRB(16, 16, 0, 0);
   static const kPaddingHor14Ver16 =
       EdgeInsets.symmetric(horizontal: 14, vertical: 16);
   static const kPaddingHor16Ver12 =
       EdgeInsets.symmetric(horizontal: 16, vertical: 12);
   static const kPaddingHor16Ver24 =
       EdgeInsets.symmetric(horizontal: 16, vertical: 24);
+  static const kPaddingHor16Ver20 =
+      EdgeInsets.symmetric(horizontal: 16, vertical: 20);
   static const kPaddingHor16Ver10 =
       EdgeInsets.symmetric(horizontal: 16, vertical: 10);
   static const kPaddingVer16 = EdgeInsets.symmetric(vertical: 16);
@@ -57,7 +61,7 @@ sealed class AppUtils {
   static const kPaddingVer8 = EdgeInsets.symmetric(vertical: 8);
   static const kPaddingBanner = EdgeInsets.only(top: 16, bottom: 8);
   static const kPaddingSearch =
-      EdgeInsets.only(left: 16, top: 12, bottom: 12, right: 4);
+      EdgeInsets.only(left: 0, top: 12, bottom: 12, right: 8);
   static const kPaddingSearchWidget =
       EdgeInsets.only(left: 16, bottom: 8, right: 16);
 
@@ -69,6 +73,8 @@ sealed class AppUtils {
   static const kBorderRadius4 = BorderRadius.all(Radius.circular(4));
   static const kBorderRadius8 = BorderRadius.all(Radius.circular(8));
   static const kBorderRadius10 = BorderRadius.all(Radius.circular(10));
+  static const kBorderTopRadius10 = BorderRadius.only(
+      topLeft: Radius.circular(10), topRight: Radius.circular(10));
   static const kBorderRadius12 = BorderRadius.all(Radius.circular(12));
   static const kBorderRadius16 = BorderRadius.all(Radius.circular(16));
   static const kShapeRoundedNone = RoundedRectangleBorder();

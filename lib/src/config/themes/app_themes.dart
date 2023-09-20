@@ -1,7 +1,6 @@
 part of 'themes.dart';
 
 final appTheme = ThemeData(
-  
   useMaterial3: true,
   applyElevationOverlayColor: true,
   pageTransitionsTheme: const PageTransitionsTheme(
@@ -48,6 +47,7 @@ final ThemeData lightTheme = appTheme.copyWith(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
+      splashFactory: InkSparkle.splashFactory,
       foregroundColor: MaterialStateProperty.resolveWith(
         (states) => Colors.white,
       ),

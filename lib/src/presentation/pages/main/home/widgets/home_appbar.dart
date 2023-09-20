@@ -23,38 +23,43 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         preferredSize: const Size(double.infinity, 50),
         child: Padding(
           padding: AppUtils.kPaddingSearchWidget,
-          child: SearchBar(
-            onChanged: onChanged,
-            shape: MaterialStateProperty.resolveWith<OutlinedBorder?>(
-              (Set<MaterialState> states) => const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
+          child: SizedBox(
+            height: 44,
+            child: SearchBar(
+              onChanged: onChanged,
+              shape: MaterialStateProperty.resolveWith<OutlinedBorder?>(
+                (Set<MaterialState> states) => const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(8),
+                  ),
                 ),
               ),
+              elevation: MaterialStateProperty.resolveWith<double?>(
+                  (Set<MaterialState> states) => 0),
+              surfaceTintColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) => context.colorScheme.onSurface),
+              leading: Padding(
+                  padding: AppUtils.kPaddingSearch,
+                  child: SvgPicture.asset(
+                    AppIcons.search_icon,
+                    width: 20,
+                    height: 20,
+                  )),
+              overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) => context.colorScheme.onSurface),
+              shadowColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) => context.theme.cardColor),
+              backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+                  (Set<MaterialState> states) => context.colorScheme.onSurface),
+              hintText: context.tr("search"),
+              hintStyle: MaterialStateProperty.resolveWith<TextStyle?>(
+                  (Set<MaterialState> states) => context
+                      .textStyle.regularSubheadline
+                      .copyWith(color: context.color.black5)),
+              textStyle: MaterialStateProperty.resolveWith<TextStyle?>(
+                  (Set<MaterialState> states) =>
+                      context.textStyle.regularSubheadline),
             ),
-            elevation: MaterialStateProperty.resolveWith<double?>(
-                (Set<MaterialState> states) => 0.5),
-            surfaceTintColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) => context.colorScheme.onSurface),
-            leading: Padding(
-                padding: AppUtils.kPaddingSearch,
-                child: SvgPicture.asset(
-                  AppIcons.search_icon,
-                  width: 20,
-                  height: 20,
-                )),
-            overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) => context.colorScheme.onSurface),
-            backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-                (Set<MaterialState> states) => context.colorScheme.onSurface),
-            hintText: context.tr("search"),
-            hintStyle: MaterialStateProperty.resolveWith<TextStyle?>(
-                (Set<MaterialState> states) => context
-                    .textStyle.regularSubheadline
-                    .copyWith(color: context.color.black5)),
-            textStyle: MaterialStateProperty.resolveWith<TextStyle?>(
-                (Set<MaterialState> states) =>
-                    context.textStyle.regularSubheadline),
           ),
         ),
       ),
@@ -88,7 +93,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                       state.isEmpty
                           ? context.tr("add_location")
                           : state[0].name,
-                      style: context.textStyle.regularSubheadline,
+                      style: context.textStyle.style15Wight400,
                     ),
                     const Gap(6),
                     SvgPicture.asset(
