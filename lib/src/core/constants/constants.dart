@@ -64,6 +64,7 @@ sealed class Urls {
   static const String customerAddress = 'v1/customer_address';
   static const String computePrice = 'v1/fares/compute-price';
   static const String nearestBranch = 'v1/nearest-branch';
+  static const String branches = 'v1/branches';
   static const String onDemandOrder = 'v2/ondemand-order';
 }
 

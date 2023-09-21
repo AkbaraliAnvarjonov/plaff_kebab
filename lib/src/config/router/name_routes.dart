@@ -15,4 +15,5 @@ sealed class Routes {
   static const String map = '/map';
   static const String favourites = '/favourites';
   static const String checkout = '/checkout';
+  static const String about = '/about';
 }

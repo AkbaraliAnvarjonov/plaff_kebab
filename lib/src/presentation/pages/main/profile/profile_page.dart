@@ -106,7 +106,9 @@ class ProfilePage extends StatelessWidget {
                         AppIcons.ui_icon,
                       ),
                       text: context.tr('about_us'),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, Routes.about);
+                      },
                     ),
                     Padding(
                       padding: AppUtils.kPaddingHorizontal16,
